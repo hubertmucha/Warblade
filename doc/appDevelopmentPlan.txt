@@ -2,7 +2,7 @@ Plan rozwoju apliakcji:
 
 TODO 
 	Stworzenie opisu gry (strona tytułowa git)
-TODO
+DONE
 	Zrobienie planu
 TODO 
 	Inicjlizacja projektu
