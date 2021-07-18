@@ -65,29 +65,7 @@
     // During blanking, make it it black.
     if (vblnk_in || hblnk_in) rgb_out_nxt = 12'h0_0_0; 
     else begin
-      // Active display, top edge, make a yellow line.
-      if (vcount_in == 0) rgb_out_nxt = 12'hf_f_0;
-      // Active display, bottom edge, make a red line.
-      else if (vcount_in == 599) rgb_out_nxt = 12'hf_0_0;
-      // Active display, left edge, make a green line.
-      else if (hcount_in == 0) rgb_out_nxt = 12'h0_f_0;
-      // Active display, right edge, make a blue line.
-      else if (hcount_in == 799) rgb_out_nxt = 12'h0_0_f;
-      // Active display, interior, fill with gray.
-      
-      // N letter display
-      else if ((hcount_out < 150 && hcount_in >= 70 && vcount_in <= 500 && vcount_in >= 100)) rgb_out_nxt = 12'h0_8_f;
-      else if ((hcount_in < 390 && hcount_in >= 310 && vcount_in <= 500 && vcount_in >= 100)) rgb_out_nxt = 12'h0_8_f;
-      else if ((hcount_in < 310 && hcount_in >= 150 && (100*vcount_in+4225)/175 <= hcount_in &&  hcount_in <= (100*vcount_in+16225)/175)) rgb_out_nxt = 12'h0_8_f;
-            
-      // P letter display
-      else if ((hcount_in < 570 && hcount_in >= 490 && vcount_in <= 500 && vcount_in >= 100)) rgb_out_nxt = 12'h0_8_f;
-      else if ((hcount_in < 730 && hcount_in >= 570 && vcount_in <= 180 && vcount_in >= 100)) rgb_out_nxt = 12'h0_8_f;
-      else if ((hcount_in < 730 && hcount_in >= 570 && vcount_in <= 340 && vcount_in >= 260)) rgb_out_nxt = 12'h0_8_f;
-      else if ((hcount_in < 730 && hcount_in >= 650 && vcount_in <= 260 && vcount_in >= 180)) rgb_out_nxt = 12'h0_8_f;
-      
-      // You will replace this with your own test.
-      else rgb_out_nxt = 12'h8_8_8;    
+      rgb_out_nxt = 12'h8_8_8;    
     end
   end
 

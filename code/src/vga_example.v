@@ -78,7 +78,7 @@ module vga_example (
   
   clk_wiz_0 my_clk_wiz_0(
       .clk(clk),
-      .clk40Mhz(pclk),
+      .clk65Mhz(pclk),
       .clk100Mhz(mouse_clk),
       .locked(locked),
       .reset(rst)
