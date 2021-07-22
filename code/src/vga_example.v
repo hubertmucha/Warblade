@@ -73,13 +73,12 @@ module vga_example (
   BUFGCE clk_out_bufgce (.I(clk_out),.CE(safe_start[7]),.O(pclk));
 */
   wire pclk;
-  wire mouse_clk;
   wire locked;
   
   clk_wiz_0 my_clk_wiz_0(
       .clk(clk),
       .clk65Mhz(pclk),
-      .clk100Mhz(mouse_clk),
+      .clk100Mhz(),
       .locked(locked),
       .reset(rst)
   );
@@ -155,56 +154,6 @@ module vga_example (
     .rgb_out(rgb_b)
   );
 
-  // Instantiate the MouseCtl module, which is
-  // the module you are using for this lab.
-  wire [11:0] xpos_m, ypos_m;
-  wire left;
-
-  MouseCtl my_MouseCtl(
-    .clk(mouse_clk),
-  
-    .ps2_clk(ps2_clk),
-    .ps2_data(ps2_data),
-
-    .xpos(xpos_m),
-    .ypos(ypos_m),
-    .left(left)
-  );
-
-  // Instantiate the dff (data flip flip) module, which is
-  // the module you are designing for this lab.
-  wire [11:0] xpos_dff, ypos_dff;
-  wire left_dff;
-
-  dff my_dff(
-    .pclk(pclk),
-    .rst(rst_out),
-
-    .xpos_in(xpos_m),
-    .ypos_in(ypos_m),
-    .left_in(left),
-
-    .xpos_out(xpos_dff),
-    .ypos_out(ypos_dff),
-    .left_out(left_dff)
-  );
-
-  // Instantiate the draw_rect_ctl module, which is
-  // the module you are designing for this lab.
-  wire [11:0] xpos_ctl, ypos_ctl;
-
-  draw_rect_ctl my_draw_rect_ctl(
-    //inputs
-    .pclk(pclk),
-    .rst(rst_out),
-    .mouse_left(left_dff),
-    .mouse_xpos(xpos_dff),
-    .mouse_ypos(ypos_dff),
-    //outputs
-    .xpos(xpos_ctl),
-    .ypos(ypos_ctl)
-  );
-
 
   // Instantiate the draw_react module, which is
   // the module you are designing for this lab.
@@ -217,10 +166,6 @@ module vga_example (
   draw_react my_draw_react(
     .pclk(pclk),
     .rst(rst_out),
-
-    // input x, y position of the mouse through draw_Rect_ctl
-    .xpos(xpos_ctl),
-    .ypos(ypos_ctl),
 
     //input
     .vcount_in(vcount_b),

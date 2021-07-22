@@ -54,19 +54,12 @@ read_verilog {
 
     src/image_rom.v
     src/dff_image.v
-    src/draw_rect_ctl.v
     src/dff_hs_vs.v
 
     src/font_rom.v
     src/draw_rect_char.v
     src/delay.v
     src/char_rom_16x16.v
-}
-
-read_vhdl {
-    src/MouseCtl.vhd
-    src/Ps2Interface.vhd
-    src/MouseDisplay.vhd
 }
 
 add_files -fileset sim_1 {

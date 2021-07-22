@@ -14,8 +14,7 @@
     input wire pclk,                                  // Peripheral Clock
     input wire rst,                                   // Synchrous reset
 
-    input wire [11:0] xpos,
-    input wire [11:0] ypos,
+    // input wire [11:0] xpos,                        // TODO: to uncomment input variable
 
     input wire [10:0] vcount_in,                      // input vertical count
     input wire vsync_in,                              // input vertical sync
@@ -39,6 +38,9 @@
   reg [11:0] rgb_out_nxt = 12'b0;
   reg [11:0] pixel_addr_nxt = 12'b0;
   reg [5:0] x_addr, y_addr, x_addr_nxt, y_addr_nxt;
+
+  localparam xpos = 400;                        // temporary localparam - TODO: to remove localparam xpos
+  localparam YPOS = 400;
 
   // Parameters
   // localparam X_RECT       = 100;
@@ -141,12 +143,12 @@
           rgb_out_nxt = 12'h0_0_0;
     end
     else begin
-      if (hcount_out_2 >= xpos && hcount_out_2 <= xpos + WIDTH_RECT && vcount_out_2 >= ypos && vcount_out_2 <= ypos + HEIGHT_RECT) 
+      if (hcount_out_2 >= xpos && hcount_out_2 <= xpos + WIDTH_RECT && vcount_out_2 >= YPOS && vcount_out_2 <= YPOS + HEIGHT_RECT) 
         rgb_out_nxt = rgb_pixel; 
       else 
         rgb_out_nxt = rgb_out_2;  
     end
-      y_addr_nxt = vcount_out_2[5:0] - ypos[5:0];
+      y_addr_nxt = vcount_out_2[5:0] - YPOS[5:0];
       x_addr_nxt = hcount_out_2[5:0] - xpos[5:0];
       pixel_addr_nxt = {y_addr[5:0], x_addr[5:0]};
   end
