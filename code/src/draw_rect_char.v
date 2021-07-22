@@ -42,8 +42,8 @@ module draw_rect_char (
 
   localparam RECT_LENGTH = 256;
   localparam RECT_WIDTH = 128; 
-  localparam Y_START = 200;
-  localparam X_START = 250; 
+  localparam Y_START = 30;
+  localparam X_START = 452; 
 
 
   wire hsync_nxt, vsync_nxt;
@@ -57,7 +57,7 @@ module draw_rect_char (
   delay #(.WIDTH(26), .CLK_DEL(1)) my_delay_h_v(
     .clk(pclk),
     .rst(rst),
-    .din({hsync_in, vsync_in, hcount_in, vcount_in, hblnk_in, hblnk_in}),
+    .din({hsync_in, vsync_in, hcount_in, vcount_in, hblnk_in, vblnk_in}),
     .dout({hsync_nxt, vsync_nxt, hcount_nxt, vcount_nxt, hblnk_nxt, vblnk_nxt})
   );
 

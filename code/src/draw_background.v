@@ -32,6 +32,12 @@
 
   reg [11:0] rgb_out_nxt;
 
+  // http://neildowning.com/HEX_to_RGB_color_converter.php to pick colors
+  localparam BG_MAIN = 12'h1_1_5;
+  localparam BG_MAIN_SH = 12'h1_1_8;
+  localparam BG_SIDES_STRIP = 12'h0_9_6;
+  localparam BG_SIDES_STRIP_SH = 12'h0_6_4;
+
   // This is a simple test pattern generator.
   always @(posedge pclk) begin
     if(rst) begin
@@ -65,7 +71,21 @@
     // During blanking, make it it black.
     if (vblnk_in || hblnk_in) rgb_out_nxt = 12'h0_0_0; 
     else begin
-      rgb_out_nxt = 12'h8_8_8;    
+      //side stripes
+      if ((hcount_in >= 0 && hcount_in < 76)) rgb_out_nxt <= BG_SIDES_STRIP;
+      else if ((hcount_in >= 948 && hcount_in < 1024)) rgb_out_nxt <= BG_SIDES_STRIP;
+
+      //side stripes shadows
+      else if ((hcount_in >= 76 && hcount_in < 80)) rgb_out_nxt <= BG_SIDES_STRIP_SH;
+      else if ((hcount_in >= 944 && hcount_in < 948)) rgb_out_nxt <= BG_SIDES_STRIP_SH;
+
+      //main shadows
+      else if ((hcount_in >= 80 && hcount_in < 84)) rgb_out_nxt <= BG_MAIN_SH;
+      else if ((hcount_in >= 940 && hcount_in < 944)) rgb_out_nxt <= BG_MAIN_SH;
+
+      //main
+      else rgb_out_nxt = BG_MAIN;
+      
     end
   end
 

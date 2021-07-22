@@ -4,7 +4,7 @@ set target xc7a35tcpg236-1
 set bitstream_file build/${project}.runs/impl_1/${top_module}.bit
 
 proc usage {} {
-    puts "usage: vivado -mode tcl -source [info script] -tclargs \[simulation/bitstream/program\]"
+    puts "usage: vivado -mode tcl -source [info script] -tclargs \[simulation/bitstream/program\gui/]"
     exit 1
 }
 
@@ -84,4 +84,7 @@ if {[lindex $argv 0] == "simulation"} {
     launch_runs impl_1 -to_step write_bitstream -jobs 8
     wait_on_run impl_1
     exit
+}
+if {[lindex $argv 0] == "gui"} {
+    start_gui
 }
