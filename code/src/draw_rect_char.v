@@ -38,12 +38,13 @@ module draw_rect_char (
 
   localparam  PIXEL_BIT_NUMBERS = 4'b1000;
   localparam  BLACK = 12'h0_0_0;
+  localparam  BG = 12'h1_1_5;
   localparam  COLOR  = 12'h8_f_8;
 
-  localparam RECT_LENGTH = 256;
+  localparam RECT_LENGTH = 20;
   localparam RECT_WIDTH = 128; 
   localparam Y_START = 30;
-  localparam X_START = 452; 
+  localparam X_START = 483; 
 
 
   wire hsync_nxt, vsync_nxt;
@@ -97,7 +98,7 @@ module draw_rect_char (
          if(char_pixels[PIXEL_BIT_NUMBERS - hcount_text[2:0]])
            rgb_nxt = COLOR;
          else
-           rgb_nxt = BLACK;
+           rgb_nxt = BG;
        end
        else begin
          rgb_nxt = rgb_in;
