@@ -14,7 +14,7 @@
     input wire pclk,                                  // Peripheral Clock
     input wire rst,                                   // Synchrous reset
 
-    // input wire [11:0] xpos,                        // TODO: to uncomment input variable
+    input wire [11:0] xpos,
 
     input wire [10:0] vcount_in,                      // input vertical count
     input wire vsync_in,                              // input vertical sync
@@ -39,7 +39,6 @@
   reg [11:0] pixel_addr_nxt = 12'b0;
   reg [5:0] x_addr, y_addr, x_addr_nxt, y_addr_nxt;
 
-  localparam xpos = 400;                        // temporary localparam - TODO: to remove localparam xpos
   localparam YPOS = 680;
 
   // Parameters
