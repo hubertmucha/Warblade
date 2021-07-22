@@ -40,7 +40,7 @@
   reg [5:0] x_addr, y_addr, x_addr_nxt, y_addr_nxt;
 
   localparam xpos = 400;                        // temporary localparam - TODO: to remove localparam xpos
-  localparam YPOS = 400;
+  localparam YPOS = 680;
 
   // Parameters
   // localparam X_RECT       = 100;
