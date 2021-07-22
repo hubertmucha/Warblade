@@ -298,7 +298,6 @@ module vga_example (
     .char_xy(char_xy),
     .char_code(char_code)
   );
-  
 
   // Instantiate the font_rom module, which is
   // the module you are using for this lab.
@@ -309,44 +308,11 @@ module vga_example (
     .char_line_pixels(char_pixels)
   );
 
-  // Instantiate the delay module, which is
-  // the module you are using for this lab.
-  wire vsync_ch_d, hsync_ch_d;
-
-  delay #(.WIDTH(2), .CLK_DEL(1)) my_delay_ch(
-    .clk(pclk),
-    .rst(rst),
-    .din({hsync_ch, vsync_ch}),
-    .dout({hsync_ch_d, vsync_ch_d})
-  );
-
-
-  // Instantiate the MouseDisplay module, which is
-  // the module you are using for this lab.
-  wire [3:0] rgb_red, rgb_green, rgb_blue;
-
-    MouseDisplay my_MouseDisplay(
-    .pixel_clk(pclk),
-    .xpos(xpos_dff),
-    .ypos(ypos_dff),
-    .hcount({1'b0, hcount_ch}),
-    .vcount({1'b0, vcount_ch}),
-    .blank(vblnk_ch||hblnk_ch),
-
-    .red_in(rgb_ch[11:8]),
-    .green_in(rgb_ch[7:4]),
-    .blue_in(rgb_ch[3:0]),  
-
-    .red_out(rgb_red),
-    .green_out(rgb_green),
-    .blue_out(rgb_blue)
-  );
-
     // Just pass these through.
-    assign hs = hsync_ch_d;
-    assign vs = vsync_ch_d;
-    assign r  = rgb_red;
-    assign g  = rgb_green;
-    assign b  = rgb_blue;
+    assign hs = hsync_ch;
+    assign vs = vsync_ch;
+    assign r  = rgb_ch[11:8];
+    assign g  = rgb_ch[7:4];
+    assign b  = rgb_ch[3:0];
     
 endmodule
