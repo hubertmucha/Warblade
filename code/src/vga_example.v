@@ -15,6 +15,7 @@ module vga_example (
   input wire rst,                         // U17 button - reset <-- look to vga_example.xdc
   input wire right,                       // T17 button
   input wire left,                        // W19 button
+  input wire missle_button,               // T18 button 
   output wire vs,
   output wire hs,
   output wire [3:0] r,
@@ -156,6 +157,16 @@ module vga_example (
     .rgb_out(rgb_b)
   );
 
+  wire [11:0] ypos_ctl_missle;
+  wire on_missle;
+  missle_ctl my_missle_ctl(
+    .pclk(pclk),
+    .rst(rst_out),
+    .missle_button(missle_button),
+    .ypos_out(ypos_ctl_missle),
+    .on_out(on_missle)
+  );
+  
   // dff delay controls signals
   wire left_d, right_d;
   delay #(.WIDTH(2), .CLK_DEL(2)) my_delay_controls(
@@ -164,6 +175,7 @@ module vga_example (
     .din({left, right}),
     .dout({left_d, right_d})
   );
+
 
   wire [11:0] xpos_ctl;
   position_rect_ctl my_position_rect_ctl(
