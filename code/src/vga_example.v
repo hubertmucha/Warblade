@@ -240,6 +240,7 @@ module vga_example (
   wire [6:0] char_code; 
 
   char_rom_16x16 my_char_rom_16x16(
+    .level(3),
     .char_xy(char_xy),
     .char_code(char_code)
   );

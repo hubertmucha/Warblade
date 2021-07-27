@@ -11,11 +11,11 @@
 // using Verilog-2001 syntax.
 
 module char_rom_16x16 (
+  input wire [2:0] level,
   input wire [7:0] char_xy,
   output reg [6:0] char_code
 );
 
-localparam LEVEL = 2;
   always @* begin
     case(char_xy)
       8'h00: char_code = 7'h4c; //L
@@ -27,11 +27,20 @@ localparam LEVEL = 2;
       8'h06: char_code = 7'h20; //
       8'h07:
         begin
-          if (LEVEL == 1) begin
+          if (level == 1) begin
             char_code = 7'h31; 
           end
-          else if( LEVEL == 2) begin
+          else if( level == 2) begin
             char_code = 7'h32;  
+          end
+          else if( level == 3) begin
+            char_code = 7'h33;  
+          end
+          else if( level == 4) begin
+            char_code = 7'h34;  
+          end
+          else if( level == 5) begin
+            char_code = 7'h35;  
           end
         end 
       8'h08: char_code = 7'h20; //
