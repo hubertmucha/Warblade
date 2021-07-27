@@ -17,7 +17,7 @@ module position_rect_ctl (
     input wire left,
     input wire right,
 
-    output reg [11:0] xpos_out,
+    output reg [11:0] xpos_out
 );
   localparam IDLE = 2'b00;
   localparam RESET = 2'b01;
@@ -31,7 +31,7 @@ module position_rect_ctl (
   localparam DISPLAY_WIDTH_MAX = 944;
 
   reg [1:0] state, next_state;
-  reg [11:0] xpos_nxt, xpos_nxt;
+  reg [11:0] xpos_nxt;
   reg [20:0] refresh_counter, refresh_counter_nxt;
 
 
@@ -82,8 +82,7 @@ module position_rect_ctl (
         begin
           if(refresh_counter == COUNTER) begin
             refresh_counter_nxt = 0;
-            if(xpos_out < DISPLAY_WIDTH_MIN) begin
-              // position is counted with the acceleration equal to 981/100 pixel per s^2
+            if(xpos_out >  DISPLAY_WIDTH_MIN) begin
               xpos_nxt = xpos_out - 1;
             end
             else begin
@@ -101,7 +100,6 @@ module position_rect_ctl (
           if(refresh_counter == COUNTER) begin
             refresh_counter_nxt = 0;
             if(xpos_out < DISPLAY_WIDTH_MAX) begin
-              // position is counted with the acceleration equal to 981/100 pixel per s^2
               xpos_nxt = xpos_out + 1;
             end
             else begin

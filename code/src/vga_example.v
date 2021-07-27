@@ -165,15 +165,15 @@ module vga_example (
     .dout({left_d, right_d})
   );
 
-  wire [11:0] xpos_ctl, ypos_ctl;
-  position_rect_ctl my_draw_position_rect_ctl(
+  wire [11:0] xpos_ctl;
+  position_rect_ctl my_position_rect_ctl(
     //inputs
     .pclk(pclk),
     .rst(rst_out),
     .left(left_d),
     .right(right_d),
     //outputs
-    .xpos_out(xpos_ctl),
+    .xpos_out(xpos_ctl)
   );
 
   // Instantiate the draw_react module, which is
