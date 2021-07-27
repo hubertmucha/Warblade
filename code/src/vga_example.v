@@ -183,13 +183,16 @@ module vga_example (
     .rgb(rgb_pixel)
   );
 
-  wire [11:0] ypos_ctl_missle;
+  wire [11:0] ypos_ctl_missle, xpos_ctl_missle;
   wire on_missle;
   missle_ctl my_missle_ctl(
     .pclk(pclk),
     .rst(rst_out),
     .missle_button(missle_button),
+    .xpos_in(xpos_ctl),
+
     .ypos_out(ypos_ctl_missle),
+    .xpos_out(xpos_ctl_missle),
     .on_out(on_missle)
   );
 
@@ -197,7 +200,7 @@ module vga_example (
     .pclk(pclk),
     .rst(rst_out),
 
-    .xpos(300),
+    .xpos(xpos_ctl_missle),
     .ypos(ypos_ctl_missle),
     .on(on_missle),
 
