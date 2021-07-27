@@ -196,7 +196,6 @@ module vga_example (
     .pclk(pclk),
     .rst(rst_out),
 
-    // input x, y position of the rect from position_rect_ctl module
     .xpos(xpos_ctl),
     .ypos(630),
     .on(1),
