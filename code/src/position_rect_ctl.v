@@ -26,9 +26,9 @@ module position_rect_ctl (
 
   localparam WIDTH_RECT   = 48;                    
   localparam HEIGHT_RECT  = 64;
-  localparam COUNTER = 20000;
+  localparam COUNTER_LIMIT = 30000;
   localparam DISPLAY_WIDTH_MIN = 80;
-  localparam DISPLAY_WIDTH_MAX = 944;
+  localparam DISPLAY_WIDTH_MAX = 944 - WIDTH_RECT;
 
   reg [1:0] state, next_state;
   reg [11:0] xpos_nxt;
@@ -80,7 +80,7 @@ module position_rect_ctl (
 
       LEFT:
         begin
-          if(refresh_counter == COUNTER) begin
+          if(refresh_counter == COUNTER_LIMIT) begin
             refresh_counter_nxt = 0;
             if(xpos_out >  DISPLAY_WIDTH_MIN) begin
               xpos_nxt = xpos_out - 1;
@@ -97,7 +97,7 @@ module position_rect_ctl (
 
       RIGHT:
         begin
-          if(refresh_counter == COUNTER) begin
+          if(refresh_counter == COUNTER_LIMIT) begin
             refresh_counter_nxt = 0;
             if(xpos_out < DISPLAY_WIDTH_MAX) begin
               xpos_nxt = xpos_out + 1;
