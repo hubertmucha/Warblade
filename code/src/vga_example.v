@@ -108,16 +108,6 @@ module vga_example (
     .hblnk_out(hblnk_b),
     .rgb_out(rgb_b)
   );
-
-  wire [11:0] ypos_ctl_missle;
-  wire on_missle;
-  missle_ctl my_missle_ctl(
-    .pclk(pclk),
-    .rst(rst_out),
-    .missle_button(missle_button),
-    .ypos_out(ypos_ctl_missle),
-    .on_out(on_missle)
-  );
   
   // dff delay controls signals
   wire left_d, right_d;
@@ -193,24 +183,23 @@ module vga_example (
     .rgb(rgb_pixel)
   );
 
-  // Instantiate the draw_rect_char module, which is
-  // the module you are using for this lab.
-
-  wire [10:0] vcount_ch, hcount_ch;
-  wire [11:0] rgb_ch;
-  wire vsync_ch, hsync_ch;
-  wire vblnk_ch, hblnk_ch;
-  wire [7:0] char_pixels;
-  wire [7:0] char_xy;
-  wire [3:0] char_line;
+  wire [11:0] ypos_ctl_missle;
+  wire on_missle;
+  missle_ctl my_missle_ctl(
+    .pclk(pclk),
+    .rst(rst_out),
+    .missle_button(missle_button),
+    .ypos_out(ypos_ctl_missle),
+    .on_out(on_missle)
+  );
 
   draw_missile my_draw_missile(
     .pclk(pclk),
     .rst(rst_out),
 
-    .xpos(xpos_ctl),
-    .ypos(630),
-    .on(1),
+    .xpos(300),
+    .ypos(ypos_ctl_missle),
+    .on(on_missle),
 
     //input
     .vcount_in(vcount_rm),
@@ -232,6 +221,16 @@ module vga_example (
 
   );
 
+  // Instantiate the draw_rect_char module, which is
+  // the module you are using for this lab.
+
+  wire [10:0] vcount_ch, hcount_ch;
+  wire [11:0] rgb_ch;
+  wire vsync_ch, hsync_ch;
+  wire vblnk_ch, hblnk_ch;
+  wire [7:0] char_pixels;
+  wire [7:0] char_xy;
+  wire [3:0] char_line;
 
   draw_rect_char my_draw_rect_char(
     .rst(rst),

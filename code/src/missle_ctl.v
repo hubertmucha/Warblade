@@ -26,7 +26,7 @@ module missle_ctl (
 
   localparam WIDTH_RECT   = 48;                    
   localparam HEIGHT_RECT  = 64;
-  localparam COUNTER_LIMIT = 30000;         
+  localparam COUNTER_LIMIT = 90000;         
   localparam MISSLE_HEIGHT_MIN = 80;                   // TODO: change height of minimum (up limit) ypos of missle 
   localparam MISSLE_HEIGHT_MAX = 768 - HEIGHT_RECT;
 
