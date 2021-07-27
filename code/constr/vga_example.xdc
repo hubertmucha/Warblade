@@ -47,9 +47,16 @@ set_property IOSTANDARD LVCMOS33 [get_ports {pclk_mirror}]
 set_property CFGBVS VCCO [current_design]
 set_property CONFIG_VOLTAGE 3.3 [current_design]
 
-## Switches - U17 reset 
+## Switches
+# U17 - reset
 set_property PACKAGE_PIN U17 [get_ports {rst}]					
 	set_property IOSTANDARD LVCMOS33 [get_ports {rst}]
+##  T17 - right
+set_property PACKAGE_PIN T17 [get_ports {right}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {right}]
+##  W19 - right
+set_property PACKAGE_PIN W19 [get_ports {left}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {left}]
 
 # Mouse 
 set_property PULLUP true [get_ports ps2_clk]

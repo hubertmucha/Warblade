@@ -13,6 +13,8 @@
 module vga_example (
   input wire clk,
   input wire rst,                         // U17 button - reset <-- look to vga_example.xdc
+  input wire right,                       // T17 button
+  input wire left,                        // W19 button
   output wire vs,
   output wire hs,
   output wire [3:0] r,
@@ -154,6 +156,25 @@ module vga_example (
     .rgb_out(rgb_b)
   );
 
+  // dff delay controls signals
+  wire left_d, right_d;
+  delay #(.WIDTH(2), .CLK_DEL(2)) my_delay_controls(
+    .clk(pclk),
+    .rst(rst_out),
+    .din({left, right}),
+    .dout({left_d, right_d})
+  );
+
+  wire [11:0] xpos_ctl;
+  position_rect_ctl my_position_rect_ctl(
+    //inputs
+    .pclk(pclk),
+    .rst(rst_out),
+    .left(left_d),
+    .right(right_d),
+    //outputs
+    .xpos_out(xpos_ctl)
+  );
 
   // Instantiate the draw_react module, which is
   // the module you are designing for this lab.
@@ -166,6 +187,10 @@ module vga_example (
   draw_react my_draw_react(
     .pclk(pclk),
     .rst(rst_out),
+
+    // input x, y position of the rect from position_rect_ctl module
+    .xpos(xpos_ctl),
+    // .ypos(680),
 
     //input
     .vcount_in(vcount_b),
