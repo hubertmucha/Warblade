@@ -61,8 +61,8 @@ read_verilog {
     src/delay.v
     src/char_rom_16x16.v
     src/position_rect_ctl.v
-
     src/missle_ctl.v
+    src/draw_missile.v
 }
 
 add_files -fileset sim_1 {
