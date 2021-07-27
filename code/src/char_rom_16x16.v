@@ -42,6 +42,18 @@ module char_rom_16x16 (
           else if( level == 5) begin
             char_code = 7'h35;  
           end
+          else if( level == 6) begin
+            char_code = 7'h36;  
+          end
+          else if( level == 7) begin
+            char_code = 7'h37;  
+          end
+          else if( level == 8) begin
+            char_code = 7'h38;  
+          end
+          else if( level == 9) begin
+            char_code = 7'h39;  
+          end
         end 
       8'h08: char_code = 7'h20; //
       8'h09: char_code = 7'h20; //
