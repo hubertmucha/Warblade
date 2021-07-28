@@ -21,10 +21,8 @@ module vga_example (
   output wire [3:0] r,
   output wire [3:0] g,
   output wire [3:0] b,
-  output wire pclk_mirror,
+  output wire pclk_mirror
 
-  inout wire ps2_clk,
-  inout wire ps2_data
   );
    
   wire pclk;
@@ -87,6 +85,11 @@ module vga_example (
   wire vblnk_b, hblnk_b;
   wire [11:0] rgb_b;
 
+  wire [10:0] vcount_r, hcount_r;
+  wire vsync_r, hsync_r;
+  wire vblnk_r, hblnk_r;
+  wire [11:0] rgb_r;
+
   draw_background my_draw_background(
     .pclk(pclk),
     .rst(rst_out),
@@ -118,114 +121,28 @@ module vga_example (
     .dout({left_d, right_d})
   );
 
-
-  wire [11:0] xpos_ctl;
-  position_rect_ctl my_position_rect_ctl(
-    //inputs
-    .pclk(pclk),
-    .rst(rst_out),
+  draw_ship my_draw_ship_1(
+    .pclk(pclk),                                  
+    .rst(rst),                                   
     .left(left_d),
     .right(right_d),
-    //outputs
-    .xpos_out(xpos_ctl)
-  );
-
-  // Instantiate the draw_react module, which is
-  // the module you are designing for this lab.
-  wire [10:0] vcount_r, hcount_r;
-  wire vsync_r, hsync_r;
-  wire vblnk_r, hblnk_r;
-  wire [11:0] rgb_r;
-  wire [11:0] rgb_pixel, pixel_addr;
-
-  wire [10:0] vcount_rm, hcount_rm;
-  wire vsync_rm, hsync_rm;
-  wire vblnk_rm, hblnk_rm;
-  wire [11:0] rgb_rm;
-
-
-
-  draw_react my_draw_react(
-    .pclk(pclk),
-    .rst(rst_out),
-
-    // input x, y position of the rect from position_rect_ctl module
-    .xpos(xpos_ctl),
-    // .ypos(680),
-
-    //input
-    .vcount_in(vcount_b),
-    .vsync_in(vsync_b),
-    .vblnk_in(vblnk_b),
+    .missile_button(missle_button),
+    .hblnk_in(hblnk_b),
     .hcount_in(hcount_b),
     .hsync_in(hsync_b),
-    .hblnk_in(hblnk_b),
-    .rgb_in(rgb_b),
-    .rgb_pixel(rgb_pixel),
+    .vcount_in(vcount_b),            
+    .vsync_in(vsync_b),                            
+    .vblnk_in(vblnk_b),
+    .rgb_in(rgb_b),                           
 
-    //output
-    .vcount_out(vcount_rm),
-    .vsync_out(vsync_rm),
-    .vblnk_out(vblnk_rm),
-    .hcount_out(hcount_rm),
-    .hsync_out(hsync_rm),
-    .hblnk_out(hblnk_rm),
-    .rgb_out(rgb_rm),
-    .pixel_addr(pixel_addr)
-  );
-
-  // Instantiate the image_rom module, which is
-  // the module you are using for this lab.
-
-  image_rom my_image_rom(
-    .clk(pclk),
-    .address(pixel_addr),
-    .rgb(rgb_pixel)
-  );
-
-  wire [11:0] ypos_ctl_missle, xpos_ctl_missle;
-  wire on_missle;
-  missle_ctl my_missle_ctl(
-    .pclk(pclk),
-    .rst(rst_out),
-    .missle_button(missle_button),
-    .xpos_in(xpos_ctl),
-
-    .ypos_out(ypos_ctl_missle),
-    .xpos_out(xpos_ctl_missle),
-    .on_out(on_missle)
-  );
-
-  draw_missile my_draw_missile(
-    .pclk(pclk),
-    .rst(rst_out),
-
-    .xpos(xpos_ctl_missle),
-    .ypos(ypos_ctl_missle),
-    .on(on_missle),
-
-    //input
-    .vcount_in(vcount_rm),
-    .vsync_in(vsync_rm),
-    .vblnk_in(vblnk_rm),
-    .hcount_in(hcount_rm),
-    .hsync_in(hsync_rm),
-    .hblnk_in(hblnk_rm),
-    .rgb_in(rgb_rm),
-
-    //output
-    .vcount_out(vcount_r),
-    .vsync_out(vsync_r),
-    .vblnk_out(vblnk_r),
-    .hcount_out(hcount_r),
-    .hsync_out(hsync_r),
-    .hblnk_out(hblnk_r),
+    .vcount_out(vcount_r),                     
+    .vsync_out(vsync_r),                          
+    .vblnk_out(vblnk_r),                             
+    .hcount_out(hcount_r),                     
+    .hsync_out(hsync_r),                            
+    .hblnk_out(hblnk_r),                             
     .rgb_out(rgb_r)
-
   );
-
-  // Instantiate the draw_rect_char module, which is
-  // the module you are using for this lab.
 
   wire [10:0] vcount_ch, hcount_ch;
   wire [11:0] rgb_ch;

@@ -63,6 +63,7 @@ read_verilog {
     src/position_rect_ctl.v
     src/missle_ctl.v
     src/draw_missile.v
+    src/draw_ship.v
 }
 
 add_files -fileset sim_1 {
