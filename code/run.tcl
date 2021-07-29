@@ -4,7 +4,7 @@ set target xc7a35tcpg236-1
 set bitstream_file build/${project}.runs/impl_1/${top_module}.bit
 
 proc usage {} {
-    puts "usage: vivado -mode tcl -source [info script] -tclargs \[simulation/bitstream/program\gui/]"
+    puts "usage: vivado -mode tcl -source [info script] -tclargs \[simulation/bitstream/program/gui]"
     exit 1
 }
 
@@ -61,6 +61,8 @@ read_verilog {
     src/delay.v
     src/char_rom_16x16.v
     src/position_rect_ctl.v
+    src/missle_ctl.v
+    src/draw_missile.v
 }
 
 add_files -fileset sim_1 {
@@ -75,8 +77,6 @@ update_compile_order -fileset sources_1
 update_compile_order -fileset sim_1
 
 if {[lindex $argv 0] == "simulation"} {
-    launch_simulation
-    add_wave {{/draw_rect_ctl_test/my_draw_rect_ctl}} 
     start_gui
 } else {
     launch_runs synth_1 -jobs 8
