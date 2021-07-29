@@ -13,10 +13,11 @@
 module missle_ctl (
     input wire pclk,
     input wire rst,
-
+    input wire [11:0] xpos_in,
     input wire missle_button,
 
     output reg [11:0] ypos_out,
+    output reg [11:0] xpos_out,
     output reg on_out
 );
   localparam IDLE = 2'b00;
@@ -31,7 +32,7 @@ module missle_ctl (
 
   reg on_out_nxt;
   reg [1:0] state, next_state;
-  reg [11:0] ypos_nxt;
+  reg [11:0] ypos_nxt, xpos_nxt;
   reg [20:0] refresh_counter, refresh_counter_nxt;
 
 
@@ -42,11 +43,13 @@ module missle_ctl (
       state <= IDLE;
       ypos_out  <= MISSLE_HEIGHT_MAX;
       refresh_counter <= 21'b0;
-      on_out <= 0;   
+      on_out <= 0;
+      xpos_out <= 0;                              // TODO: change to the middle of a screen   
     end
     else begin
     state <= next_state;
-    ypos_out  <= ypos_nxt;
+    ypos_out <= ypos_nxt;
+    xpos_out <= xpos_nxt;
     refresh_counter <= refresh_counter_nxt;
     on_out <= on_out_nxt;      
     end
@@ -57,7 +60,7 @@ module missle_ctl (
   always @(state or missle_button) begin
     case(state)
       IDLE: next_state = missle_button ? SHOOT : IDLE;
-      SHOOT: next_state =  MISSLE_FLY;
+      SHOOT: next_state = MISSLE_FLY;
       MISSLE_FLY: begin
         if(ypos_out <= MISSLE_HEIGHT_MIN) begin
           next_state = IDLE;
@@ -92,7 +95,8 @@ module missle_ctl (
         begin
           on_out_nxt = 1;
           ypos_nxt = MISSLE_HEIGHT_MAX;
-          refresh_counter_nxt = refresh_counter;  
+          refresh_counter_nxt = refresh_counter;
+          xpos_nxt = xpos_in;  
         end
 
       IDLE:
