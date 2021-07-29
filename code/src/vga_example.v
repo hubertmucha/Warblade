@@ -199,7 +199,7 @@ module vga_example (
   draw_missile my_draw_missile(
     .pclk(pclk),
     .rst(rst_out),
-
+  
     .xpos(xpos_ctl_missle),
     .ypos(ypos_ctl_missle),
     .on(on_missle),
