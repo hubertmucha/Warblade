@@ -1,5 +1,5 @@
 set project vga_project
-set top_module vga_example
+set top_module main
 set target xc7a35tcpg236-1
 set bitstream_file build/${project}.runs/impl_1/${top_module}.bit
 
@@ -41,7 +41,7 @@ read_xdc {
 }
 
 read_verilog {
-    src/vga_example.v
+    src/main.v
     src/vga_timing.v
     src/draw_background.v
 
@@ -51,7 +51,6 @@ read_verilog {
     src/dff.v
     src/lock_reset.v
 
-    
     src/dff_image.v
     src/dff_hs_vs.v
     src/delay.v
