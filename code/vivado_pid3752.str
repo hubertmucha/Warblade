@@ -1,0 +1,212 @@
+/*
+
+Xilinx Vivado v2017.3 (64-bit) [Major: 2017, Minor: 3]
+SW Build: 2018833 on Wed Oct  4 19:58:22 MDT 2017
+IP Build: 2016188 on Wed Oct  4 21:52:56 MDT 2017
+
+Process ID: 3752
+License: Customer
+
+Current time: 	Mon Aug 09 19:21:01 CEST 2021
+Time zone: 	Central European Time (Europe/Belgrade)
+
+OS: Windows 10
+OS Version: 10.0
+OS Architecture: amd64
+Available processors (cores): 8
+
+Screen size: 3440x1440
+Screen resolution (DPI): 96
+Available screens: 2
+Available disk space: 7 GB
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+
+Java version: 	1.8.0_112 64-bit
+Java home: 	D:/Vivado/Vivado/2017.3/tps/win64/jre
+JVM executable location: 	D:/Vivado/Vivado/2017.3/tps/win64/jre/bin/java.exe
+
+User name: 	hubi_
+User home directory: C:/Users/hubi_
+User working directory: E:/warblade/v2/Warblade/code
+User country: 	PL
+User language: 	pl
+User locale: 	pl_PL
+
+RDI_BASEROOT: D:/Vivado/Vivado
+HDI_APPROOT: D:/Vivado/Vivado/2017.3
+RDI_DATADIR: D:/Vivado/Vivado/2017.3/data
+RDI_BINDIR: D:/Vivado/Vivado/2017.3/bin
+
+User preferences location: C:/Users/hubi_/AppData/Roaming/Xilinx/Vivado
+Vivado preferences directory: C:/Users/hubi_/AppData/Roaming/Xilinx/Vivado/2017.3/vivado.xml
+Vivado layouts directory: C:/Users/hubi_/AppData/Roaming/Xilinx/Vivado/2017.3/layouts
+PlanAhead jar file location: 	D:/Vivado/Vivado/2017.3/lib/classes/planAhead.jar
+Vivado log file location: 	E:/warblade/v2/Warblade/code/vivado.log
+Vivado journal file location: 	E:/warblade/v2/Warblade/code/vivado.jou
+Engine tmp dir: 	E:/warblade/v2/Warblade/code/.Xil/Vivado-3752-DESKTOP-QJ470F8
+
+GUI allocated memory:	189 MB
+GUI max memory:		3,052 MB
+Engine allocated memory: 592 MB
+
+Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// [GUI Memory]: 54 MB (+54466kb) [00:00:06]
+// [Engine Memory]: 568 MB (+444099kb) [00:00:06]
+// [GUI Memory]: 62 MB (+5084kb) [00:00:07]
+// TclEventType: START_PROGRESS_DIALOG
+// Tcl Message: source run.tcl 
+// TclEventType: START_PROGRESS_DIALOG
+// TclEventType: STOP_PROGRESS_DIALOG
+// bs (cl):  Sourcing Tcl script 'run.tcl' : addNotify
+// TclEventType: STOP_PROGRESS_DIALOG
+// [GUI Memory]: 66 MB (+1476kb) [00:00:10]
+// Tcl Message: # if {[lindex $argv 0] == "gui"} { #     start_gui # } 
+dismissDialog("Sourcing Tcl script 'run.tcl'"); // bs (cl)
+// [GUI Memory]: 70 MB (+73kb) [00:00:11]
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// [GUI Memory]: 80 MB (+7177kb) [00:00:12]
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// [GUI Memory]: 94 MB (+10056kb) [00:00:14]
+// [Engine Memory]: 620 MB (+25204kb) [00:00:14]
+// Tcl Message: update_compile_order -fileset sources_1 
+// Tcl Message: update_compile_order -fileset sim_1 
+// HMemoryUtils.trashcanNow. Engine heap size: 627 MB. GUI used memory: 41 MB. Current time: 8/9/21 7:21:04 PM CEST
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, RTL Analysis, Open Elaborated Design]", 12, true); // u (O, cl) - Node
+// Run Command: PAResourceCommand.PACommandNames_GOTO_RTL_DESIGN
+// x (cl): Elaborate Design: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (x)
+// bs (cl):  Open Elaborated Design : addNotify
+dismissDialog("Elaborate Design"); // x (cl)
+// TclEventType: ELABORATE_START
+// Tcl Message: synth_design -rtl -name rtl_1 
+// Tcl Message: Command: synth_design -rtl -name rtl_1 Starting synth_design Using part: xc7a35tcpg236-1 Top: vga_example 
+// [Engine Memory]: 666 MB (+15126kb) [00:00:23]
+// [Engine Memory]: 768 MB (+72150kb) [00:00:28]
+// TclEventType: STOP_PROGRESS_DIALOG
+// HMemoryUtils.trashcanNow. Engine heap size: 768 MB. GUI used memory: 41 MB. Current time: 8/9/21 7:21:19 PM CEST
+// TclEventType: ELABORATE_FINISH
+// [Engine Memory]: 817 MB (+11155kb) [00:00:33]
+// TclEventType: READ_XDC_FILE_START
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: READ_XDC_FILE_END
+// TclEventType: READ_XDC_FILE_START
+// TclEventType: POWER_CNS_STALE
+// TclEventType: POWER_REPORT_STALE
+// TclEventType: SDC_CONSTRAINT_ADD
+// TclEventType: READ_XDC_FILE_END
+// TclEventType: FLOORPLAN_MODIFY
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: DESIGN_NEW
+// HMemoryUtils.trashcanNow. Engine heap size: 1,017 MB. GUI used memory: 40 MB. Current time: 8/9/21 7:21:27 PM CEST
+// [Engine Memory]: 1,017 MB (+166709kb) [00:00:38]
+// TclEventType: DESIGN_NEW
+// TclEventType: HFED_INIT_ROUTE_STORAGE_COMPLETED
+// [Engine Memory]: 1,118 MB (+52057kb) [00:00:39]
+// Schematic: addNotify
+// TclEventType: CURR_DESIGN_SET
+// Tcl Message: --------------------------------------------------------------------------------- 
+// Tcl Message: Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 868.602 ; gain = 19.973 
+// Tcl Message: --------------------------------------------------------------------------------- 
+// Tcl Message: INFO: [Synth 8-638] synthesizing module 'vga_example' [E:/warblade/v2/Warblade/code/src/vga_example.v:13] INFO: [Synth 8-638] synthesizing module 'clk_wiz_0' [E:/warblade/v2/Warblade/code/src/clk_wiz_0.v:71] INFO: [Synth 8-638] synthesizing module 'clk_wiz_0_clk_wiz' [E:/warblade/v2/Warblade/code/src/clk_wiz_0_clk_wiz.v:69] INFO: [Synth 8-638] synthesizing module 'IBUF' [D:/Vivado/Vivado/2017.3/scripts/rt/data/unisim_comp.v:19468] 
+// Tcl Message: 	Parameter CAPACITANCE bound to: DONT_CARE - type: string  	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string  	Parameter IBUF_LOW_PWR bound to: TRUE - type: string  	Parameter IFD_DELAY_VALUE bound to: AUTO - type: string  	Parameter IOSTANDARD bound to: DEFAULT - type: string  
+// Tcl Message: INFO: [Synth 8-256] done synthesizing module 'IBUF' (1#1) [D:/Vivado/Vivado/2017.3/scripts/rt/data/unisim_comp.v:19468] INFO: [Synth 8-638] synthesizing module 'MMCME2_ADV' [D:/Vivado/Vivado/2017.3/scripts/rt/data/unisim_comp.v:25757] 
+// TclEventType: STOP_PROGRESS_DIALOG
+// Tcl Message: INFO: [Synth 8-256] done synthesizing module 'MMCME2_ADV' (2#1) [D:/Vivado/Vivado/2017.3/scripts/rt/data/unisim_comp.v:25757] INFO: [Synth 8-638] synthesizing module 'BUFG' [D:/Vivado/Vivado/2017.3/scripts/rt/data/unisim_comp.v:607] INFO: [Synth 8-256] done synthesizing module 'BUFG' (3#1) [D:/Vivado/Vivado/2017.3/scripts/rt/data/unisim_comp.v:607] INFO: [Synth 8-256] done synthesizing module 'clk_wiz_0_clk_wiz' (4#1) [E:/warblade/v2/Warblade/code/src/clk_wiz_0_clk_wiz.v:69] INFO: [Synth 8-256] done synthesizing module 'clk_wiz_0' (5#1) [E:/warblade/v2/Warblade/code/src/clk_wiz_0.v:71] INFO: [Synth 8-638] synthesizing module 'ODDR' [D:/Vivado/Vivado/2017.3/scripts/rt/data/unisim_comp.v:30648] 
+// Tcl Message: 	Parameter DDR_CLK_EDGE bound to: OPPOSITE_EDGE - type: string  	Parameter INIT bound to: 1'b0  	Parameter IS_C_INVERTED bound to: 1'b0  	Parameter IS_D1_INVERTED bound to: 1'b0  	Parameter IS_D2_INVERTED bound to: 1'b0  	Parameter SRTYPE bound to: SYNC - type: string  
+// Tcl Message: INFO: [Synth 8-256] done synthesizing module 'ODDR' (6#1) [D:/Vivado/Vivado/2017.3/scripts/rt/data/unisim_comp.v:30648] INFO: [Synth 8-638] synthesizing module 'lock_reset' [E:/warblade/v2/Warblade/code/src/lock_reset.v:12] INFO: [Synth 8-256] done synthesizing module 'lock_reset' (7#1) [E:/warblade/v2/Warblade/code/src/lock_reset.v:12] INFO: [Synth 8-638] synthesizing module 'vga_timing' [E:/warblade/v2/Warblade/code/src/vga_timing.v:13] 
+// Tcl Message: 	Parameter HOR_TOTAL_TIME bound to: 1344 - type: integer  	Parameter HOR_BLANK_START bound to: 1024 - type: integer  	Parameter HOR_BLANK_TIME bound to: 320 - type: integer  	Parameter HOR_SYNC_START bound to: 1048 - type: integer  	Parameter HOR_SYNC_TIME bound to: 136 - type: integer  	Parameter VER_TOTAL_TIME bound to: 806 - type: integer  	Parameter VER_BLANK_START bound to: 768 - type: integer  	Parameter VER_BLANK_TIME bound to: 38 - type: integer  	Parameter VER_SYNC_START bound to: 771 - type: integer  	Parameter VER_SYNC_TIME bound to: 6 - type: integer  
+// Tcl Message: INFO: [Synth 8-256] done synthesizing module 'vga_timing' (8#1) [E:/warblade/v2/Warblade/code/src/vga_timing.v:13] INFO: [Synth 8-638] synthesizing module 'draw_background' [E:/warblade/v2/Warblade/code/src/draw_background.v:13] 
+// Tcl Message: 	Parameter BG_MAIN bound to: 12'b000100010101  	Parameter BG_MAIN_SH bound to: 12'b000100011000  	Parameter BG_SIDES_STRIP bound to: 12'b000010010110  	Parameter BG_SIDES_STRIP_SH bound to: 12'b000001100100  
+// Tcl Message: INFO: [Synth 8-256] done synthesizing module 'draw_background' (9#1) [E:/warblade/v2/Warblade/code/src/draw_background.v:13] INFO: [Synth 8-638] synthesizing module 'delay' [E:/warblade/v2/Warblade/code/src/delay.v:3] 
+// Tcl Message: 	Parameter WIDTH bound to: 2 - type: integer  	Parameter CLK_DEL bound to: 2 - type: integer  
+// Tcl Message: INFO: [Synth 8-256] done synthesizing module 'delay' (10#1) [E:/warblade/v2/Warblade/code/src/delay.v:3] INFO: [Synth 8-638] synthesizing module 'draw_ship' [E:/warblade/v2/Warblade/code/src/ship/draw_ship.v:6] INFO: [Synth 8-638] synthesizing module 'position_rect_ctl' [E:/warblade/v2/Warblade/code/src/ship/position_rect_ctl.v:13] 
+// Tcl Message: 	Parameter IDLE bound to: 2'b00  	Parameter RESET bound to: 2'b01  	Parameter LEFT bound to: 2'b10  	Parameter RIGHT bound to: 2'b11  	Parameter WIDTH_RECT bound to: 48 - type: integer  	Parameter HEIGHT_RECT bound to: 64 - type: integer  	Parameter COUNTER_LIMIT bound to: 30000 - type: integer  	Parameter DISPLAY_WIDTH_MIN bound to: 80 - type: integer  	Parameter DISPLAY_WIDTH_MAX bound to: 896 - type: integer  
+// Tcl Message: INFO: [Synth 8-226] default block is never used [E:/warblade/v2/Warblade/code/src/ship/position_rect_ctl.v:50] INFO: [Synth 8-226] default block is never used [E:/warblade/v2/Warblade/code/src/ship/position_rect_ctl.v:74] INFO: [Synth 8-256] done synthesizing module 'position_rect_ctl' (11#1) [E:/warblade/v2/Warblade/code/src/ship/position_rect_ctl.v:13] INFO: [Synth 8-638] synthesizing module 'draw_react' [E:/warblade/v2/Warblade/code/src/ship/draw_react.v:13] 
+// Tcl Message: 	Parameter YPOS bound to: 680 - type: integer  	Parameter WIDTH_RECT bound to: 47 - type: integer  	Parameter HEIGHT_RECT bound to: 63 - type: integer  
+// Tcl Message: INFO: [Synth 8-638] synthesizing module 'dff_image' [E:/warblade/v2/Warblade/code/src/dff_image.v:13] INFO: [Synth 8-256] done synthesizing module 'dff_image' (12#1) [E:/warblade/v2/Warblade/code/src/dff_image.v:13] 
+// Tcl Message: INFO: [Synth 8-256] done synthesizing module 'draw_react' (13#1) [E:/warblade/v2/Warblade/code/src/ship/draw_react.v:13] INFO: [Synth 8-638] synthesizing module 'image_rom' [E:/warblade/v2/Warblade/code/src/ship/image_rom.v:7] 
+// Tcl Message:  Warning: Trying to implement RAM in registers. Block RAM or DRAM implementation is not possible for one or more of the following reasons : 	1: Unable to determine number of words or word size in RAM.  	2: No valid read/write found for RAM.  RAM dissolved into registers 
+// Tcl Message: INFO: [Common 17-14] Message 'Synth 8-3848' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings. INFO: [Synth 8-256] done synthesizing module 'image_rom' (14#1) [E:/warblade/v2/Warblade/code/src/ship/image_rom.v:7] INFO: [Synth 8-638] synthesizing module 'missle_ctl' [E:/warblade/v2/Warblade/code/src/ship/missle_ctl.v:13] 
+// Tcl Message: 	Parameter IDLE bound to: 2'b00  	Parameter RESET bound to: 2'b01  	Parameter SHOOT bound to: 2'b10  	Parameter MISSLE_FLY bound to: 2'b11  	Parameter WIDTH_RECT bound to: 48 - type: integer  	Parameter HEIGHT_RECT bound to: 64 - type: integer  	Parameter COUNTER_LIMIT bound to: 90000 - type: integer  	Parameter MISSLE_HEIGHT_MIN bound to: 80 - type: integer  	Parameter MISSLE_HEIGHT_MAX bound to: 704 - type: integer  
+// Tcl Message: INFO: [Synth 8-226] default block is never used [E:/warblade/v2/Warblade/code/src/ship/missle_ctl.v:56] 
+// Tcl Message: INFO: [Synth 8-226] default block is never used [E:/warblade/v2/Warblade/code/src/ship/missle_ctl.v:88] INFO: [Synth 8-256] done synthesizing module 'missle_ctl' (15#1) [E:/warblade/v2/Warblade/code/src/ship/missle_ctl.v:13] INFO: [Synth 8-638] synthesizing module 'draw_missile' [E:/warblade/v2/Warblade/code/src/ship/draw_missile.v:13] 
+// Tcl Message: 	Parameter X bound to: 30 - type: integer  	Parameter WIDTH_RECT bound to: 5 - type: integer  	Parameter HEIGHT_RECT bound to: 20 - type: integer  	Parameter COLOR bound to: 12'b110111010011  	Parameter X_MISSILE_OFFSET bound to: 21 - type: integer  
+// Tcl Message: INFO: [Synth 8-256] done synthesizing module 'draw_missile' (16#1) [E:/warblade/v2/Warblade/code/src/ship/draw_missile.v:13] INFO: [Synth 8-256] done synthesizing module 'draw_ship' (17#1) [E:/warblade/v2/Warblade/code/src/ship/draw_ship.v:6] INFO: [Synth 8-638] synthesizing module 'textbox' [E:/warblade/v2/Warblade/code/src/text/textbox.v:1] INFO: [Synth 8-638] synthesizing module 'draw_rect_char' [E:/warblade/v2/Warblade/code/src/text/draw_rect_char.v:15] 
+// Tcl Message: 	Parameter PIXEL_BIT_NUMBERS bound to: 4'b1000  	Parameter BLACK bound to: 12'b000000000000  	Parameter BG bound to: 12'b000100010101  	Parameter COLOR bound to: 12'b100011111000  	Parameter RECT_LENGTH bound to: 20 - type: integer  	Parameter RECT_WIDTH bound to: 128 - type: integer  	Parameter Y_START bound to: 30 - type: integer  	Parameter X_START bound to: 483 - type: integer  
+// Tcl Message: INFO: [Synth 8-638] synthesizing module 'delay__parameterized0' [E:/warblade/v2/Warblade/code/src/delay.v:3] 
+// Tcl Message: 	Parameter WIDTH bound to: 26 - type: integer  	Parameter CLK_DEL bound to: 1 - type: integer  
+// Tcl Message: --------------------------------------------------------------------------------- 
+// Tcl Message: Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:10 . Memory (MB): peak = 936.109 ; gain = 87.480 
+// Tcl Message: --------------------------------------------------------------------------------- 
+// Tcl Message:  Report Check Netlist:  +------+------------------+-------+---------+-------+------------------+ |      |Item              |Errors |Warnings |Status |Description       | +------+------------------+-------+---------+-------+------------------+ |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets | +------+------------------+-------+---------+-------+------------------+ 
+// Tcl Message: --------------------------------------------------------------------------------- 
+// Tcl Message: Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 936.109 ; gain = 87.480 
+// Tcl Message: --------------------------------------------------------------------------------- 
+// Tcl Message: INFO: [Netlist 29-17] Analyzing 3 Unisim elements for replacement INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds INFO: [Device 21-403] Loading part xc7a35tcpg236-1 INFO: [Project 1-570] Preparing netlist for logic optimization 
+// Tcl Message:  Processing XDC Constraints Initializing timing engine Parsing XDC File [E:/warblade/v2/Warblade/code/constr/vga_example.xdc] 
+// Tcl Message: Finished Parsing XDC File [E:/warblade/v2/Warblade/code/constr/vga_example.xdc] Parsing XDC File [E:/warblade/v2/Warblade/code/constr/clk_wiz_0.xdc] 
+// Tcl Message: Finished Parsing XDC File [E:/warblade/v2/Warblade/code/constr/clk_wiz_0.xdc] 
+// Tcl Message: INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [E:/warblade/v2/Warblade/code/constr/clk_wiz_0.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/vga_example_propImpl.xdc]. Resolution: To avoid this warning, move constraints listed in [.Xil/vga_example_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis. INFO: [Timing 38-2] Deriving generated clocks 
+// Tcl Message: Completed Processing XDC Constraints  
+// Tcl Message: INFO: [Opt 31-140] Inserted 1 IBUFs to IO ports without IO buffers. INFO: [Opt 31-141] Inserted 1 OBUFs to IO ports without IO buffers. INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s). INFO: [Project 1-111] Unisim Transformation Summary: No Unisim elements were transformed.  
+// TclEventType: STOP_PROGRESS_DIALOG
+// Tcl Message: RTL Elaboration Complete:  : Time (s): cpu = 00:00:32 ; elapsed = 00:00:23 . Memory (MB): peak = 1285.293 ; gain = 436.664 
+// Tcl Message: 61 Infos, 114 Warnings, 8 Critical Warnings and 0 Errors encountered. synth_design completed successfully 
+// Tcl Message: synth_design: Time (s): cpu = 00:00:32 ; elapsed = 00:00:23 . Memory (MB): peak = 1285.293 ; gain = 436.664 
+// 'dM' command handler elapsed time: 24 seconds
+// M (cl): Critical Messages: addNotify
+// Elapsed time: 23 seconds
+dismissDialog("Open Elaborated Design"); // bs (cl)
+// [GUI Memory]: 129 MB (+32126kb) [00:00:44]
+selectButton(PAResourceAtoD.CmdMsgDialog_OK, "OK"); // f (M)
+dismissDialog("Critical Messages"); // M (cl)
+// [GUI Memory]: 139 MB (+3870kb) [00:00:46]
+// PAPropertyPanels.initPanels (pclk) elapsed time: 0.9s
+// [Engine Memory]: 1,173 MB (+43kb) [00:01:15]

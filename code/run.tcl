@@ -44,7 +44,6 @@ read_verilog {
     src/vga_example.v
     src/vga_timing.v
     src/draw_background.v
-    src/draw_react.v
 
     src/clk_wiz_0_clk_wiz.v
     src/clk_wiz_0.v
@@ -52,18 +51,22 @@ read_verilog {
     src/dff.v
     src/lock_reset.v
 
-    src/image_rom.v
+    
     src/dff_image.v
     src/dff_hs_vs.v
-
-    src/font_rom.v
-    src/draw_rect_char.v
     src/delay.v
-    src/char_rom_16x16.v
-    src/position_rect_ctl.v
-    src/missle_ctl.v
-    src/draw_missile.v
-    src/draw_ship.v
+
+    src/text/font_rom.v
+    src/text/draw_rect_char.v
+    src/text/char_rom_16x16.v
+    src/text/textbox.v
+
+    src/ship/position_rect_ctl.v
+    src/ship/missle_ctl.v
+    src/ship/draw_missile.v
+    src/ship/draw_ship.v
+    src/ship/image_rom.v
+    src/ship/draw_react.v
 }
 
 add_files -fileset sim_1 {

@@ -144,65 +144,32 @@ module vga_example (
     .rgb_out(rgb_r)
   );
 
-  wire [10:0] vcount_ch, hcount_ch;
-  wire [11:0] rgb_ch;
-  wire vsync_ch, hsync_ch;
-  wire vblnk_ch, hblnk_ch;
-  wire [7:0] char_pixels;
-  wire [7:0] char_xy;
-  wire [3:0] char_line;
+  wire vsync_o, hsync_o;
+  wire [11:0] rgb_o;
 
-  draw_rect_char my_draw_rect_char(
-    .rst(rst),
-    .pclk(pclk),
-    .rgb_in(rgb_r),
-    .char_pixels(char_pixels),
+  textbox my_text_box(
+    .pclk(pclk),                                  
+    .rst(rst),                                   
 
-    .hcount_in(hcount_r),
-    .vcount_in(vcount_r),
     .hblnk_in(hblnk_r),
-    .vblnk_in(vblnk_r),    
+    .hcount_in(hcount_r),
     .hsync_in(hsync_r),
-    .vsync_in(vsync_r),
-    
-    .hcount_out(hcount_ch),
-    .vcount_out(vcount_ch),
-    .hblnk_out(hblnk_ch),
-    .vblnk_out(vblnk_ch),
-    .hsync_out(hsync_ch),
-    .vsync_out(vsync_ch),
-
-    .rgb_out(rgb_ch),
-    .char_xy(char_xy),
-    .char_line(char_line)
+    .vcount_in(vcount_r),            
+    .vsync_in(vsync_r),                            
+    .vblnk_in(vblnk_r),
+    .rgb_in(rgb_r),                           
+                 
+    .vsync_out(vsync_o),                                             
+    .hsync_out(hsync_o),                                                     
+    .rgb_out(rgb_o)
   );
 
-  
-  // Instantiate the char_rom_16x16 module, which is
-  // the module you are using for this lab.
-
-  wire [6:0] char_code; 
-
-  char_rom_16x16 my_char_rom_16x16(
-    .level(3),
-    .char_xy(char_xy),
-    .char_code(char_code)
-  );
-
-  // Instantiate the font_rom module, which is
-  // the module you are using for this lab.
-
-  font_rom my_font_rom(
-    .clk(pclk),
-    .addr({char_code, char_line}),
-    .char_line_pixels(char_pixels)
-  );
 
     // Just pass these through.
-    assign hs = hsync_ch;
-    assign vs = vsync_ch;
-    assign r  = rgb_ch[11:8];
-    assign g  = rgb_ch[7:4];
-    assign b  = rgb_ch[3:0];
+    assign hs = hsync_o;
+    assign vs = vsync_o;
+    assign r  = rgb_o[11:8];
+    assign g  = rgb_o[7:4];
+    assign b  = rgb_o[3:0];
     
 endmodule
