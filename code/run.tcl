@@ -60,12 +60,17 @@ read_verilog {
     src/text/char_rom_16x16.v
     src/text/textbox.v
 
-    src/ship/position_rect_ctl.v
+    src/ship/ctl_ship.v
     src/ship/missle_ctl.v
     src/ship/draw_missile.v
     src/ship/draw_ship.v
     src/ship/image_rom.v
     src/ship/draw_react.v
+
+    src/enemies/enemies.v
+    src/enemies/draw_enemy.v
+    src/enemies/ctl_enemy.v
+    src/enemies/en_one.v
 }
 
 add_files -fileset sim_1 {

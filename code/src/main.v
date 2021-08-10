@@ -147,10 +147,14 @@ module main (
   wire vsync_o, hsync_o;
   wire [11:0] rgb_o;
 
-  textbox my_text_box(
+  wire [10:0] vcount_s, hcount_s;
+  wire vsync_s, hsync_s;
+  wire vblnk_s, hblnk_s;
+  wire [11:0] rgb_s;
+
+  enemies my_enemies(
     .pclk(pclk),                                  
     .rst(rst),                                   
-
     .hblnk_in(hblnk_r),
     .hcount_in(hcount_r),
     .hsync_in(hsync_r),
@@ -158,6 +162,28 @@ module main (
     .vsync_in(vsync_r),                            
     .vblnk_in(vblnk_r),
     .rgb_in(rgb_r),                           
+
+    .vcount_out(vcount_s),                     
+    .vsync_out(vsync_s),                          
+    .vblnk_out(vblnk_s),                             
+    .hcount_out(hcount_s),                     
+    .hsync_out(hsync_s),                            
+    .hblnk_out(hblnk_s),                             
+    .rgb_out(rgb_s)
+  );
+
+
+  textbox my_text_box(
+    .pclk(pclk),                                  
+    .rst(rst),                                   
+
+    .hblnk_in(hblnk_s),
+    .hcount_in(hcount_s),
+    .hsync_in(hsync_s),
+    .vcount_in(vcount_s),            
+    .vsync_in(vsync_s),                            
+    .vblnk_in(vblnk_s),
+    .rgb_in(rgb_s),                           
                  
     .vsync_out(vsync_o),                                             
     .hsync_out(hsync_o),                                                     
