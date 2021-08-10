@@ -10,7 +10,7 @@
 // Declare the module and its ports. This is
 // using Verilog-2001 syntax.
 
-module vga_example (
+module main (
   input wire clk,
   input wire rst,                         // U17 button - reset <-- look to vga_example.xdc
   input wire right,                       // T17 button
