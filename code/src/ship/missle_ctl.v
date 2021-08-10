@@ -15,7 +15,7 @@ module missle_ctl (
     input wire rst,
     input wire [11:0] xpos_in,
     input wire missle_button,
-    
+
     output reg [11:0] ypos_out,
     output reg [11:0] xpos_out,
     output reg on_out
@@ -81,7 +81,6 @@ module missle_ctl (
       MISSLE_FLY:
         begin
           on_out_nxt = 1; 
-          xpos_nxt = xpos_out;
           if(refresh_counter == COUNTER_LIMIT) begin
             refresh_counter_nxt = 0;
             ypos_nxt = ypos_out - 1;
@@ -96,13 +95,12 @@ module missle_ctl (
         begin
           on_out_nxt = 1;
           ypos_nxt = MISSLE_HEIGHT_MAX;
-          xpos_nxt = xpos_in;  
           refresh_counter_nxt = refresh_counter;
+          xpos_nxt = xpos_in;  
         end
 
       IDLE:
         begin
-          xpos_nxt = xpos_out;
           on_out_nxt = 0; 
           ypos_nxt = MISSLE_HEIGHT_MAX;
           refresh_counter_nxt = refresh_counter;
@@ -110,7 +108,6 @@ module missle_ctl (
 
       default:        
         begin
-          xpos_nxt = xpos_out;
           on_out_nxt = on_out; 
           ypos_nxt = ypos_out;
           refresh_counter_nxt = refresh_counter;
@@ -119,7 +116,3 @@ module missle_ctl (
   end
 
 endmodule
-
-
-      
-
