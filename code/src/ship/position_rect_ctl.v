@@ -20,9 +20,8 @@ module position_rect_ctl (
     output reg [11:0] xpos_out
 );
   localparam IDLE = 2'b00;
-  localparam RESET = 2'b01;
-  localparam LEFT = 2'b10;
-  localparam RIGHT = 2'b11;
+  localparam LEFT = 2'b01;
+  localparam RIGHT = 2'b10;
 
   localparam WIDTH_RECT   = 48;                    
   localparam HEIGHT_RECT  = 64;
@@ -37,98 +36,83 @@ module position_rect_ctl (
 
 // ---------------------------------------
 // state register
-
   always @(posedge pclk) begin
-    state <= next_state;
-    xpos_out  <= xpos_nxt;
-    refresh_counter <= refresh_counter_nxt;
+    if(rst) begin
+      state <= IDLE;
+      xpos_out <= 512;
+      refresh_counter <= 21'b0;
+    end
+    else begin
+      state <= next_state;
+      xpos_out <= xpos_nxt;
+      refresh_counter <= refresh_counter_nxt;
+    end
   end
 
 // ---------------------------------------
 // next state logic
-  always @(state or rst or left or right) begin
+  always @(state or left or right) begin
     case(state)
-      IDLE:
-        begin
-          if(rst) begin
-            next_state = RESET;
-          end
-          else begin
-            if(left && right)
-              next_state = IDLE;
-            else if (left)
-              next_state = LEFT;
-            else if (right)
-              next_state = RIGHT;
-          end
-        end
-      LEFT: next_state = left ? LEFT: IDLE;
-      RIGHT: next_state = right ? RIGHT: IDLE;
-      RESET: next_state = rst ? RESET : IDLE;
+      IDLE: begin
+        if(left)
+          next_state = LEFT;
+        else if(right)
+          next_state = RIGHT;
+        else
+          next_state = IDLE;
+      end
+      LEFT: next_state = left ? LEFT : IDLE;
+      RIGHT: next_state = right ? RIGHT : IDLE; 
       default:
         next_state = IDLE;
     endcase
   end
 
+// ---------------------------------------
+// output logic direct output definitions
   always @* begin
-    case(state)
-      RESET:
-        begin
-          xpos_nxt = 512;
-          refresh_counter_nxt = 21'b0;
-        end
+    case (state)
+      IDLE: begin
+        refresh_counter_nxt = refresh_counter;
+        xpos_nxt = xpos_out;
+      end
 
-      LEFT:
-        begin
-          if(refresh_counter == COUNTER_LIMIT) begin
-            refresh_counter_nxt = 0;
-            if(xpos_out >  DISPLAY_WIDTH_MIN) begin
-              xpos_nxt = xpos_out - 1;
-            end
-            else begin
-              xpos_nxt = DISPLAY_WIDTH_MIN;
-            end
+      LEFT: begin
+        if(refresh_counter == COUNTER_LIMIT) begin
+          refresh_counter_nxt = 0;
+          if(xpos_out > DISPLAY_WIDTH_MIN) begin
+            xpos_nxt = xpos_out - 1;
           end
           else begin
-            refresh_counter_nxt = refresh_counter + 1;
-            xpos_nxt = xpos_out;
-          end 
-        end
-
-      RIGHT:
-        begin
-          if(refresh_counter == COUNTER_LIMIT) begin
-            refresh_counter_nxt = 0;
-            if(xpos_out < DISPLAY_WIDTH_MAX) begin
-              xpos_nxt = xpos_out + 1;
-            end
-            else begin
-              xpos_nxt = DISPLAY_WIDTH_MAX;
-            end
-          end
-          else begin
-            refresh_counter_nxt = refresh_counter + 1;
-            xpos_nxt = xpos_out;
+            xpos_nxt = DISPLAY_WIDTH_MIN;
           end
         end
-
-
-      IDLE:
-        begin
+        else begin
+          refresh_counter_nxt = refresh_counter + 1;
           xpos_nxt = xpos_out;
-          refresh_counter_nxt = refresh_counter;
         end
-
-      default:        
-        begin
-          xpos_nxt = xpos_out;
-          refresh_counter_nxt = refresh_counter;
-        end
-      endcase
-  end
-
-endmodule
-
-
+      end
       
+        RIGHT: begin
+        if(refresh_counter == COUNTER_LIMIT) begin
+          refresh_counter_nxt = 0;
+          if(xpos_out < DISPLAY_WIDTH_MAX) begin
+            xpos_nxt = xpos_out + 1;   
+          end
+          else begin
+            xpos_nxt = DISPLAY_WIDTH_MAX;
+          end
+        end
+        else begin
+          refresh_counter_nxt = refresh_counter + 1;
+          xpos_nxt = xpos_out;
+        end
+      end
 
+      default: begin
+        xpos_nxt = xpos_out;
+        refresh_counter_nxt = refresh_counter;
+      end
+    endcase
+  end
+endmodule
