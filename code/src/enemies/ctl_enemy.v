@@ -23,7 +23,7 @@ module ctl_enemy
 );
 
 
-  localparam COUNTER_LIMIT = 5000000;
+    localparam COUNTER_LIMIT = 5000000;
  
     reg [11:0] rom [0:120];
     reg [11:0] address, address_nxt;
@@ -31,13 +31,12 @@ module ctl_enemy
     reg [11:0] xpos_nxt, ypos_nxt;
     reg on_nxt;
 
-    if (N == 1) begin
-        initial $readmemh("data/en1.data", rom);
-    end
-
+    
+    initial $readmemh("x.mem", rom);
+    
     always @(posedge pclk) begin
-        xpos_out <= xpos_nxt;
-        ypos_out <= ypos_nxt;
+        xpos_out <= rom[2];
+        ypos_out <= 300;
         on       <= on_nxt;
         address  <= address_nxt;
         refresh_counter <= refresh_counter_nxt;
@@ -48,10 +47,8 @@ module ctl_enemy
                 address_nxt = 0;
             end
             else begin
-                address_nxt = address + 3;
+                address_nxt = address + 1;
             end
-            xpos_nxt = rom[address];
-            ypos_nxt = 300;
             on_nxt   = 1;
             refresh_counter_nxt = 0;
             end

@@ -78,6 +78,8 @@ add_files -fileset sim_1 {
     sim/tiff_writer.v
     sim/draw_rect_ctl_tb.v
     sim/draw_rect_ctl_test.v
+
+    sim/ctl_enemy_test.v
 }
 
 set_property top ${top_module} [current_fileset]
