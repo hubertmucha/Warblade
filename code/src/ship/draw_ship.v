@@ -98,7 +98,7 @@
   missle_ctl my_missle_ctl(
     .pclk(pclk),
     .rst(rst),
-    .missle_button(missle_button),
+    .missle_button(missile_button),
     .xpos_in(xpos_ctl),
 
     .ypos_out(ypos_ctl_missle),
