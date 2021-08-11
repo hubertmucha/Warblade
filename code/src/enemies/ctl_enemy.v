@@ -23,19 +23,19 @@ module ctl_enemy
 );
 
 
-    localparam COUNTER_LIMIT = 5000000;
+    localparam COUNTER_LIMIT = 100000;
  
-    reg [11:0] rom [0:120];
-    reg [11:0] address, address_nxt;
-    reg [20:0] refresh_counter, refresh_counter_nxt;
-    reg [11:0] xpos_nxt, ypos_nxt;
+    reg [11:0] rom [0:122];
+    reg [11:0] address, address_nxt = 0;
+    reg [20:0] refresh_counter, refresh_counter_nxt = 0;
+    reg [11:0] xpos_nxt, ypos_nxt = 0;
     reg on_nxt;
 
     
-    initial $readmemh("x.mem", rom);
+    initial $readmemb("E:/warblade/v2/Warblade/code/src/enemies/x.txt", rom);
     
     always @(posedge pclk) begin
-        xpos_out <= rom[2];
+        xpos_out <= rom[address_nxt];
         ypos_out <= 300;
         on       <= on_nxt;
         address  <= address_nxt;
