@@ -36,24 +36,44 @@ module ctl_enemy
     reg on_nxt;
 
     if (N == 1) begin
-        initial $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en1_x.txt", rom_x);
-        //initial $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en1_y.txt", rom_y);
+        initial begin  
+            $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en1_x.txt", rom_x);
+            $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en1_y.txt", rom_y);
+        end
     end
     else if (N == 2) begin
-        initial $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en2_x.txt", rom_x);
-        //initial $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en2_y.txt", rom_y);
+        initial begin  
+            $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en2_x.txt", rom_x);
+            $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en2_y.txt", rom_y);
+        end
     end
     else if (N == 3) begin
-        initial $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en3_x.txt", rom_x);
-        //initial $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en2_y.txt", rom_y);
+        initial begin  
+            $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en3_x.txt", rom_x);
+            $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en3_y.txt", rom_y);
+        end
     end
     
     always @(posedge pclk) begin
+        // if(rst) begin
+        //     address <= 0;
+        //     address_nxt <= 0;
+        //     refresh_counter <= 0;
+        //     refresh_counter_nxt <= 0;
+        //     xpos_nxt <= 0;
+        //     ypos_nxt <= 0;
+        //     on_nxt <= 0;
+        //     xpos_out <= 0;
+        //     ypos_out <= 0;
+        //     on <= 0;
+        // end
+        // else begin
         xpos_out <= rom_x[address_nxt];
-        ypos_out <= 200;
+        ypos_out <= rom_y[address_nxt];
         on       <= on_nxt;
         address  <= address_nxt;
         refresh_counter <= refresh_counter_nxt;
+        // end
     end
     always @* begin
         if(refresh_counter == COUNTER_LIMIT) begin
