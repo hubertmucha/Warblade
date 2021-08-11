@@ -10,10 +10,12 @@
 // Declare the module and its ports. This is
 // using Verilog-2001 syntax.
 
+// TODO ADD sycn-reset
+
 module ctl_enemy
     #( parameter
-        N   = 1 // number of enemy
-    ) (
+        N = 1 // number of enemy
+    )(
     input wire pclk,
     input wire rst,
 
@@ -23,27 +25,39 @@ module ctl_enemy
 );
 
 
-    localparam COUNTER_LIMIT = 100000;
+    //localparam COUNTER_LIMIT = 1000; // for simulation purpose
+    localparam COUNTER_LIMIT = 1000000;
  
-    reg [11:0] rom [0:122];
+    reg [11:0] rom_x [0:151];
+    reg [11:0] rom_y [0:151];
     reg [11:0] address, address_nxt = 0;
     reg [20:0] refresh_counter, refresh_counter_nxt = 0;
     reg [11:0] xpos_nxt, ypos_nxt = 0;
     reg on_nxt;
 
-    
-    initial $readmemb("E:/warblade/v2/Warblade/code/src/enemies/x.txt", rom);
+    if (N == 1) begin
+        initial $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en1_x.txt", rom_x);
+        //initial $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en1_y.txt", rom_y);
+    end
+    else if (N == 2) begin
+        initial $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en2_x.txt", rom_x);
+        //initial $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en2_y.txt", rom_y);
+    end
+    else if (N == 3) begin
+        initial $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en3_x.txt", rom_x);
+        //initial $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en2_y.txt", rom_y);
+    end
     
     always @(posedge pclk) begin
-        xpos_out <= rom[address_nxt];
-        ypos_out <= 300;
+        xpos_out <= rom_x[address_nxt];
+        ypos_out <= 200;
         on       <= on_nxt;
         address  <= address_nxt;
         refresh_counter <= refresh_counter_nxt;
     end
     always @* begin
         if(refresh_counter == COUNTER_LIMIT) begin
-            if(address > 120)begin
+            if(address >= 150)begin
                 address_nxt = 0;
             end
             else begin
