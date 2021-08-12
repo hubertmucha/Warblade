@@ -45,7 +45,7 @@ module detec_col
             end
             else begin
                 // && xpos_missile >= xpos_enemy + WIDTH_ENEMY
-                if( xpos_enemy - HALF_WIDTH_ENEMY <= xpos_missile && xpos_missile <= xpos_enemy + HALF_WIDTH_ENEMY && ypos_missile <= ypos_enemy + HEIGHT_ENEMY ) begin
+                if( xpos_enemy - HALF_WIDTH_ENEMY <= xpos_missile && xpos_missile <= xpos_enemy + HALF_WIDTH_ENEMY && ypos_missile <= ypos_enemy + HEIGHT_ENEMY && ypos_missile >= ypos_enemy) begin
                     state_nxt = OFF;
                 end
                 else begin
