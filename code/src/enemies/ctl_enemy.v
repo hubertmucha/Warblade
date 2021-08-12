@@ -70,10 +70,10 @@ module ctl_enemy
 
         // working version
         xpos_out <= rom_x[address_nxt];
-        // ypos_out <= rom_y[address_nxt];
+        //ypos_out <= rom_y[address_nxt];
 
         //xpos_out <= N * 150;
-        ypos_out <= 200;
+        ypos_out <= N * 70;
 
         shot     <= on_nxt;
         address  <= address_nxt;
