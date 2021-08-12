@@ -2,6 +2,10 @@
     input wire pclk,                                  // Peripheral Clock
     input wire rst,                                   // Synchrous reset
 
+    input wire [10:0] xpos_missile,
+    input wire [10:0] ypos_missile,
+    input wire on_missle,
+
     input wire [10:0] vcount_in,                      // input vertical count
     input wire vsync_in,                              // input vertical sync
     input wire vblnk_in,                              // input vertical blink
@@ -50,6 +54,11 @@
     .hsync_in(hsync_in),
     .hblnk_in(hblnk_in),
     .rgb_in(rgb_in),
+    // to detecion colision with missile
+    .xpos_missile(xpos_missile),
+    .ypos_missile(ypos_missile),
+    .on_missle(on_missle),
+
 
     //output
     .vcount_out(vcount_1),
@@ -81,8 +90,13 @@
     .hcount_out(hcount_2),
     .hsync_out(hsync_2),
     .hblnk_out(hblnk_2),
-    .rgb_out(rgb_2)
+    .rgb_out(rgb_2),
+    // to detecion colision with missile
+    .xpos_missile(xpos_missile),
+    .ypos_missile(ypos_missile),
+    .on_missle(on_missle)
   );
+  
   en_one #(.N(3)) enemy_3(
     .pclk(pclk),
     .rst(rst),
@@ -103,7 +117,11 @@
     .hcount_out(hcount_o),
     .hsync_out(hsync_o),
     .hblnk_out(hblnk_o),
-    .rgb_out(rgb_o)
+    .rgb_out(rgb_o),
+    // to detecion colision with missile
+    .xpos_missile(xpos_missile),
+    .ypos_missile(ypos_missile),
+    .on_missle(on_missle)
   );
 
   assign vcount_out = vcount_o;

@@ -41,7 +41,7 @@
   reg [5:0] x_addr, y_addr, x_addr_nxt, y_addr_nxt;
 
 
-  localparam WIDTH_RECT   = 30;                     
+  localparam WIDTH_RECT   = 50;                     
   localparam HEIGHT_RECT  = 50;
   localparam [11:0] RGB_RECT    = 12'h8_f_8;
 

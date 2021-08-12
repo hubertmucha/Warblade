@@ -71,6 +71,7 @@ read_verilog {
     src/enemies/draw_enemy.v
     src/enemies/ctl_enemy.v
     src/enemies/en_one.v
+    src/enemies/detec_col.v
 }
 
 add_files -fileset sim_1 {

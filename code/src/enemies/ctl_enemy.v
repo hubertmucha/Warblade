@@ -1,5 +1,5 @@
 // File: draw_rect_ctl.v
-// This module draw a rectangle on the backround.
+// This module draw a rectangle shot the ckround.
 
 // The `timescale directive specifies what the
 // simulation time units are (1 ns here) and what
@@ -21,7 +21,7 @@ module ctl_enemy
 
     output reg [11:0] xpos_out,
     output reg [11:0] ypos_out,
-    output reg on // is enemy visible ?
+    output reg shot // is enemy shooting
 );
 
 
@@ -65,12 +65,17 @@ module ctl_enemy
         //     on_nxt <= 0;
         //     xpos_out <= 0;
         //     ypos_out <= 0;
-        //     on <= 0;
-        // end
+        //     shot <= 0        // end
         // else begin
+
+        // working version
         xpos_out <= rom_x[address_nxt];
-        ypos_out <= rom_y[address_nxt];
-        on       <= on_nxt;
+        // ypos_out <= rom_y[address_nxt];
+
+        //xpos_out <= N * 150;
+        ypos_out <= 200;
+
+        shot     <= on_nxt;
         address  <= address_nxt;
         refresh_counter <= refresh_counter_nxt;
         // end

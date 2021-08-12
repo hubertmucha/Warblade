@@ -121,6 +121,9 @@ module main (
     .dout({left_d, right_d})
   );
 
+  wire [10:0] xpos_missile, ypos_missile;
+  wire on_missile;
+
   draw_ship my_draw_ship_1(
     .pclk(pclk),                                  
     .rst(rst),                                   
@@ -141,7 +144,11 @@ module main (
     .hcount_out(hcount_r),                     
     .hsync_out(hsync_r),                            
     .hblnk_out(hblnk_r),                             
-    .rgb_out(rgb_r)
+    .rgb_out(rgb_r),
+    
+    .xpos_missile(xpos_missile),
+    .ypos_missile(ypos_missile),
+    .on_missle(on_missile)
   );
 
   wire vsync_o, hsync_o;
@@ -161,7 +168,11 @@ module main (
     .vcount_in(vcount_r),            
     .vsync_in(vsync_r),                            
     .vblnk_in(vblnk_r),
-    .rgb_in(rgb_r),                           
+    .rgb_in(rgb_r),
+
+    .xpos_missile(xpos_missile), // place here 
+    .ypos_missile(ypos_missile), // place here
+    .on_missle(on_missile),                          
 
     .vcount_out(vcount_s),                     
     .vsync_out(vsync_s),                          

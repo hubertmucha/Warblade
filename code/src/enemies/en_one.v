@@ -26,6 +26,10 @@
     input wire hblnk_in,                              // input horizontal blink
     input wire [11:0] rgb_in,
 
+    input wire [10:0] xpos_missile,
+    input wire [10:0] ypos_missile,
+    input wire on_missle,
+
     output wire [10:0] vcount_out,                     // output vertical count
     output wire vsync_out,                             // output vertical sync
     output wire vblnk_out,                             // output vertical blink
@@ -42,6 +46,7 @@
 
 
     wire [10:0] xpos, ypos;
+    wire shoot;
     wire on;
 
     ctl_enemy #(.N(N)) ctl_en(
@@ -50,7 +55,20 @@
 
     .xpos_out(xpos),
     .ypos_out(ypos),
-    .on(on)
+    .shot(shoot) // to the clt_shooting module in the future
+    );
+
+    detec_col #(.N(1)) detec_colision(
+    .pclk(pclk),
+    .rst(rst),
+
+    .xpos_missile(xpos_missile),
+    .ypos_missile(ypos_missile),
+    .on_missile(on_missle),
+
+    .xpos_enemy(xpos),
+    .ypos_enemy(ypos),
+    .on_out(on)
     );
 
     draw_enemy draw_en(
@@ -59,7 +77,7 @@
 
     .xpos(xpos),
     .ypos(ypos),
-    .on(1),
+    .on(on),
 
     //input
     .vcount_in(vcount_in),

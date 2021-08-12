@@ -33,7 +33,6 @@ module ctl_enemy_test;
     rst = 0;
   end
 
-
   // Describe a process that generates a clock
   // signal. The clock is 40 MHz.
 
