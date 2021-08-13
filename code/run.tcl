@@ -55,6 +55,8 @@ read_verilog {
     src/dff_hs_vs.v
     src/delay.v
 
+    src/ctl_level.v
+
     src/text/font_rom.v
     src/text/draw_rect_char.v
     src/text/char_rom_16x16.v

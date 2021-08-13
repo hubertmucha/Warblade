@@ -14,6 +14,8 @@
     input wire hblnk_in,                              // input horizontal blink
     input wire [11:0] rgb_in,
 
+    input wire [4:0] level,
+
     output wire [10:0] vcount_out,                     // output vertical count
     output wire vsync_out,                             // output vertical sync
     output wire vblnk_out,                             // output vertical blink
@@ -54,6 +56,8 @@
     .hsync_in(hsync_in),
     .hblnk_in(hblnk_in),
     .rgb_in(rgb_in),
+
+    .level(level),
     // to detecion colision with missile
     .xpos_missile(xpos_missile),
     .ypos_missile(ypos_missile),
@@ -82,6 +86,7 @@
     .hsync_in(hsync_1),
     .hblnk_in(hblnk_1),
     .rgb_in(rgb_1),
+    .level(level),
 
     //output
     .vcount_out(vcount_2),
@@ -109,6 +114,7 @@
     .hsync_in(hsync_2),
     .hblnk_in(hblnk_2),
     .rgb_in(rgb_2),
+    .level(level),
 
     //output
     .vcount_out(vcount_o),

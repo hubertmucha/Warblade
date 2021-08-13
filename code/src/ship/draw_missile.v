@@ -39,10 +39,10 @@
   localparam X = 30;
   localparam WIDTH_RECT   = 5;           
   localparam HEIGHT_RECT  = 20;
-  localparam COLOR        = 12'hd_d_3;
+  localparam COLOR        = 12'hd_d_3;  // close to red 
 
   // (47/2) - (5/2) = 23,5 - 2,5 = 21 px
-  localparam X_MISSILE_OFFSET = 21; //half of ship widht minus widt of half of missile widht
+  localparam X_MISSILE_OFFSET = 21;  // half of ship widht minus widt of half of missile widht
 
   reg [11:0] vcount_nxt, hcount_nxt; 
   reg vsync_nxt, hsync_nxt;

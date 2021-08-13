@@ -159,6 +159,15 @@ module main (
   wire vblnk_s, hblnk_s;
   wire [11:0] rgb_s;
 
+  // wire [4:0] level;
+  // ctl_level level_control(
+  //   .pclk(pclk),                                  
+  //   .rst(rst),                                   
+
+  //   .in_lv(1),
+  //   .level(level),
+  // );
+
   enemies my_enemies(
     .pclk(pclk),                                  
     .rst(rst),                                   
@@ -172,7 +181,9 @@ module main (
 
     .xpos_missile(xpos_missile), // place here 
     .ypos_missile(ypos_missile), // place here
-    .on_missle(on_missile),                          
+    .on_missle(on_missile),
+    
+    .level(1),                          
 
     .vcount_out(vcount_s),                     
     .vsync_out(vsync_s),                          
@@ -194,7 +205,9 @@ module main (
     .vcount_in(vcount_s),            
     .vsync_in(vsync_s),                            
     .vblnk_in(vblnk_s),
-    .rgb_in(rgb_s),                           
+    .rgb_in(rgb_s),
+
+    .level(1),                           
                  
     .vsync_out(vsync_o),                                             
     .hsync_out(hsync_o),                                                     

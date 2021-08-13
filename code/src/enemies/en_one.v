@@ -26,6 +26,8 @@
     input wire hblnk_in,                              // input horizontal blink
     input wire [11:0] rgb_in,
 
+    input wire [4:0] level,
+
     input wire [10:0] xpos_missile,
     input wire [10:0] ypos_missile,
     input wire on_missle,
@@ -53,6 +55,7 @@
     .pclk(pclk),
     .rst(rst),
 
+    .level(level),
     .xpos_out(xpos),
     .ypos_out(ypos),
     .shot(shoot) // to the clt_shooting module in the future

@@ -29,9 +29,9 @@ module ctl_missile_en (
   localparam WIDTH_RECT   = 48;                    
   localparam HEIGHT_RECT  = 64;
   localparam COUNTER_LIMIT = 90000;         
-  localparam MISSLE_HEIGHT_MIN = 80;                   // TODO: change height of minimum (up limit) ypos of missle 
-  //localparam MISSLE_HEIGHT_MAX = 768 - HEIGHT_RECT;
+  localparam MISSLE_HEIGHT_MIN = 80;                  
   localparam MISSLE_HEIGHT_MAX = 768;
+  localparam MISSILE_OFFSET = 50 ; // equal to Hight of enemy react
 
   reg on_out_nxt;
   reg [1:0] state, next_state;
@@ -44,10 +44,10 @@ module ctl_missile_en (
   always @(posedge pclk) begin
     if(rst) begin
       state <= IDLE;
-      ypos_out  <= ypos_in;             // TODO here palce y start of missile
+      ypos_out  <= ypos_in + MISSILE_OFFSET; 
       refresh_counter <= 21'b0;
       on_out <= 0;
-      xpos_out <= 0;                              // TODO: change to the middle of a screen   
+      xpos_out <= 0;                              
     end
     else begin
     state <= next_state;
@@ -104,7 +104,7 @@ module ctl_missile_en (
       SHOOT:
         begin
           on_out_nxt = 1;
-          ypos_nxt = ypos_in;           // TODO here palce y start of missile
+          ypos_nxt = ypos_in + MISSILE_OFFSET;
           refresh_counter_nxt = refresh_counter;
           xpos_nxt = xpos_in;  
         end

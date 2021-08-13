@@ -19,6 +19,8 @@ module ctl_enemy
     input wire pclk,
     input wire rst,
 
+    input wire [4:0] level,
+
     output reg [11:0] xpos_out,
     output reg [11:0] ypos_out,
     output reg shot // is enemy shooting
@@ -27,7 +29,8 @@ module ctl_enemy
 
     //localparam COUNTER_LIMIT = 1000; // for simulation purpose
     localparam COUNTER_LIMIT = 1000000;
- 
+    localparam LEVEL_ADDRES_SCALER = 150; // equal to numbers of rows in data for level
+
     reg [11:0] rom_x [0:151];
     reg [11:0] rom_y [0:151];
     reg [11:0] address, address_nxt = 0;
@@ -35,6 +38,8 @@ module ctl_enemy
     reg [11:0] xpos_nxt, ypos_nxt = 0;
     reg on_nxt;
 
+
+    // chose correct data for each enemy ship 
     if (N == 1) begin
         initial begin  
             $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en1_x.txt", rom_x);
@@ -69,6 +74,9 @@ module ctl_enemy
         // else begin
 
         // working version
+        
+        // TODO repair delays
+        //xpos_out <= rom_x[address_nxt + (LEVEL_ADDRES_SCALER * (level - 1))];
         xpos_out <= rom_x[address_nxt];
         //ypos_out <= rom_y[address_nxt];
 
