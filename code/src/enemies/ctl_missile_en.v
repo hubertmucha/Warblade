@@ -26,6 +26,8 @@ module ctl_missile_en (
   localparam SHOOT = 2'b01;
   localparam MISSLE_FLY = 2'b10;
 
+
+  localparam START_OFFSET = 50;
   localparam WIDTH_RECT   = 48;                    
   localparam HEIGHT_RECT  = 64;
   localparam COUNTER_LIMIT = 90000;         
@@ -104,7 +106,7 @@ module ctl_missile_en (
       SHOOT:
         begin
           on_out_nxt = 1;
-          ypos_nxt = ypos_in;           // TODO here palce y start of missile
+          ypos_nxt = ypos_in    ;           // TODO here palce y start of missile
           refresh_counter_nxt = refresh_counter;
           xpos_nxt = xpos_in;  
         end

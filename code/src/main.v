@@ -25,6 +25,8 @@ module main (
 
   );
    
+  localparam LEVEL_TEST = 1; // must be int value
+
   wire pclk;
   wire locked;
   
@@ -170,6 +172,7 @@ module main (
     .vblnk_in(vblnk_r),
     .rgb_in(rgb_r),
 
+    .level(LEVEL_TEST),
     .xpos_missile(xpos_missile), // place here 
     .ypos_missile(ypos_missile), // place here
     .on_missle(on_missile),                          
@@ -186,7 +189,8 @@ module main (
 
   textbox my_text_box(
     .pclk(pclk),                                  
-    .rst(rst),                                   
+    .rst(rst),
+    .level(LEVEL_TEST),                                   
 
     .hblnk_in(hblnk_s),
     .hcount_in(hcount_s),

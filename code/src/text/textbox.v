@@ -6,6 +6,8 @@
     input wire [10:0] hcount_in,   
     input wire hsync_in,
 
+    input wire [3:0]level,
+
     input wire [10:0] vcount_in,                    
     input wire vsync_in,                            
     input wire vblnk_in,
@@ -57,7 +59,7 @@
   wire [6:0] char_code; 
 
   char_rom_16x16 my_char_rom_16x16(
-    .level(3),
+    .level(level),
     .char_xy(char_xy),
     .char_code(char_code)
   );

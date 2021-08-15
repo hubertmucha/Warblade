@@ -30,6 +30,8 @@
     input wire [10:0] ypos_missile,
     input wire on_missle,
 
+    input wire [3:0] level,
+
     output wire [10:0] vcount_out,                     // output vertical count
     output wire vsync_out,                             // output vertical sync
     output wire vblnk_out,                             // output vertical blink
@@ -52,6 +54,7 @@
     ctl_enemy #(.N(N)) ctl_en(
     .pclk(pclk),
     .rst(rst),
+    .level(level),
 
     .xpos_out(xpos),
     .ypos_out(ypos),

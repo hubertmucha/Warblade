@@ -18,6 +18,7 @@ module ctl_enemy
     )(
     input wire pclk,
     input wire rst,
+    input wire [3:0] level,
 
     output reg [11:0] xpos_out,
     output reg [11:0] ypos_out,
@@ -27,6 +28,7 @@ module ctl_enemy
 
     //localparam COUNTER_LIMIT = 1000; // for simulation purpose
     localparam COUNTER_LIMIT = 1000000;
+    localparam LEVEL_OFFSET = 150;
  
     reg [11:0] rom_x [0:151];
     reg [11:0] rom_y [0:151];
@@ -80,9 +82,10 @@ module ctl_enemy
         refresh_counter <= refresh_counter_nxt;
         // end
     end
+    // good addr = LEVEL_OFFSET*(level-1)
     always @* begin
         if(refresh_counter == COUNTER_LIMIT) begin
-            if(address >= 150)begin
+            if(address >= 149 )begin
                 address_nxt = 0;
             end
             else begin
