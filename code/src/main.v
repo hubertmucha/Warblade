@@ -161,6 +161,8 @@ module main (
   wire vblnk_s, hblnk_s;
   wire [11:0] rgb_s;
 
+  wire [3:0] level_nxt; 
+
   enemies my_enemies(
     .pclk(pclk),                                  
     .rst(rst),                                   
@@ -183,14 +185,16 @@ module main (
     .hcount_out(hcount_s),                     
     .hsync_out(hsync_s),                            
     .hblnk_out(hblnk_s),                             
-    .rgb_out(rgb_s)
+    .rgb_out(rgb_s),
+
+    .level_out(level_nxt)
   );
 
 
   textbox my_text_box(
     .pclk(pclk),                                  
     .rst(rst),
-    .level(LEVEL_TEST),                                   
+    .level(level_nxt),                                   
 
     .hblnk_in(hblnk_s),
     .hcount_in(hcount_s),

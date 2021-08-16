@@ -18,25 +18,13 @@ module ctl_enemy
     )(
     input wire pclk,
     input wire rst,
-    input wire [3:0] level,
-
-    output reg [11:0] xpos_out,
-    output reg [11:0] ypos_out,
-    output reg shot // is enemy shooting
+    input wire [11:0] addr,
+    output reg [11:0] x_out,
+    output reg [11:0] y_out
 );
 
-
-    //localparam COUNTER_LIMIT = 1000; // for simulation purpose
-    localparam COUNTER_LIMIT = 1000000;
-    localparam LEVEL_SCALER = 150;
-    localparam LEVEL = 1; // TODO: change in the future to input parameter
- 
-    reg [11:0] rom_x [0:151];
-    reg [11:0] rom_y [0:151];
-    reg [11:0] address, address_nxt = 0;
-    reg [20:0] refresh_counter, refresh_counter_nxt = 0;
-    reg [11:0] xpos_nxt, ypos_nxt = 0;
-    reg on_nxt;
+    reg [11:0] rom_x [0:301];
+    reg [11:0] rom_y [0:301];
 
     if (N == 1) begin
         initial begin  
@@ -52,42 +40,13 @@ module ctl_enemy
     end
     else if (N == 3) begin
         initial begin  
-            $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en3_x.txt", rom_x);
+            $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en2_x.txt", rom_x);
             $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en3_y.txt", rom_y);
         end
     end
-    
+
     always @(posedge pclk) begin
-
-        xpos_out <= rom_x[address_nxt];
-        //ypos_out <= rom_y[address_nxt];
-
-        ypos_out <= N * 70;
-
-        shot     <= on_nxt;
-        address  <= address_nxt;
-        refresh_counter <= refresh_counter_nxt;
-        // end
-    end
-
-    always @* begin
-        if(refresh_counter == COUNTER_LIMIT) begin
-            if(address >= (LEVEL_SCALER*LEVEL) - 1)begin
-                address_nxt = (LEVEL_SCALER*(LEVEL-1));
-            end
-            else begin
-                address_nxt = address + 1;
-            end
-            on_nxt   = 1;
-            refresh_counter_nxt = 0;
-            end
-        else begin
-            refresh_counter_nxt = refresh_counter + 1;
-        end
+        x_out <= rom_x[addr];
+        y_out <= N*100;
     end
 endmodule
-
-
-
-      
-

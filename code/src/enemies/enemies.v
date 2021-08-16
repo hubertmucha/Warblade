@@ -22,8 +22,15 @@
     output wire [10:0] hcount_out,                     // output horizontal count
     output wire hsync_out,                             // output horizontal sync
     output wire hblnk_out,                             // output horizontal blink
-    output wire [11:0] rgb_out
+    output wire [11:0] rgb_out,
+
+    output wire [3:0] level_out 
   );
+
+  wire [3:0] level_nxt; 
+
+  // life controls
+  wire lives_1, lives_2, lives_3;
 
   // from input to 1
   wire [10:0] vcount_1, hcount_1;
@@ -76,7 +83,10 @@
     // to detecion colision with missile
     .xpos_missile(xpos_missile),
     .ypos_missile(ypos_missile),
-    .on_missle(on_missle)
+    .on_missle(on_missle),
+    
+    // to calculate level
+    .lives(lives_1)
   );
 
   en_one #(.N(2)) enemy_2(
@@ -105,7 +115,10 @@
     // to detecion colision with missile
     .xpos_missile(xpos_missile),
     .ypos_missile(ypos_missile),
-    .on_missle(on_missle)
+    .on_missle(on_missle),
+
+    // to calculate level
+    .lives(lives_2)
   );
   
   en_one #(.N(3)) enemy_3(
@@ -134,7 +147,25 @@
     // to detecion colision with missile
     .xpos_missile(xpos_missile),
     .ypos_missile(ypos_missile),
-    .on_missle(on_missle)
+    .on_missle(on_missle),
+
+    // to calculate level
+    .lives(lives_3)
+  );
+
+  level my_level(
+    .pclk(pclk),
+    .rst(rst),
+
+    //input
+    .lives_1(lives_1),
+    .lives_2(lives_2),
+    .lives_3(lives_3),
+
+    //output
+    .level(level_nxt),
+    .level_change()
+
   );
   
 
@@ -145,5 +176,6 @@
   assign hsync_out  = hsync_o;
   assign hblnk_out  = hblnk_o;
   assign rgb_out    = rgb_o;
+  assign level_out  = level_nxt;
 
   endmodule

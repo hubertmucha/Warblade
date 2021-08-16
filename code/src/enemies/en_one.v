@@ -38,7 +38,8 @@
     output wire [10:0] hcount_out,                     // output horizontal count
     output wire hsync_out,                             // output horizontal sync
     output wire hblnk_out,                             // output horizontal blink
-    output wire [11:0] rgb_out
+    output wire [11:0] rgb_out,
+    output wire lives
   );
 
   wire [10:0] vcount_o, hcount_o;
@@ -51,14 +52,23 @@
     wire shoot;
     wire on;
 
+    wire [11:0] a;
+
+    addres_gen gen(
+    .pclk(pclk),
+    .rst(rst),
+    .level(4'd1),
+    .addr(a)
+
+    );
+
     ctl_enemy #(.N(N)) ctl_en(
     .pclk(pclk),
     .rst(rst),
-    .level(level),
+    .addr(a),
 
-    .xpos_out(xpos),
-    .ypos_out(ypos),
-    .shot(shoot) // to the clt_shooting module in the future
+    .x_out(xpos),
+    .y_out(ypos)
     );
 
     detec_col #(.N(1)) detec_colision(
@@ -159,4 +169,5 @@
   assign hsync_out  = hsync_o;
   assign hblnk_out  = hblnk_o;
   assign rgb_out    = rgb_o;
+  assign lives      = on;
 endmodule
