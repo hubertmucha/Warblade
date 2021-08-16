@@ -28,7 +28,8 @@ module ctl_enemy
 
     //localparam COUNTER_LIMIT = 1000; // for simulation purpose
     localparam COUNTER_LIMIT = 1000000;
-    localparam LEVEL_OFFSET = 150;
+    localparam LEVEL_SCALER = 150;
+    localparam LEVEL = 1; // TODO: change in the future to input parameter
  
     reg [11:0] rom_x [0:151];
     reg [11:0] rom_y [0:151];
@@ -57,24 +58,10 @@ module ctl_enemy
     end
     
     always @(posedge pclk) begin
-        // if(rst) begin
-        //     address <= 0;
-        //     address_nxt <= 0;
-        //     refresh_counter <= 0;
-        //     refresh_counter_nxt <= 0;
-        //     xpos_nxt <= 0;
-        //     ypos_nxt <= 0;
-        //     on_nxt <= 0;
-        //     xpos_out <= 0;
-        //     ypos_out <= 0;
-        //     shot <= 0        // end
-        // else begin
 
-        // working version
         xpos_out <= rom_x[address_nxt];
         //ypos_out <= rom_y[address_nxt];
 
-        //xpos_out <= N * 150;
         ypos_out <= N * 70;
 
         shot     <= on_nxt;
@@ -82,11 +69,11 @@ module ctl_enemy
         refresh_counter <= refresh_counter_nxt;
         // end
     end
-    // good addr = LEVEL_OFFSET*(level-1)
+
     always @* begin
         if(refresh_counter == COUNTER_LIMIT) begin
-            if(address >= 149 )begin
-                address_nxt = 0;
+            if(address >= (LEVEL_SCALER*LEVEL) - 1)begin
+                address_nxt = (LEVEL_SCALER*(LEVEL-1));
             end
             else begin
                 address_nxt = address + 1;

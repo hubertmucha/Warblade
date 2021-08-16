@@ -37,7 +37,13 @@
   wire vblnk_2, hblnk_2;
   wire [11:0] rgb_2;
 
-  // from 2 to output
+  // from 2 to 3
+  wire [10:0] vcount_3, hcount_3;
+  wire vsync_3, hsync_3;
+  wire vblnk_3, hblnk_3;
+  wire [11:0] rgb_3;
+
+  // from 3 to output
   wire [10:0] vcount_o, hcount_o;
   wire vsync_o, hsync_o;
   wire vblnk_o, hblnk_o;
@@ -57,11 +63,6 @@
     .hblnk_in(hblnk_in),
     .rgb_in(rgb_in),
     .level(level),
-    // to detecion colision with missile
-    .xpos_missile(xpos_missile),
-    .ypos_missile(ypos_missile),
-    .on_missle(on_missle),
-
 
     //output
     .vcount_out(vcount_1),
@@ -70,7 +71,12 @@
     .hcount_out(hcount_1),
     .hsync_out(hsync_1),
     .hblnk_out(hblnk_1),
-    .rgb_out(rgb_1)
+    .rgb_out(rgb_1),
+
+    // to detecion colision with missile
+    .xpos_missile(xpos_missile),
+    .ypos_missile(ypos_missile),
+    .on_missle(on_missle)
   );
 
   en_one #(.N(2)) enemy_2(
@@ -95,6 +101,7 @@
     .hsync_out(hsync_2),
     .hblnk_out(hblnk_2),
     .rgb_out(rgb_2),
+
     // to detecion colision with missile
     .xpos_missile(xpos_missile),
     .ypos_missile(ypos_missile),
@@ -123,11 +130,13 @@
     .hsync_out(hsync_o),
     .hblnk_out(hblnk_o),
     .rgb_out(rgb_o),
+
     // to detecion colision with missile
     .xpos_missile(xpos_missile),
     .ypos_missile(ypos_missile),
     .on_missle(on_missle)
   );
+  
 
   assign vcount_out = vcount_o;
   assign vsync_out  = vsync_o;
