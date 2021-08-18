@@ -32,8 +32,8 @@
 
     input wire [3:0] level,
 
-    output wire out_xpos_missile,
-    output wire out_ypos_missile,
+    output wire en_x_missile,
+    output wire en_y_missile,
 
     output wire [10:0] vcount_out,                     // output vertical count
     output wire vsync_out,                             // output vertical sync
@@ -173,6 +173,6 @@
   assign hblnk_out  = hblnk_o;
   assign rgb_out    = rgb_o;
   assign lives      = on;
-  assign out_xpos_missile = xpos_ctl_missle;
-  assign out_ypos_missile = ypos_ctl_missle;
+  assign en_x_missile = xpos_ctl_missle;
+  assign en_y_missile = ypos_ctl_missle;
 endmodule

@@ -153,8 +153,8 @@
     .rgb_out(rgb_o),
 
     // to detecion colision with missile
-    .xpos_missile(xpos_missile),
-    .ypos_missile(ypos_missile),
+    .en_x_missile(xpos_missile),
+    .en_y_missile(ypos_missile),
     .on_missle(on_missle),
 
     // to calculate level
