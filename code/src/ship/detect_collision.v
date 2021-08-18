@@ -39,7 +39,7 @@
   end
 
   always@* begin
-	if(enBullet_X >= (ship_X - X_WIDTH) && enBullet_X <= (ship_X + X_WIDTH) && enBullet_Y == ship_Y)
+	if(enBullet_X >= (ship_X - X_WIDTH) && enBullet_X <= (ship_X + X_WIDTH) && enBullet_Y == Y_SHIP)
 		is_ship_display_nxt = 1'b0;
 	else
 		is_ship_display_nxt = is_ship_display;
