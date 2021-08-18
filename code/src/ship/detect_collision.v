@@ -20,7 +20,7 @@
   input wire [10:0] enBullet_X,
 	input wire [10:0] enBullet_Y,
 	
-	output wire is_ship_display
+	reg wire is_ship_display
   );
 
   localparam Y_SHIP = 680;

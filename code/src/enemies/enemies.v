@@ -92,7 +92,7 @@
     // outputs: to detect_collision
     .en_x_missile(x_missile_1),
     .en_y_missile(y_missile_1),   
-     
+
     // output: to calculate level
     .lives(lives_1)
   );
@@ -185,6 +185,7 @@
   assign hblnk_out  = hblnk_o;
   assign rgb_out    = rgb_o;
   assign level_out  = level_nxt;
-  assign en1_x_missile = 
+  assign en1_x_missile = x_missile_1;
+  assign en1_x_missile = y_missile_1;
 
   endmodule
