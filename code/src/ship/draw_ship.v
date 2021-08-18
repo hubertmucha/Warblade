@@ -28,7 +28,11 @@
     output wire [10:0] hcount_out,                     
     output wire hsync_out,                            
     output wire hblnk_out,                             
-    output wire [11:0] rgb_out
+    output wire [11:0] rgb_out,
+
+    output wire [10:0] xpos_missile,
+    output wire [10:0] ypos_missile,
+    output wire on_missle
 
   );
 
@@ -94,7 +98,8 @@
   );
 
   wire [11:0] ypos_ctl_missle, xpos_ctl_missle;
-  wire on_missle;
+  wire on_ctl_missle;
+
   missle_ctl my_missle_ctl(
     .pclk(pclk),
     .rst(rst),
@@ -103,7 +108,7 @@
 
     .ypos_out(ypos_ctl_missle),
     .xpos_out(xpos_ctl_missle),
-    .on_out(on_missle)
+    .on_out(on_ctl_missle)
   );
 
 
@@ -118,7 +123,7 @@
 
     .xpos(xpos_ctl_missle),
     .ypos(ypos_ctl_missle),
-    .on(on_missle),
+    .on(on_ctl_missle),
 
     //input
     .vcount_in(vcount_rm),
@@ -146,5 +151,8 @@
   assign hsync_out  = hsync_o;
   assign hblnk_out  = hblnk_o;
   assign rgb_out    = rgb_o;
+  assign xpos_missile = xpos_ctl_missle;
+  assign ypos_missile = ypos_ctl_missle;
+  assign on_missile   = on_ctl_missle;
 
   endmodule

@@ -25,6 +25,8 @@ module main (
 
   );
    
+  localparam LEVEL_TEST = 1; // must be int value
+
   wire pclk;
   wire locked;
   
@@ -121,6 +123,9 @@ module main (
     .dout({left_d, right_d})
   );
 
+  wire [10:0] xpos_missile, ypos_missile;
+  wire on_missile;
+
   draw_ship my_draw_ship_1(
     .pclk(pclk),                                  
     .rst(rst),                                   
@@ -141,23 +146,63 @@ module main (
     .hcount_out(hcount_r),                     
     .hsync_out(hsync_r),                            
     .hblnk_out(hblnk_r),                             
-    .rgb_out(rgb_r)
+    .rgb_out(rgb_r),
+    
+    .xpos_missile(xpos_missile),
+    .ypos_missile(ypos_missile),
+    .on_missle(on_missile)
   );
 
   wire vsync_o, hsync_o;
   wire [11:0] rgb_o;
 
-  textbox my_text_box(
+  wire [10:0] vcount_s, hcount_s;
+  wire vsync_s, hsync_s;
+  wire vblnk_s, hblnk_s;
+  wire [11:0] rgb_s;
+
+  wire [3:0] level_nxt; 
+
+  enemies my_enemies(
     .pclk(pclk),                                  
     .rst(rst),                                   
-
     .hblnk_in(hblnk_r),
     .hcount_in(hcount_r),
     .hsync_in(hsync_r),
     .vcount_in(vcount_r),            
     .vsync_in(vsync_r),                            
     .vblnk_in(vblnk_r),
-    .rgb_in(rgb_r),                           
+    .rgb_in(rgb_r),
+
+    .level(LEVEL_TEST),
+    .xpos_missile(xpos_missile), // place here 
+    .ypos_missile(ypos_missile), // place here
+    .on_missle(on_missile),                          
+
+    .vcount_out(vcount_s),                     
+    .vsync_out(vsync_s),                          
+    .vblnk_out(vblnk_s),                             
+    .hcount_out(hcount_s),                     
+    .hsync_out(hsync_s),                            
+    .hblnk_out(hblnk_s),                             
+    .rgb_out(rgb_s),
+
+    .level_out(level_nxt)
+  );
+
+
+  textbox my_text_box(
+    .pclk(pclk),                                  
+    .rst(rst),
+    .level(level_nxt),                                   
+
+    .hblnk_in(hblnk_s),
+    .hcount_in(hcount_s),
+    .hsync_in(hsync_s),
+    .vcount_in(vcount_s),            
+    .vsync_in(vsync_s),                            
+    .vblnk_in(vblnk_s),
+    .rgb_in(rgb_s),                           
                  
     .vsync_out(vsync_o),                                             
     .hsync_out(hsync_o),                                                     

@@ -60,12 +60,23 @@ read_verilog {
     src/text/char_rom_16x16.v
     src/text/textbox.v
 
-    src/ship/position_rect_ctl.v
+    src/ship/ctl_ship.v
     src/ship/missle_ctl.v
     src/ship/draw_missile.v
     src/ship/draw_ship.v
     src/ship/image_rom.v
     src/ship/draw_react.v
+
+    src/enemies/enemies.v
+    src/enemies/draw_enemy.v
+    src/enemies/ctl_enemy.v
+    src/enemies/en_one.v
+    src/enemies/detec_col.v
+    src/enemies/draw_missile_en.v
+    src/enemies/ctl_missile_en.v
+    src/enemies/level.v
+
+    src/enemies/addres_gen.v
 }
 
 add_files -fileset sim_1 {
@@ -73,6 +84,8 @@ add_files -fileset sim_1 {
     sim/tiff_writer.v
     sim/draw_rect_ctl_tb.v
     sim/draw_rect_ctl_test.v
+
+    sim/ctl_enemy_test.v
 }
 
 set_property top ${top_module} [current_fileset]

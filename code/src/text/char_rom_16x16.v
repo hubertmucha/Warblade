@@ -11,7 +11,7 @@
 // using Verilog-2001 syntax.
 
 module char_rom_16x16 (
-  input wire [2:0] level,
+  input wire [3:0] level,
   input wire [7:0] char_xy,
   output reg [6:0] char_code
 );
