@@ -20,7 +20,11 @@
     input wire vsync_in,                            
     input wire vblnk_in,
     
-    input wire [11:0] rgb_in,                            
+    input wire [11:0] rgb_in,
+
+    // enemies missiles
+    input wire [10:0] en_x_missile1,
+    input wire [10:0] en_y_missile1,                           
 
     output wire [10:0] vcount_out,                     
     output wire vsync_out,                          
@@ -30,10 +34,10 @@
     output wire hblnk_out,                             
     output wire [11:0] rgb_out,
 
+    output wire [10:0] xpos_ship,
     output wire [10:0] xpos_missile,
     output wire [10:0] ypos_missile,
     output wire on_missle
-
   );
 
 
@@ -46,6 +50,18 @@
     .right(right),
     //outputs
     .xpos_out(xpos_ctl)
+  );
+
+  wire is_ship_display;
+  detect_collision my_detect_collision(
+    // inputs 
+    .pclk(pclk),
+    .rst(rst),
+    .ship_X(xpos_ctl),
+    .enBullet_X(en_x_missile1),
+    .enBullet_Y(en_y_missile1),
+    //output
+    .is_ship_display(is_ship_display)
   );
 
   // Instantiate the draw_react module, which is
@@ -69,6 +85,7 @@
     // input x, y position of the rect from position_rect_ctl module
     .xpos(xpos_ctl),
     // .ypos(680),
+    .display_ship(is_ship_display),
 
     //input
     .vcount_in(vcount_in),
@@ -151,6 +168,7 @@
   assign hsync_out  = hsync_o;
   assign hblnk_out  = hblnk_o;
   assign rgb_out    = rgb_o;
+  assign xpos_ship  = xpos_ctl;
   assign xpos_missile = xpos_ctl_missle;
   assign ypos_missile = ypos_ctl_missle;
   assign on_missile   = on_ctl_missle;

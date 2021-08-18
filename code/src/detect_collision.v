@@ -11,18 +11,19 @@
 // Declare the module and its ports. This is
 // using Verilog-2001 syntax.
 
- module draw_background (
+ module detect_collision (
     input wire pclk,                                  // Peripheral Clock
     input wire rst,                                   // Synchrous reset
 
-	input wire ship_X,
-	input wire ship_Y,
-    input wire enBullet_X,
-	input wire enBullet_Y,
+	input wire [10:0] ship_X,
+	// input wire [10:0] ship_Y,
+  input wire [10:0] enBullet_X,
+	input wire [10:0] enBullet_Y,
 	
 	output wire is_ship_display
   );
 
+  localparam Y_SHIP = 680;
   localparam X_WIDTH = 10;
   reg is_ship_display_nxt;
 

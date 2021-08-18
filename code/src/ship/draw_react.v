@@ -15,6 +15,7 @@
     input wire rst,                                   // Synchrous reset
 
     input wire [11:0] xpos,
+    input wire display_ship,
 
     input wire [10:0] vcount_in,                      // input vertical count
     input wire vsync_in,                              // input vertical sync
@@ -24,6 +25,7 @@
     input wire hblnk_in,                              // input horizontal blink
     input wire [11:0] rgb_in,
     input wire [11:0] rgb_pixel,
+
 
     output reg [10:0] vcount_out,                     // output vertical count
     output reg vsync_out,                             // output vertical sync
@@ -39,7 +41,7 @@
   reg [11:0] pixel_addr_nxt = 12'b0;
   reg [5:0] x_addr, y_addr, x_addr_nxt, y_addr_nxt;
 
-  localparam YPOS = 680;
+  localparam YPOS = 680;            // TODO: change to module param
 
   // Parameters
   // localparam X_RECT       = 100;
@@ -142,9 +144,13 @@
           rgb_out_nxt = 12'h0_0_0;
     end
     else begin
-      if (hcount_out_2 >= xpos && hcount_out_2 <= xpos + WIDTH_RECT && vcount_out_2 >= YPOS && vcount_out_2 <= YPOS + HEIGHT_RECT) 
-        rgb_out_nxt = rgb_pixel; 
-      else 
+      if(display_ship == 1) begin
+        if (hcount_out_2 >= xpos && hcount_out_2 <= xpos + WIDTH_RECT && vcount_out_2 >= YPOS && vcount_out_2 <= YPOS + HEIGHT_RECT) 
+          rgb_out_nxt = rgb_pixel; 
+        else 
+          rgb_out_nxt = rgb_out_2;
+      end
+      else
         rgb_out_nxt = rgb_out_2;  
     end
       y_addr_nxt = vcount_out_2[5:0] - YPOS[5:0];

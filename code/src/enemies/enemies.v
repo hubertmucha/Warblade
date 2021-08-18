@@ -24,6 +24,8 @@
     output wire hblnk_out,                             // output horizontal blink
     output wire [11:0] rgb_out,
 
+    output wire [10:0] en1_x_missile,
+    output wire [10:0] en1_y_missile,
     output wire [3:0] level_out 
   );
 
@@ -37,6 +39,8 @@
   wire vsync_1, hsync_1;
   wire vblnk_1, hblnk_1;
   wire [11:0] rgb_1;
+  wire [10:0] x_missile_1;
+  wire [10:0] y_missile_1;
 
   // from 1 to 2
   wire [10:0] vcount_2, hcount_2;
@@ -80,12 +84,16 @@
     .hblnk_out(hblnk_1),
     .rgb_out(rgb_1),
 
-    // to detecion colision with missile
+    // inputs: to detecion colision with missile
     .xpos_missile(xpos_missile),
     .ypos_missile(ypos_missile),
     .on_missle(on_missle),
-    
-    // to calculate level
+
+    // outputs: to detect_collision
+    .en_x_missile(x_missile_1),
+    .en_y_missile(y_missile_1),   
+     
+    // output: to calculate level
     .lives(lives_1)
   );
 
@@ -177,5 +185,6 @@
   assign hblnk_out  = hblnk_o;
   assign rgb_out    = rgb_o;
   assign level_out  = level_nxt;
+  assign en1_x_missile = 
 
   endmodule
