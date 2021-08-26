@@ -153,8 +153,8 @@
     .rgb_out(rgb_o),
 
     // to detecion colision with missile
-    .en_x_missile(xpos_missile),
-    .en_y_missile(ypos_missile),
+    .xpos_missile(xpos_missile),
+    .ypos_missile(ypos_missile),
     .on_missle(on_missle),
 
     // to calculate level
@@ -186,6 +186,6 @@
   assign rgb_out    = rgb_o;
   assign level_out  = level_nxt;
   assign en1_x_missile = x_missile_1;
-  assign en1_x_missile = y_missile_1;
+  assign en1_y_missile = y_missile_1;
 
   endmodule

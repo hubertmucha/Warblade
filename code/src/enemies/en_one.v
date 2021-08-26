@@ -32,8 +32,8 @@
 
     input wire [3:0] level,
 
-    output wire en_x_missile,
-    output wire en_y_missile,
+    output wire [10:0] en_x_missile,
+    output wire [10:0] en_y_missile,
 
     output wire [10:0] vcount_out,                     // output vertical count
     output wire vsync_out,                             // output vertical sync

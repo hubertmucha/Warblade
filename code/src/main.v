@@ -138,7 +138,10 @@ module main (
     .vcount_in(vcount_b),            
     .vsync_in(vsync_b),                            
     .vblnk_in(vblnk_b),
-    .rgb_in(rgb_b),                           
+    .rgb_in(rgb_b),
+
+    .en_x_missile1(en1_x_missile),
+    .en_y_missile1(en1_y_missile),                           
 
     .vcount_out(vcount_r),                     
     .vsync_out(vsync_r),                          
@@ -161,7 +164,8 @@ module main (
   wire vblnk_s, hblnk_s;
   wire [11:0] rgb_s;
 
-  wire [3:0] level_nxt; 
+  wire [3:0] level_nxt;
+  wire [10:0] en1_x_missile, en1_y_missile;
 
   enemies my_enemies(
     .pclk(pclk),                                  
@@ -187,6 +191,8 @@ module main (
     .hblnk_out(hblnk_s),                             
     .rgb_out(rgb_s),
 
+    .en1_x_missile(en1_x_missile),
+    .en1_y_missile(en1_y_missile),
     .level_out(level_nxt)
   );
 

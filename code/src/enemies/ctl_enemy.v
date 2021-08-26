@@ -28,20 +28,26 @@ module ctl_enemy
 
     if (N == 1) begin
         initial begin  
-            $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en1_x.txt", rom_x);
-            $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en1_y.txt", rom_y);
+            $readmemb("C:/studia/MTM/MTM-4/UEC2/projekt/code/src/enemies/data/en1_x.txt", rom_x);
+            $readmemb("C:/studia/MTM/MTM-4/UEC2/projekt/code/src/enemies/data/en1_y.txt", rom_y);
+            // $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en1_x.txt", rom_x);
+            // $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en1_y.txt", rom_y);
         end
     end
     else if (N == 2) begin
         initial begin  
-            $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en2_x.txt", rom_x);
-            $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en2_y.txt", rom_y);
+            $readmemb("C:/studia/MTM/MTM-4/UEC2/projekt/code/src/enemies/data/en2_x.txt", rom_x);
+            $readmemb("C:/studia/MTM/MTM-4/UEC2/projekt/code/src/enemies/data/en2_y.txt", rom_y);
+            // $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en2_x.txt", rom_x);
+            // $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en2_y.txt", rom_y);
         end
     end
     else if (N == 3) begin
         initial begin  
-            $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en2_x.txt", rom_x);
-            $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en3_y.txt", rom_y);
+            $readmemb("C:/studia/MTM/MTM-4/UEC2/projekt/code/src/enemies/data/en2_x.txt", rom_x);
+            $readmemb("C:/studia/MTM/MTM-4/UEC2/projekt/code/src/enemies/data/en3_y.txt", rom_y);
+            // $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en2_x.txt", rom_x);
+            // $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en3_y.txt", rom_y);
         end
     end
 
