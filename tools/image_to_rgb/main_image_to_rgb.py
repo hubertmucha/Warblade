@@ -6,8 +6,12 @@ import numpy as np
 # input_image_path = "images/agh_test.png"
 # output_data_path = "text_rgb/agh_test.data"
 
-input_image_path = "images/websiteplanet-dummy-48X64.png"
-output_data_path = "text_rgb/dummy-data-48x64.data"
+# input_image_path = "images/websiteplanet-dummy-48X64.png"
+# output_data_path = "text_rgb/dummy-data-48x64.data"
+
+input_image_path = "images/space_ship.png"
+output_data_path = "text_rgb/space_ship.data"
+
 
 # opening a  image
 im = Image.open(input_image_path)
