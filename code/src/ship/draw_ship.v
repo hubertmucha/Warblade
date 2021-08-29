@@ -56,7 +56,7 @@
     .xpos_out(xpos_ctl)
   );
 
-  wire is_ship_display;
+  wire is_ship_dead;
   detect_collision my_detect_collision(
     // inputs 
     .pclk(pclk),
@@ -69,7 +69,16 @@
     .enBullet_X_3(en_x_missile3),
     .enBullet_Y_3(en_y_missile3),
     //output
-    .is_ship_display(is_ship_display)
+    .is_ship_dead(is_ship_dead)
+  );
+
+  wire ship_dead_locked;
+  locked_signal my_locked_signal(
+    .pclk(pclk),
+    .rst(rst),
+    .locked(is_ship_dead),
+    .unlocked(),
+    .locked_out(ship_dead_locked)
   );
 
   // Instantiate the draw_react module, which is
@@ -93,7 +102,7 @@
     // input x, y position of the rect from position_rect_ctl module
     .xpos(xpos_ctl),
     // .ypos(680),
-    .display_ship(is_ship_display),
+    .dead_ship(ship_dead_locked),
 
     //input
     .vcount_in(vcount_in),
@@ -130,6 +139,7 @@
     .rst(rst),
     .missle_button(missile_button),
     .xpos_in(xpos_ctl),
+    .ship_dead(ship_dead_locked),
 
     .ypos_out(ypos_ctl_missle),
     .xpos_out(xpos_ctl_missle),

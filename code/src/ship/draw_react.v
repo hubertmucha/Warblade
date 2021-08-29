@@ -15,7 +15,7 @@
     input wire rst,                                   // Synchrous reset
 
     input wire [11:0] xpos,
-    input wire display_ship,
+    input wire dead_ship,
 
     input wire [10:0] vcount_in,                      // input vertical count
     input wire vsync_in,                              // input vertical sync
@@ -144,7 +144,7 @@
           rgb_out_nxt = 12'h0_0_0;
     end
     else begin
-      if(display_ship == 1) begin
+      if(dead_ship == 0) begin
         if (hcount_out_2 >= xpos && hcount_out_2 <= xpos + WIDTH_RECT && vcount_out_2 >= YPOS && vcount_out_2 <= YPOS + HEIGHT_RECT) 
           rgb_out_nxt = rgb_pixel; 
         else 

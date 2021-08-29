@@ -24,34 +24,37 @@
   input wire [10:0] enBullet_X_3,
 	input wire [10:0] enBullet_Y_3,
 	
-	output reg is_ship_display
+	output reg is_ship_dead
   );
 
   localparam Y_SHIP = 680;                              // TODO: change to input parameter
   localparam HALF_SHIP_WIDTH = 24;
-  reg is_ship_display_nxt;
+
+  reg is_ship_dead_nxt;
+  localparam SHIP_ALIVE = 1'b0;
+  localparam SHIP_SHOOT_DOWN = 1'b1;
 
   // This is a simple test pattern generator.
   always @(posedge pclk) begin
     if(rst) begin
-      is_ship_display  <= 1'b1;
+      is_ship_dead <= SHIP_ALIVE;
     end
     else begin
       // Just pass these through.
-      is_ship_display <= is_ship_display_nxt;    
+      is_ship_dead <= is_ship_dead_nxt;    
     end
   end
 
-  // TODO: y <- enBullet should can shoot down ship on his all height. 
+  // TODO: y <- enBullet should can shoot down ship on his all height.
   always@* begin
 	if(enBullet_X_1 >= (ship_X - HALF_SHIP_WIDTH) && enBullet_X_1 <= (ship_X + HALF_SHIP_WIDTH) && enBullet_Y_1 == Y_SHIP)
-		is_ship_display_nxt = 1'b0;
+		is_ship_dead_nxt = SHIP_SHOOT_DOWN;
 	else if(enBullet_X_2 >= (ship_X - HALF_SHIP_WIDTH) && enBullet_X_2 <= (ship_X + HALF_SHIP_WIDTH) && enBullet_Y_2 == Y_SHIP)
-		is_ship_display_nxt = 1'b0;
+		is_ship_dead_nxt = SHIP_SHOOT_DOWN;
 	else if(enBullet_X_3 >= (ship_X - HALF_SHIP_WIDTH) && enBullet_X_3 <= (ship_X + HALF_SHIP_WIDTH) && enBullet_Y_3 == Y_SHIP)
-		is_ship_display_nxt = 1'b0;
+		is_ship_dead_nxt = SHIP_SHOOT_DOWN;
 	else
-		is_ship_display_nxt = is_ship_display;
+		is_ship_dead_nxt = is_ship_dead;
   end
 
 endmodule
