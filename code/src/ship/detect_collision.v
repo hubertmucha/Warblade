@@ -17,14 +17,18 @@
 
 	input wire [10:0] ship_X,
 	// input wire [10:0] ship_Y,
-  input wire [10:0] enBullet_X,
-	input wire [10:0] enBullet_Y,
+  input wire [10:0] enBullet_X_1,
+	input wire [10:0] enBullet_Y_1,
+  input wire [10:0] enBullet_X_2,
+	input wire [10:0] enBullet_Y_2,
+  input wire [10:0] enBullet_X_3,
+	input wire [10:0] enBullet_Y_3,
 	
 	output reg is_ship_display
   );
 
   localparam Y_SHIP = 680;
-  localparam X_WIDTH = 10;
+  localparam HALF_SHIP_WIDTH = 24;
   reg is_ship_display_nxt;
 
   // This is a simple test pattern generator.
@@ -39,7 +43,11 @@
   end
 
   always@* begin
-	if(enBullet_X >= (ship_X - X_WIDTH) && enBullet_X <= (ship_X + X_WIDTH) && enBullet_Y == Y_SHIP)
+	if(enBullet_X_1 >= (ship_X - HALF_SHIP_WIDTH) && enBullet_X_1 <= (ship_X + HALF_SHIP_WIDTH) && enBullet_Y_1 == Y_SHIP)
+		is_ship_display_nxt = 1'b0;
+	else if(enBullet_X_2 >= (ship_X - HALF_SHIP_WIDTH) && enBullet_X_2 <= (ship_X + HALF_SHIP_WIDTH) && enBullet_Y_2 == Y_SHIP)
+		is_ship_display_nxt = 1'b0;
+	else if(enBullet_X_3 >= (ship_X - HALF_SHIP_WIDTH) && enBullet_X_3 <= (ship_X + HALF_SHIP_WIDTH) && enBullet_Y_3 == Y_SHIP)
 		is_ship_display_nxt = 1'b0;
 	else
 		is_ship_display_nxt = is_ship_display;

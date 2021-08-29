@@ -26,6 +26,10 @@
 
     output wire [10:0] en1_x_missile,
     output wire [10:0] en1_y_missile,
+    output wire [10:0] en2_x_missile,
+    output wire [10:0] en2_y_missile,
+    output wire [10:0] en3_x_missile,
+    output wire [10:0] en3_y_missile,
     output wire [3:0] level_out 
   );
 
@@ -39,8 +43,10 @@
   wire vsync_1, hsync_1;
   wire vblnk_1, hblnk_1;
   wire [11:0] rgb_1;
-  wire [10:0] x_missile_1;
-  wire [10:0] y_missile_1;
+  wire [10:0] x_missile_1, y_missile_1;
+  wire [10:0] x_missile_2, y_missile_2;
+  wire [10:0] x_missile_3, y_missile_3;
+
 
   // from 1 to 2
   wire [10:0] vcount_2, hcount_2;
@@ -125,6 +131,10 @@
     .ypos_missile(ypos_missile),
     .on_missle(on_missle),
 
+    // outputs: to detect_collision
+    .en_x_missile(x_missile_2),
+    .en_y_missile(y_missile_2),   
+
     // to calculate level
     .lives(lives_2)
   );
@@ -157,6 +167,10 @@
     .ypos_missile(ypos_missile),
     .on_missle(on_missle),
 
+    // outputs: to detect_collision
+    .en_x_missile(x_missile_3),
+    .en_y_missile(y_missile_3),   
+
     // to calculate level
     .lives(lives_3)
   );
@@ -185,7 +199,12 @@
   assign hblnk_out  = hblnk_o;
   assign rgb_out    = rgb_o;
   assign level_out  = level_nxt;
+
   assign en1_x_missile = x_missile_1;
   assign en1_y_missile = y_missile_1;
+  assign en2_x_missile = x_missile_2;
+  assign en2_y_missile = y_missile_2;
+  assign en3_x_missile = x_missile_3;
+  assign en3_y_missile = y_missile_3;
 
   endmodule

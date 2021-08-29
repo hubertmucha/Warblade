@@ -25,6 +25,10 @@
     // enemies missiles
     input wire [10:0] en_x_missile1,
     input wire [10:0] en_y_missile1,                           
+    input wire [10:0] en_x_missile2,
+    input wire [10:0] en_y_missile2,                           
+    input wire [10:0] en_x_missile3,
+    input wire [10:0] en_y_missile3,                           
 
     output wire [10:0] vcount_out,                     
     output wire vsync_out,                          
@@ -58,8 +62,12 @@
     .pclk(pclk),
     .rst(rst),
     .ship_X(xpos_ctl),
-    .enBullet_X(en_x_missile1),
-    .enBullet_Y(en_y_missile1),
+    .enBullet_X_1(en_x_missile1),
+    .enBullet_Y_1(en_y_missile1),
+    .enBullet_X_2(en_x_missile2),
+    .enBullet_Y_2(en_y_missile2),
+    .enBullet_X_3(en_x_missile3),
+    .enBullet_Y_3(en_y_missile3),
     //output
     .is_ship_display(is_ship_display)
   );
