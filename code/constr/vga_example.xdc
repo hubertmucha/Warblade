@@ -54,17 +54,10 @@ set_property PACKAGE_PIN U17 [get_ports {rst}]
 ##  T17 - right
 set_property PACKAGE_PIN T17 [get_ports {right}]
 	set_property IOSTANDARD LVCMOS33 [get_ports {right}]
-##  W19 - right
+##  W19 - left
 set_property PACKAGE_PIN W19 [get_ports {left}]
 	set_property IOSTANDARD LVCMOS33 [get_ports {left}]
-##  T18 - right
+##  T18 - missile_button
 set_property PACKAGE_PIN T18 [get_ports {missle_button}]
 	set_property IOSTANDARD LVCMOS33 [get_ports {missle_button}]
 
-# Mouse 
-set_property PULLUP true [get_ports ps2_clk]
-	set_property PACKAGE_PIN C17 [get_ports ps2_clk]
-	set_property IOSTANDARD LVCMOS33 [get_ports ps2_clk]
-set_property PULLUP true [get_ports ps2_data]
-	set_property IOSTANDARD LVCMOS33 [get_ports ps2_data]
-	set_property PACKAGE_PIN B17 [get_ports ps2_data]
