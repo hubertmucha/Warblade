@@ -20,7 +20,15 @@
     input wire vsync_in,                            
     input wire vblnk_in,
     
-    input wire [11:0] rgb_in,                            
+    input wire [11:0] rgb_in,
+
+    // enemies missiles
+    input wire [10:0] en_x_missile1,
+    input wire [10:0] en_y_missile1,                           
+    input wire [10:0] en_x_missile2,
+    input wire [10:0] en_y_missile2,                           
+    input wire [10:0] en_x_missile3,
+    input wire [10:0] en_y_missile3,                           
 
     output wire [10:0] vcount_out,                     
     output wire vsync_out,                          
@@ -30,10 +38,10 @@
     output wire hblnk_out,                             
     output wire [11:0] rgb_out,
 
+    output wire [10:0] xpos_ship,
     output wire [10:0] xpos_missile,
     output wire [10:0] ypos_missile,
     output wire on_missle
-
   );
 
 
@@ -46,6 +54,31 @@
     .right(right),
     //outputs
     .xpos_out(xpos_ctl)
+  );
+
+  wire is_ship_dead;
+  detect_collision my_detect_collision(
+    // inputs 
+    .pclk(pclk),
+    .rst(rst),
+    .ship_X(xpos_ctl),
+    .enBullet_X_1(en_x_missile1),
+    .enBullet_Y_1(en_y_missile1),
+    .enBullet_X_2(en_x_missile2),
+    .enBullet_Y_2(en_y_missile2),
+    .enBullet_X_3(en_x_missile3),
+    .enBullet_Y_3(en_y_missile3),
+    //output
+    .is_ship_dead(is_ship_dead)
+  );
+
+  wire ship_dead_locked;
+  locked_signal my_locked_signal(
+    .pclk(pclk),
+    .rst(rst),
+    .locked(is_ship_dead),
+    .unlocked(),
+    .locked_out(ship_dead_locked)
   );
 
   // Instantiate the draw_react module, which is
@@ -69,6 +102,7 @@
     // input x, y position of the rect from position_rect_ctl module
     .xpos(xpos_ctl),
     // .ypos(680),
+    .dead_ship(ship_dead_locked),
 
     //input
     .vcount_in(vcount_in),
@@ -105,6 +139,7 @@
     .rst(rst),
     .missle_button(missile_button),
     .xpos_in(xpos_ctl),
+    .ship_dead(ship_dead_locked),
 
     .ypos_out(ypos_ctl_missle),
     .xpos_out(xpos_ctl_missle),
@@ -151,6 +186,7 @@
   assign hsync_out  = hsync_o;
   assign hblnk_out  = hblnk_o;
   assign rgb_out    = rgb_o;
+  assign xpos_ship  = xpos_ctl;
   assign xpos_missile = xpos_ctl_missle;
   assign ypos_missile = ypos_ctl_missle;
   assign on_missile   = on_ctl_missle;

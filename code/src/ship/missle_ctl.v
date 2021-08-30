@@ -15,6 +15,7 @@ module missle_ctl (
     input wire rst,
     input wire [11:0] xpos_in,
     input wire missle_button,
+    input wire ship_dead,
 
     output reg [11:0] ypos_out,
     output reg [11:0] xpos_out,
@@ -57,10 +58,20 @@ module missle_ctl (
 
 // ---------------------------------------
 // next state logic
-  always @(state or missle_button) begin
+  always @(state or ship_dead or missle_button) begin
     case(state)
-      IDLE: next_state = missle_button ? SHOOT : IDLE;
-      SHOOT: next_state = MISSLE_FLY;
+      IDLE: begin
+        if(ship_dead) begin
+          next_state = IDLE;
+        end
+        else if (missle_button) begin
+          next_state = SHOOT;
+        end
+        else begin
+          next_state = IDLE;
+        end
+      end
+      SHOOT: next_state = ship_dead ? IDLE : MISSLE_FLY;
       MISSLE_FLY: begin
         if(ypos_out <= MISSLE_HEIGHT_MIN) begin
           next_state = IDLE;
