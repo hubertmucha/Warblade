@@ -51,7 +51,7 @@
   // localparam [11:0] RGB_RECT    = 12'h8_f_8;
 
   // This module delays signals by one clk
-  wire [11:0] vcount_out_1, hcount_out_1; 
+  wire [10:0] vcount_out_1, hcount_out_1; 
   wire vsync_out_1, hsync_out_1;
   wire vblnk_out_1, hblnk_out_1;
   wire [11:0] rgb_out_1;
@@ -79,7 +79,7 @@
   );
 
   // This module delays signals by one clk
-  wire [11:0] vcount_out_2, hcount_out_2; 
+  wire [10:0] vcount_out_2, hcount_out_2; 
   wire vsync_out_2, hsync_out_2;
   wire vblnk_out_2, hblnk_out_2;
   wire [11:0] rgb_out_2;

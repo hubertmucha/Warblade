@@ -44,7 +44,7 @@
   // (47/2) - (5/2) = 23,5 - 2,5 = 21 px
   localparam X_MISSILE_OFFSET = 21; //half of ship widht minus widt of half of missile widht
 
-  reg [11:0] vcount_nxt, hcount_nxt; 
+  reg [10:0] vcount_nxt, hcount_nxt; 
   reg vsync_nxt, hsync_nxt;
   reg vblnk_nxt, hblnk_nxt;
   reg [11:0] rgb_nxt;
