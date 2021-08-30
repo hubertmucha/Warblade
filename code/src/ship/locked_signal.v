@@ -42,7 +42,7 @@ module locked_signal (
 
   // ---------------------------------------
   // next state logic
-  always @(state or ship_dead or missle_button) begin
+  always @(state or locked) begin
     case(state)
       IDLE: begin
         next_state = locked ? LOCKED_STATE : IDLE;
