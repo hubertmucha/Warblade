@@ -120,7 +120,7 @@
     .rgb_out(rgb_1)
   );
 
-  wire [11:0] ypos_ctl_missle, xpos_ctl_missle;
+  wire [10:0] ypos_ctl_missle, xpos_ctl_missle;
   wire on_ctl_missle;
 
   ctl_missile_en missle_ctl(

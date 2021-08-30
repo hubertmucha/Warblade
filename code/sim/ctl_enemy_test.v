@@ -6,8 +6,8 @@ module ctl_enemy_test;
   reg pclk;
   reg rst;
 
-  wire [11:0] xpos;
-  wire [11:0] ypos;
+  wire [10:0] xpos;
+  wire [10:0] ypos;
   wire on;
   
   ctl_enemy ctl_en (

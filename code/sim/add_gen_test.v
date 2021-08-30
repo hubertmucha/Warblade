@@ -6,7 +6,7 @@ module add_gen_test;
   reg pclk;
   reg rst;
 
-  wire [11:0] address;
+  wire [10:0] address;
   wire on;
   
   addres_gen addr_generator(

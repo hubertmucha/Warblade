@@ -45,7 +45,7 @@
   );
 
 
-  wire [11:0] xpos_ctl;
+  wire [10:0] xpos_ctl;
   position_rect_ctl my_position_rect_ctl(
     //inputs
     .pclk(pclk),
@@ -131,7 +131,7 @@
     .rgb(rgb_pixel)
   );
 
-  wire [11:0] ypos_ctl_missle, xpos_ctl_missle;
+  wire [10:0] ypos_ctl_missle, xpos_ctl_missle;
   wire on_ctl_missle;
 
   missle_ctl my_missle_ctl(

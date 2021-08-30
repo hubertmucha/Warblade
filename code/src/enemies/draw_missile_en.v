@@ -14,8 +14,8 @@
     input wire pclk,                                  // Peripheral Clock
     input wire rst,                                   // Synchrous reset
 
-    input wire [11:0] xpos,
-    input wire [11:0] ypos,
+    input wire [10:0] xpos,
+    input wire [10:0] ypos,
     input wire on,
 
     input wire [10:0] vcount_in,                      // input vertical count

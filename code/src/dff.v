@@ -13,12 +13,12 @@ module dff (
     input wire pclk,                                  // Peripheral Clock
     input wire rst,                                   // Synchrous reset
 
-    input wire [11:0] xpos_in,
-    input wire [11:0] ypos_in,
+    input wire [10:0] xpos_in,
+    input wire [10:0] ypos_in,
     input wire left_in,
 
-    output reg [11:0] xpos_out,
-    output reg [11:0] ypos_out,
+    output reg [10:0] xpos_out,
+    output reg [10:0] ypos_out,
     output reg left_out
 );
 
