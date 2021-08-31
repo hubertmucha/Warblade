@@ -7,7 +7,7 @@ module detec_col
 
     input wire [10:0] xpos_missile,
     input wire [10:0] ypos_missile,
-    input wire on_missile,
+    input wire on_missile,                  // TODO: obgadac z hubertem czy to w ogole jest potrzebne?
 
     input wire [10:0] xpos_enemy,
     input wire [10:0] ypos_enemy,

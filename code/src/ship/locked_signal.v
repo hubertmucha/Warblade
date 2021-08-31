@@ -42,7 +42,7 @@ module locked_signal (
 
   // ---------------------------------------
   // next state logic
-  always @(state or locked) begin
+  always @(state or locked or unlocked) begin
     case(state)
       IDLE: begin
         next_state = locked ? LOCKED_STATE : IDLE;

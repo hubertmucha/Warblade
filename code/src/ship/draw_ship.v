@@ -38,7 +38,7 @@
     output wire hblnk_out,                             
     output wire [11:0] rgb_out,
 
-    output wire [10:0] xpos_ship,
+    // output wire [10:0] xpos_ship,
     output wire [10:0] xpos_missile,
     output wire [10:0] ypos_missile,
     output wire on_missle
@@ -186,9 +186,9 @@
   assign hsync_out  = hsync_o;
   assign hblnk_out  = hblnk_o;
   assign rgb_out    = rgb_o;
-  assign xpos_ship  = xpos_ctl;
+  // assign xpos_ship  = xpos_ctl;
   assign xpos_missile = xpos_ctl_missle;
   assign ypos_missile = ypos_ctl_missle;
-  assign on_missile   = on_ctl_missle;
+  assign on_missle   = on_ctl_missle;
 
   endmodule
