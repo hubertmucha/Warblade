@@ -87,7 +87,8 @@
   wire vsync_r, hsync_r;
   wire vblnk_r, hblnk_r;
   wire [11:0] rgb_r;
-  wire [11:0] rgb_pixel, pixel_addr;
+  wire [11:0] rgb_pixel;
+  wire [13:0] pixel_addr;
   wire [10:0] vcount_rm, hcount_rm;
   wire vsync_rm, hsync_rm;
   wire vblnk_rm, hblnk_rm;
