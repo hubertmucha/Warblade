@@ -353,6 +353,10 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
+tools/.idea/inspectionProfiles/Project_Default.xml
+
+tools/.idea/
+
 *.xml
 
 *.str
