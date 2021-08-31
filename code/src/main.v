@@ -123,6 +123,10 @@ module main (
     .dout({left_d, right_d})
   );
 
+  wire [10:0] en1_x_missile, en1_y_missile;
+  wire [10:0] en2_x_missile, en2_y_missile;
+  wire [10:0] en3_x_missile, en3_y_missile;  
+  
   wire [10:0] xpos_missile, ypos_missile;
   wire on_missile;
 
@@ -169,10 +173,6 @@ module main (
   wire [11:0] rgb_s;
 
   wire [3:0] level_nxt;
-  wire [10:0] en1_x_missile, en1_y_missile;
-  wire [10:0] en2_x_missile, en2_y_missile;
-  wire [10:0] en3_x_missile, en3_y_missile;
-
 
   enemies my_enemies(
     .pclk(pclk),                                  

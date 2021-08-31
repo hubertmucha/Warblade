@@ -13,12 +13,12 @@
 module missle_ctl (
     input wire pclk,
     input wire rst,
-    input wire [11:0] xpos_in,
+    input wire [10:0] xpos_in,
     input wire missle_button,
     input wire ship_dead,
 
-    output reg [11:0] ypos_out,
-    output reg [11:0] xpos_out,
+    output reg [10:0] ypos_out,
+    output reg [10:0] xpos_out,
     output reg on_out
 );
   localparam IDLE = 2'b00;
@@ -33,7 +33,7 @@ module missle_ctl (
 
   reg on_out_nxt;
   reg [1:0] state, next_state;
-  reg [11:0] ypos_nxt, xpos_nxt;
+  reg [10:0] ypos_nxt, xpos_nxt;
   reg [20:0] refresh_counter, refresh_counter_nxt;
 
 
@@ -58,7 +58,7 @@ module missle_ctl (
 
 // ---------------------------------------
 // next state logic
-  always @(state or ship_dead or missle_button) begin
+  always @(state or ship_dead or missle_button or ypos_nxt) begin
     case(state)
       IDLE: begin
         if(ship_dead) begin
@@ -73,7 +73,7 @@ module missle_ctl (
       end
       SHOOT: next_state = ship_dead ? IDLE : MISSLE_FLY;
       MISSLE_FLY: begin
-        if(ypos_out <= MISSLE_HEIGHT_MIN) begin
+        if(ypos_nxt <= MISSLE_HEIGHT_MIN) begin
           next_state = IDLE;
         end
         else begin

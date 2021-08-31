@@ -17,7 +17,7 @@ module position_rect_ctl (
     input wire left,
     input wire right,
 
-    output reg [11:0] xpos_out
+    output reg [10:0] xpos_out
 );
   localparam IDLE = 2'b00;
   localparam LEFT = 2'b01;
@@ -30,7 +30,7 @@ module position_rect_ctl (
   localparam DISPLAY_WIDTH_MAX = 944 - WIDTH_RECT;
 
   reg [1:0] state, next_state;
-  reg [11:0] xpos_nxt;
+  reg [10:0] xpos_nxt;
   reg [20:0] refresh_counter, refresh_counter_nxt;
 
 

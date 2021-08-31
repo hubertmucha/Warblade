@@ -19,8 +19,8 @@ module ctl_enemy
     input wire pclk,
     input wire rst,
     input wire [11:0] addr,
-    output reg [11:0] x_out,
-    output reg [11:0] y_out
+    output reg [10:0] x_out,
+    output reg [10:0] y_out
 );
 
     reg [11:0] rom_x [0:301];

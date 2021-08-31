@@ -5,12 +5,12 @@ module detec_col
     input wire pclk,
     input wire rst,
 
-    input wire [11:0] xpos_missile,
-    input wire [11:0] ypos_missile,
-    input wire on_missile,
+    input wire [10:0] xpos_missile,
+    input wire [10:0] ypos_missile,
+    input wire on_missile,                  // TODO: obgadac z hubertem czy to w ogole jest potrzebne?
 
-    input wire [11:0] xpos_enemy,
-    input wire [11:0] ypos_enemy,
+    input wire [10:0] xpos_enemy,
+    input wire [10:0] ypos_enemy,
 
     output reg on_out // is enemy visible ?
 );
