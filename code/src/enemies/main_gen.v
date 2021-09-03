@@ -1,0 +1,69 @@
+// File: draw_rect_ctl.v
+// This module draw a rectangle shot the ckround.
+
+// The `timescale directive specifies what the
+// simulation time units are (1 ns here) and what
+// the simulator time step should be (1 ps here).
+
+`timescale 1 ns / 1 ps
+
+// Declare the module and its ports. This is
+// using Verilog-2001 syntax.
+
+// TODO ADD sycn-reset
+
+module main_gen (
+    input wire pclk,
+    input wire rst,
+    input wire [3:0] level,
+
+    output reg [11:0] addr,
+    output reg [10:0] x_out,
+    output reg [10:0] y_out
+
+);
+
+    //localparam COUNTER_LIMIT = 1000; // for simulation purpose
+    localparam COUNTER_LIMIT = 1000000;
+    localparam LEVEL_SCALER = 150;
+    localparam LEVEL = 1; // TODO: change in the future to input parameter
+ 
+    reg [11:0] address, address_nxt = 0;
+    reg [20:0] refresh_counter, refresh_counter_nxt = 0;
+
+    reg [11:0] rom_x [0:301];
+    reg [11:0] rom_y [0:301];
+
+    initial begin  
+        $readmemb("E:/warblade/v3/Warblade/code/src/enemies/data/en1_x.txt", rom_x);
+        $readmemb("E:/warblade/v3/Warblade/code/src/enemies/data/en1_y.txt", rom_y);
+    end
+
+
+    always @(posedge pclk) begin
+        addr <= address_nxt;
+        refresh_counter <= refresh_counter_nxt;
+        x_out <= rom_x[address_nxt];
+        y_out <= 100;
+    end
+
+    always @* begin
+        if(refresh_counter == COUNTER_LIMIT) begin
+            if(addr >= (LEVEL_SCALER*LEVEL) - 1)begin
+                address_nxt = (LEVEL_SCALER*(LEVEL-1));
+            end
+            else begin
+                address_nxt = addr + 1;
+            end
+                refresh_counter_nxt = 0;
+            end
+        else begin
+                refresh_counter_nxt = refresh_counter + 1;
+        end
+    end
+endmodule
+
+
+
+      
+

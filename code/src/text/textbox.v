@@ -59,7 +59,7 @@
   wire [6:0] char_code; 
 
   char_rom_16x16 my_char_rom_16x16(
-    .level(2),
+    .level(level),
     .char_xy(char_xy),
     .char_code(char_code)
   );

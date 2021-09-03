@@ -12,7 +12,7 @@
 
  module en_one
     #( parameter
-        N   = 1 // number of enemy
+        N = 1 // number of enemy
     )
     (
     input wire pclk,                                  // Peripheral Clock
@@ -31,6 +31,9 @@
     input wire on_missle,
 
     input wire [3:0] level,
+
+    input wire [10:0] x_in,
+    input wire [10:0] y_in,
 
     output wire [10:0] en_x_missile,
     output wire [10:0] en_y_missile,
@@ -55,20 +58,13 @@
     wire shoot;
     wire on;
 
-    wire [11:0] a;
-
-    addres_gen gen(
-    .pclk(pclk),
-    .rst(rst),
-    .level(4'd1),
-    .addr(a)
-
-    );
 
     ctl_enemy #(.N(N)) ctl_en(
     .pclk(pclk),
     .rst(rst),
-    .addr(a),
+
+    .x_in(x_in),
+    .y_in(y_in),
 
     .x_out(xpos),
     .y_out(ypos)
@@ -126,7 +122,7 @@
   ctl_missile_en missle_ctl(
     .pclk(pclk),
     .rst(rst),
-    .missle_button(1),
+    .missle_button(0), // turned off for tes
     .xpos_in(xpos),
     .ypos_in(ypos),
     .enemy_lives(on),

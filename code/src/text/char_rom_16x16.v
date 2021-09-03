@@ -23,8 +23,8 @@ module char_rom_16x16 (
       8'h02: char_code = 7'h76; //v
       8'h03: char_code = 7'h65; //e
       8'h04: char_code = 7'h6c; //l
-      8'h05: char_code = 7'h20; //
-      8'h06: char_code = 7'h20; //
+      8'h05: char_code = 7'h20; // space
+      8'h06: char_code = 7'h20; // space 
       8'h07:
         begin
           if (level == 1) begin

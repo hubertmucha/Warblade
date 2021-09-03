@@ -18,7 +18,10 @@ module ctl_enemy
     )(
     input wire pclk,
     input wire rst,
-    input wire [11:0] addr,
+
+    input wire [10:0] x_in,
+    input wire [10:0] y_in,
+
     output reg [10:0] x_out,
     output reg [10:0] y_out
 );
@@ -26,33 +29,9 @@ module ctl_enemy
     reg [11:0] rom_x [0:301];
     reg [11:0] rom_y [0:301];
 
-    if (N == 1) begin
-        initial begin  
-            $readmemb("C:/studia/MTM/MTM-4/UEC2/projekt/code/src/enemies/data/en1_x.txt", rom_x);
-            $readmemb("C:/studia/MTM/MTM-4/UEC2/projekt/code/src/enemies/data/en1_y.txt", rom_y);
-            // $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en1_x.txt", rom_x);
-            // $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en1_y.txt", rom_y);
-        end
-    end
-    else if (N == 2) begin
-        initial begin  
-            $readmemb("C:/studia/MTM/MTM-4/UEC2/projekt/code/src/enemies/data/en2_x.txt", rom_x);
-            $readmemb("C:/studia/MTM/MTM-4/UEC2/projekt/code/src/enemies/data/en2_y.txt", rom_y);
-            // $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en2_x.txt", rom_x);
-            // $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en2_y.txt", rom_y);
-        end
-    end
-    else if (N == 3) begin
-        initial begin  
-            $readmemb("C:/studia/MTM/MTM-4/UEC2/projekt/code/src/enemies/data/en2_x.txt", rom_x);
-            $readmemb("C:/studia/MTM/MTM-4/UEC2/projekt/code/src/enemies/data/en3_y.txt", rom_y);
-            // $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en2_x.txt", rom_x);
-            // $readmemb("E:/warblade/v2/Warblade/code/src/enemies/data/en3_y.txt", rom_y);
-        end
-    end
 
     always @(posedge pclk) begin
-        x_out <= rom_x[addr];
-        y_out <= N*100;
+        x_out <= x_in + (N*70);
+        y_out <= x_in + 100;
     end
 endmodule

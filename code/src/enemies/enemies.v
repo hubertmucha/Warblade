@@ -36,36 +36,57 @@
   wire [3:0] level_nxt; 
 
   // life controls
-  wire lives_1, lives_2, lives_3;
+  wire lives_1, lives_2, lives_3, lives_4, lives_5;
 
-  // from input to 1
+  wire [10:0] x_missile_1, y_missile_1;
+  wire [10:0] x_missile_2, y_missile_2;
+  wire [10:0] x_missile_3, y_missile_3;
+  wire [10:0] x_missile_4, y_missile_4;
+  wire [10:0] x_missile_5, y_missile_5;
+
+  // from 1 to 2
   wire [10:0] vcount_1, hcount_1;
   wire vsync_1, hsync_1;
   wire vblnk_1, hblnk_1;
   wire [11:0] rgb_1;
-  wire [10:0] x_missile_1, y_missile_1;
-  wire [10:0] x_missile_2, y_missile_2;
-  wire [10:0] x_missile_3, y_missile_3;
 
-
-  // from 1 to 2
+  // from 2 to 3
   wire [10:0] vcount_2, hcount_2;
   wire vsync_2, hsync_2;
   wire vblnk_2, hblnk_2;
   wire [11:0] rgb_2;
 
-  // from 2 to 3
+  // from 3 to 4
   wire [10:0] vcount_3, hcount_3;
   wire vsync_3, hsync_3;
   wire vblnk_3, hblnk_3;
   wire [11:0] rgb_3;
 
-  // from 3 to output
+  // from 4 to 5
+  wire [10:0] vcount_4, hcount_4;
+  wire vsync_4, hsync_4;
+  wire vblnk_4, hblnk_4;
+  wire [11:0] rgb_4;
+
+  // from 5 to output
   wire [10:0] vcount_o, hcount_o;
   wire vsync_o, hsync_o;
   wire vblnk_o, hblnk_o;
   wire [11:0] rgb_o;
 
+  wire [10:0] x_main;
+  wire [10:0] y_main;
+
+  // one x and y generetor from file 
+    main_gen gene (
+    .pclk(pclk),
+    .rst(rst),
+    //inputs
+    .level(level),
+    // outputs
+    .x_out(x_main),
+    .y_out(y_main)
+    );
 
     en_one #(.N(1)) enemy_1(
     .pclk(pclk),
@@ -80,6 +101,8 @@
     .hblnk_in(hblnk_in),
     .rgb_in(rgb_in),
     .level(level),
+    .x_in(x_main),
+    .y_in(y_main),
 
     //output
     .vcount_out(vcount_1),
@@ -116,6 +139,8 @@
     .hblnk_in(hblnk_1),
     .rgb_in(rgb_1),
     .level(level),
+        .x_in(x_main),
+    .y_in(y_main),
 
     //output
     .vcount_out(vcount_2),
@@ -152,7 +177,85 @@
     .hblnk_in(hblnk_2),
     .rgb_in(rgb_2),
     .level(level),
+        .x_in(x_main),
+    .y_in(y_main),
 
+    //output
+    .vcount_out(vcount_3),
+    .vsync_out(vsync_3),
+    .vblnk_out(vblnk_3),
+    .hcount_out(hcount_3),
+    .hsync_out(hsync_3),
+    .hblnk_out(hblnk_3),
+    .rgb_out(rgb_3),
+
+    // to detecion colision with missile
+    .xpos_missile(xpos_missile),
+    .ypos_missile(ypos_missile),
+    .on_missle(on_missle),
+
+    // outputs: to detect_collision
+    .en_x_missile(x_missile_3),
+    .en_y_missile(y_missile_3),   
+
+    // to calculate level
+    .lives(lives_3)
+  );
+
+  en_one #(.N(4)) enemy_4(
+    .pclk(pclk),
+    .rst(rst),
+
+    //input
+    .vcount_in(vcount_3),
+    .vsync_in(vsync_3),
+    .vblnk_in(vblnk_3),
+    .hcount_in(hcount_3),
+    .hsync_in(hsync_3),
+    .hblnk_in(hblnk_3),
+    .rgb_in(rgb_3),
+    .level(level),
+        .x_in(x_main),
+    .y_in(y_main),
+
+    //output
+    .vcount_out(vcount_4),
+    .vsync_out(vsync_4),
+    .vblnk_out(vblnk_4),
+    .hcount_out(hcount_4),
+    .hsync_out(hsync_4),
+    .hblnk_out(hblnk_4),
+    .rgb_out(rgb_4),
+
+    // to detecion colision with missile
+    .xpos_missile(xpos_missile),
+    .ypos_missile(ypos_missile),
+    .on_missle(on_missle),
+
+    // outputs: to detect_collision
+    .en_x_missile(x_missile_4),
+    .en_y_missile(y_missile_4),   
+
+    // to calculate level
+    .lives(lives_4)
+  );
+
+    en_one #(.N(5)) enemy_5(
+    .pclk(pclk),
+    .rst(rst),
+
+    //input
+    .vcount_in(vcount_4),
+    .vsync_in(vsync_4),
+    .vblnk_in(vblnk_4),
+    .hcount_in(hcount_4),
+    .hsync_in(hsync_4),
+    .hblnk_in(hblnk_4),
+    .rgb_in(rgb_4),
+    .level(level),
+    .x_in(x_main),
+    .y_in(y_main),
+    
     //output
     .vcount_out(vcount_o),
     .vsync_out(vsync_o),
@@ -168,11 +271,11 @@
     .on_missle(on_missle),
 
     // outputs: to detect_collision
-    .en_x_missile(x_missile_3),
-    .en_y_missile(y_missile_3),   
+    .en_x_missile(x_missile_5),
+    .en_y_missile(y_missile_5),   
 
     // to calculate level
-    .lives(lives_3)
+    .lives(lives_5)
   );
 
   level my_level(
@@ -186,7 +289,7 @@
 
     //output
     .level(level_nxt),
-    .level_change()
+    .level_up_out()
 
   );
   

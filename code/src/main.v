@@ -132,7 +132,7 @@ module main (
 
   draw_ship my_draw_ship_1(
     .pclk(pclk),                                  
-    .rst(rst),                                   
+    .rst(rst_out),                                   
     .left(left_d),
     .right(right_d),
     .missile_button(missle_button),
@@ -176,7 +176,7 @@ module main (
 
   enemies my_enemies(
     .pclk(pclk),                                  
-    .rst(rst),                                   
+    .rst(rst_out),                                   
     .hblnk_in(hblnk_r),
     .hcount_in(hcount_r),
     .hsync_in(hsync_r),
@@ -210,7 +210,7 @@ module main (
 
   textbox my_text_box(
     .pclk(pclk),                                  
-    .rst(rst),
+    .rst(rst_out),
     .level(level_nxt),                                   
 
     .hblnk_in(hblnk_s),

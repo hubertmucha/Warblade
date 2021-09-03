@@ -77,6 +77,7 @@ read_verilog {
     src/enemies/draw_missile_en.v
     src/enemies/ctl_missile_en.v
     src/enemies/level.v
+    src/enemies/main_gen.v
 
     src/enemies/addres_gen.v
 }
