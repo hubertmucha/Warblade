@@ -14,8 +14,9 @@
 
     localparam IDLE = 2'b00;
     localparam LEVEL_UP = 2'b01;
-    localparam END = 2'b10;
-    //localparam CONTER = 10000;
+    localparam RESET = 2'b10;
+
+    localparam COUNTER_LIMIT = 100000000;
       
     reg [1:0] state, state_nxt;
 
@@ -23,6 +24,7 @@
     reg [3:0] level_nxt_machine = 1;
 
     reg level_up_out_nxt;
+    reg [32:0] refresh_counter, refresh_counter_nxt = 0;
 
 // ---------------------------------------
 // state register
@@ -30,12 +32,14 @@
     if(rst) begin
         state <= IDLE;
         level <= 1;
-        level_up_out <= 0;      
+        level_up_out <= 0;
+        refresh_counter <= 0;      
     end
     else begin
         state <= state_nxt;
         level <= level_nxt;
         level_up_out <= level_up_out_nxt;
+        refresh_counter <= refresh_counter_nxt;
     end
   end
 
@@ -52,11 +56,25 @@
                     state_nxt = IDLE;
                 end
             end
-      LEVEL_UP: begin
-           state_nxt = END;
+      LEVEL_UP: begin // delay for level up included
+            if(refresh_counter >= COUNTER_LIMIT) begin
+              refresh_counter_nxt = 0;
+              state_nxt = RESET;
+            end
+            else begin
+              refresh_counter_nxt = refresh_counter + 1;
+              state_nxt = LEVEL_UP;
+            end
        end
-      END: begin
-           state_nxt = END;
+      RESET: begin
+          if(refresh_counter >= 100) begin
+            refresh_counter_nxt = 0;
+            state_nxt = IDLE;
+          end
+          else begin
+            refresh_counter_nxt = refresh_counter + 1;
+            state_nxt = RESET;
+          end
        end  
 
     endcase
@@ -73,11 +91,11 @@
         end
         LEVEL_UP: begin
             level_nxt = level_nxt_machine;
-            level_up_out_nxt = 1;
-        end
-        END: begin
-            level_nxt = level;
             level_up_out_nxt = 0;
+        end
+        RESET: begin
+            level_nxt = level;
+            level_up_out_nxt = 1;
         end  
       endcase
   end

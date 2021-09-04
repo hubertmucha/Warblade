@@ -218,7 +218,7 @@ module main (
     .dout({level_fb})
   );
 
-  delay #(.WIDTH(1), .CLK_DEL(2)) delay_fb_loop_level_change( //clk_del = number of enemies + 2
+  delay #(.WIDTH(1), .CLK_DEL(14)) delay_fb_loop_level_change( //clk_del = (2 * number of enemies) + 3
     .clk(pclk),
     .rst(rst_out),
     .din({level_change_nxt}),
