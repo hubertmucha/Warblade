@@ -9,6 +9,8 @@ module detec_col
     input wire [10:0] ypos_missile,
     input wire on_missile,                  // TODO: obgadac z hubertem czy to w ogole jest potrzebne?
 
+    input wire level_change,
+
     input wire [10:0] xpos_enemy,
     input wire [10:0] ypos_enemy,
 
@@ -36,7 +38,7 @@ module detec_col
 
 // ---------------------------------------
 // next state logic
-  always @(state or rst) begin
+  always @(state or rst or level_change) begin
     case(state)
       ON:
         begin
@@ -55,7 +57,7 @@ module detec_col
         end
       OFF:
         begin
-            if(rst) begin
+            if(rst || level_change) begin
                 state_nxt = ON;
             end
             else begin

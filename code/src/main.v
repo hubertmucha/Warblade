@@ -173,6 +173,9 @@ module main (
   wire [3:0] level_nxt;
   wire [3:0] level_fb;
 
+  wire level_change_nxt;
+  wire level_change_fb;
+
   enemies my_enemies(
     .pclk(pclk),                                  
     .rst(rst_out),                                   
@@ -185,6 +188,7 @@ module main (
     .rgb_in(rgb_r),
 
     .level_in(level_fb),
+    .level_change(level_change_fb),
     .xpos_missile(xpos_missile),
     .ypos_missile(ypos_missile),
     .on_missle(on_missile),                          
@@ -203,14 +207,22 @@ module main (
     .en2_y_missile(en2_y_missile),
     .en3_x_missile(en3_x_missile),
     .en3_y_missile(en3_y_missile),
-    .level_out(level_nxt)
+    .level_out(level_nxt),
+    .level_change_out(level_change_nxt)
   );
 
-  delay #(.WIDTH(4), .CLK_DEL(7)) my_delay_fb_loop(
+  delay #(.WIDTH(4), .CLK_DEL(7)) delay_fb_loop_level( //clk_del = number of enemies + 2
     .clk(pclk),
     .rst(rst_out),
     .din({level_nxt}),
     .dout({level_fb})
+  );
+
+  delay #(.WIDTH(1), .CLK_DEL(2)) delay_fb_loop_level_change( //clk_del = number of enemies + 2
+    .clk(pclk),
+    .rst(rst_out),
+    .din({level_change_nxt}),
+    .dout({level_change_fb})
   );
 
 

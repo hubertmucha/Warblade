@@ -44,8 +44,8 @@
   always @(lives_1 or lives_2 or lives_3 or lives_4 or lives_5) begin
     case(state)
       IDLE: begin
-                //if( (!lives_1) && (!lives_2) && (!lives_3) && (!lives_4) && (!lives_5)) begin
-                if((!lives_5)) begin
+                if( (!lives_1) && (!lives_2) && (!lives_3) && (!lives_4) && (!lives_5)) begin
+                //if((!lives_5)) begin // for developing purpose
                     state_nxt = LEVEL_UP;
                 end
                 else begin

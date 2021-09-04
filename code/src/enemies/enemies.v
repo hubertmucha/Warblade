@@ -15,6 +15,7 @@
     input wire [11:0] rgb_in,
 
     input wire [3:0] level_in,
+    input wire level_change,
 
     output wire [10:0] vcount_out,                     // output vertical count
     output wire vsync_out,                             // output vertical sync
@@ -30,10 +31,12 @@
     output wire [10:0] en2_y_missile,
     output wire [10:0] en3_x_missile,
     output wire [10:0] en3_y_missile,
-    output wire [3:0] level_out 
+    output wire [3:0] level_out,
+    output wire level_change_out
   );
 
-  wire [3:0] level_nxt; 
+  wire [3:0] level_nxt;
+  wire level_change_out_nxt; 
 
   // life controls
   wire lives_1, lives_2, lives_3, lives_4, lives_5;
@@ -102,6 +105,7 @@
     .rgb_in(rgb_in),
     .x_in(x_main),
     .y_in(y_main),
+    .level_change(level_change),
 
     //output
     .vcount_out(vcount_1),
@@ -139,6 +143,7 @@
     .rgb_in(rgb_1),
     .x_in(x_main),
     .y_in(y_main),
+    .level_change(level_change),
 
     //output
     .vcount_out(vcount_2),
@@ -176,6 +181,7 @@
     .rgb_in(rgb_2),
     .x_in(x_main),
     .y_in(y_main),
+    .level_change(level_change),
 
     //output
     .vcount_out(vcount_3),
@@ -213,6 +219,7 @@
     .rgb_in(rgb_3),
     .x_in(x_main),
     .y_in(y_main),
+    .level_change(level_change),
 
     //output
     .vcount_out(vcount_4),
@@ -250,6 +257,7 @@
     .rgb_in(rgb_4),
     .x_in(x_main),
     .y_in(y_main),
+    .level_change(level_change),
     
     //output
     .vcount_out(vcount_o),
@@ -286,7 +294,7 @@
 
     //output
     .level(level_nxt),
-    .level_up_out()
+    .level_up_out(level_change_out_nxt)
 
   );
   
@@ -299,6 +307,7 @@
   assign hblnk_out  = hblnk_o;
   assign rgb_out    = rgb_o;
   assign level_out  = level_nxt;
+  assign level_change_out  = level_change_out_nxt;
 
   assign en1_x_missile = x_missile_1;
   assign en1_y_missile = y_missile_1;

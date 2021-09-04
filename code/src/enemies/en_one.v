@@ -30,6 +30,8 @@
     input wire [10:0] ypos_missile,
     input wire on_missle,
 
+    input wire level_change,
+
     input wire [10:0] x_in,
     input wire [10:0] y_in,
 
@@ -75,6 +77,7 @@
     .xpos_missile(xpos_missile),
     .ypos_missile(ypos_missile),
     .on_missile(on_missle),
+    .level_change(level_change),
 
     .xpos_enemy(xpos),
     .ypos_enemy(ypos),
