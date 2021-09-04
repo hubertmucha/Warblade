@@ -30,8 +30,6 @@
     input wire [10:0] ypos_missile,
     input wire on_missle,
 
-    input wire [3:0] level,
-
     input wire [10:0] x_in,
     input wire [10:0] y_in,
 

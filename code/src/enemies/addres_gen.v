@@ -23,21 +23,26 @@ module addres_gen (
     //localparam COUNTER_LIMIT = 1000; // for simulation purpose
     localparam COUNTER_LIMIT = 1000000;
     localparam LEVEL_SCALER = 150;
-    localparam LEVEL = 1; // TODO: change in the future to input parameter
+    //localparam LEVEL = 1; // TODO: change in the future to input parameter
  
     reg [11:0] address, address_nxt = 0;
     reg [20:0] refresh_counter, refresh_counter_nxt = 0;
 
 
     always @(posedge pclk) begin
-        addr <= address_nxt;
-        refresh_counter <= refresh_counter_nxt;
+        if (rst) begin
+            addr <= LEVEL_SCALER*(level-1);
+        end
+        else begin
+            addr <= address_nxt;
+            refresh_counter <= refresh_counter_nxt;
+        end
     end
 
     always @* begin
         if(refresh_counter == COUNTER_LIMIT) begin
-            if(addr >= (LEVEL_SCALER*LEVEL) - 1)begin
-                address_nxt = (LEVEL_SCALER*(LEVEL-1));
+            if(addr >= (LEVEL_SCALER*level) - 1)begin
+                address_nxt = (LEVEL_SCALER*(level-1));
             end
             else begin
                 address_nxt = addr + 1;

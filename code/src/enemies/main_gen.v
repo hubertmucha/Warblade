@@ -41,16 +41,24 @@ module main_gen (
 
 
     always @(posedge pclk) begin
-        addr <= address_nxt;
-        refresh_counter <= refresh_counter_nxt;
-        x_out <= rom_x[address_nxt];
-        y_out <= 100;
+        if (rst) begin
+            addr <= 0;
+            refresh_counter <= 0;
+            x_out <= 0;
+            y_out <= 0;
+        end
+        else begin
+            addr <= address_nxt;
+            refresh_counter <= refresh_counter_nxt;
+            x_out <= rom_x[address_nxt];
+            y_out <= 100;
+        end
     end
 
     always @* begin
         if(refresh_counter == COUNTER_LIMIT) begin
-            if(addr >= (LEVEL_SCALER*LEVEL) - 1)begin
-                address_nxt = (LEVEL_SCALER*(LEVEL-1));
+            if(addr >= (LEVEL_SCALER*level) - 1)begin
+                address_nxt = (LEVEL_SCALER*(level-1));
             end
             else begin
                 address_nxt = addr + 1;

@@ -25,8 +25,6 @@ module main (
 
   );
    
-  localparam LEVEL_TEST = 1; // must be int value
-
   wire pclk;
   wire locked;
   
@@ -173,6 +171,7 @@ module main (
   wire [11:0] rgb_s;
 
   wire [3:0] level_nxt;
+  wire [3:0] level_fb;
 
   enemies my_enemies(
     .pclk(pclk),                                  
@@ -185,9 +184,9 @@ module main (
     .vblnk_in(vblnk_r),
     .rgb_in(rgb_r),
 
-    .level(LEVEL_TEST),
-    .xpos_missile(xpos_missile), // place here 
-    .ypos_missile(ypos_missile), // place here
+    .level_in(level_fb),
+    .xpos_missile(xpos_missile),
+    .ypos_missile(ypos_missile),
     .on_missle(on_missile),                          
 
     .vcount_out(vcount_s),                     
@@ -205,6 +204,13 @@ module main (
     .en3_x_missile(en3_x_missile),
     .en3_y_missile(en3_y_missile),
     .level_out(level_nxt)
+  );
+
+  delay #(.WIDTH(4), .CLK_DEL(7)) my_delay_fb_loop(
+    .clk(pclk),
+    .rst(rst_out),
+    .din({level_nxt}),
+    .dout({level_fb})
   );
 
 

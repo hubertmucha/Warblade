@@ -26,12 +26,8 @@ module ctl_enemy
     output reg [10:0] y_out
 );
 
-    reg [11:0] rom_x [0:301];
-    reg [11:0] rom_y [0:301];
-
-
     always @(posedge pclk) begin
         x_out <= x_in + (N*70);
-        y_out <= x_in + 100;
+        y_out <= x_in + 100; // cahnge to y from main generator
     end
 endmodule

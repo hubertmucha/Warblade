@@ -5,6 +5,8 @@
     input wire lives_1, 
     input wire lives_2, 
     input wire lives_3,
+    input wire lives_4,
+    input wire lives_5,
 
     output reg [3:0] level,
     output reg level_up_out
@@ -39,10 +41,11 @@
 
 // ---------------------------------------
 // next state logic
-  always @(lives_1 or lives_2 or lives_3) begin
+  always @(lives_1 or lives_2 or lives_3 or lives_4 or lives_5) begin
     case(state)
       IDLE: begin
-                if( (!lives_1) && (!lives_2) && (!lives_3)) begin
+                //if( (!lives_1) && (!lives_2) && (!lives_3) && (!lives_4) && (!lives_5)) begin
+                if((!lives_5)) begin
                     state_nxt = LEVEL_UP;
                 end
                 else begin
@@ -64,7 +67,7 @@
   always @(*) begin
     case(state)
         IDLE: begin
-            level_nxt = level;
+            level_nxt = level; 
             level_up_out_nxt = 0;
             level_nxt_machine = level + 1;
         end
