@@ -77,7 +77,7 @@
     .pclk(pclk),
     .rst(rst),
     .locked(is_ship_dead),
-    .unlocked(),
+    .unlocked(unlocked_dead),
     .locked_out(ship_dead_locked)
   );
 
@@ -179,13 +179,68 @@
     .rgb_out(rgb_o)  //all is module outputs
   );
 
-  assign vcount_out = vcount_o;
-  assign vsync_out  = vsync_o;
-  assign vblnk_out  = vblnk_o;
-  assign hcount_out = hcount_o;
-  assign hsync_out  = hsync_o;
-  assign hblnk_out  = hblnk_o;
-  assign rgb_out    = rgb_o;
+  wire [10:0] vcount_dl, hcount_dl;
+  wire vsync_dl, hsync_dl;
+  wire vblnk_dl, hblnk_dl;
+  wire [11:0] rgb_dl;
+	wire [3:0] dead_count;
+
+  signal_counter my_dead_counter(
+		.pclk(pclk),
+		.rst(rst),
+		.signal(ship_dead_locked),
+
+		.signal_counter(dead_count)
+  );
+
+	wire unlocked_dead;
+
+	unlocked my_dead_unlocked(
+		.pclk(pclk),
+		.rst(rst),
+		.signal_counter(dead_count),
+
+		.unlocked_signal(unlocked_dead)
+	);
+
+  draw_live #(
+    .N(1),
+    .XPOS(30),
+    .YPOS(50),
+    .WIDTH_RECT(32),
+    .HEIGHT_RECT(32),
+    .RGB_RECT(12'hf_0_0)
+  ) my_draw_live_1(
+    .pclk(pclk),
+    .rst(rst),
+    .dead_count(dead_count),
+
+    .vcount_in(vcount_o),
+    .vsync_in(vsync_o),
+    .vblnk_in(vblnk_o),
+    .hcount_in(hcount_o),
+    .hsync_in(hsync_o),
+    .hblnk_in(hblnk_o),
+    .rgb_in(rgb_o),
+    .rgb_pixel(),
+
+    .vcount_out(vcount_dl),
+    .vsync_out(vsync_dl),
+    .vblnk_out(vblnk_dl),
+    .hcount_out(hcount_dl),
+    .hsync_out(hsync_dl),
+    .hblnk_out(hblnk_dl),
+    .rgb_out(rgb_dl),
+    .pixel_addr()
+  );
+
+  assign vcount_out = vcount_dl;
+  assign vsync_out  = vsync_dl;
+  assign vblnk_out  = vblnk_dl;
+  assign hcount_out = hcount_dl;
+  assign hsync_out  = hsync_dl;
+  assign hblnk_out  = hblnk_dl;
+  assign rgb_out    = rgb_dl;
   // assign xpos_ship  = xpos_ctl;
   assign xpos_missile = xpos_ctl_missle;
   assign ypos_missile = ypos_ctl_missle;
