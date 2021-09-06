@@ -124,7 +124,7 @@
   ctl_missile_en missle_ctl(
     .pclk(pclk),
     .rst(rst),
-    .missle_button(0), // turned off for tes
+    .missle_button(1), // turned off for tes
     .xpos_in(xpos),
     .ypos_in(ypos),
     .enemy_lives(on),
