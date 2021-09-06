@@ -223,7 +223,7 @@ module main (
     .dout({level_fb})
   );
 
-  delay #(.WIDTH(4), .CLK_DEL(5)) delay_fb_loop_level_bg( 
+  delay #(.WIDTH(4), .CLK_DEL(10)) delay_fb_loop_level_bg( 
     .clk(pclk),
     .rst(rst_out),
     .din({level_nxt}),

@@ -52,7 +52,11 @@
   localparam BG_SIDES_STRIP_2 = 12'ha_7_0;
   localparam BG_SIDES_STRIP_SH_2 = 12'ha_9_0;
 
-  localparam LEVEL = 2;
+  // color panel for 2 LV
+
+  localparam BG_MAIN_SH_3 = 12'h2_0_3;
+  localparam BG_SIDES_STRIP_3 = 12'h6_0_9;
+  localparam BG_SIDES_STRIP_SH_3 = 12'ha_0_f;
 
   // This is a simple test pattern generator.
   always @(posedge pclk) begin
@@ -88,10 +92,10 @@
       // During blanking, make it it black.
       if (vblnk_in || hblnk_in) rgb_out_nxt = 12'h0_0_0; 
       else begin
-        //side stripes
+        //side strips
         if ((hcount_in >= 0 && hcount_in < 76)) rgb_out_nxt <= BG_SIDES_STRIP_1;
         else if ((hcount_in >= 948 && hcount_in < 1024)) rgb_out_nxt <= BG_SIDES_STRIP_1;
-        //side stripes shadows
+        //side strips shadows
         else if ((hcount_in >= 76 && hcount_in < 80)) rgb_out_nxt <= BG_SIDES_STRIP_SH_1;
         else if ((hcount_in >= 944 && hcount_in < 948)) rgb_out_nxt <= BG_SIDES_STRIP_SH_1;
         //main shadows
@@ -105,15 +109,32 @@
       // During blanking, make it it black.
       if (vblnk_in || hblnk_in) rgb_out_nxt = 12'h0_0_0; 
       else begin
-        //side stripes
+        //side strips
         if ((hcount_in >= 0 && hcount_in < 76)) rgb_out_nxt <= BG_SIDES_STRIP_2;
         else if ((hcount_in >= 948 && hcount_in < 1024)) rgb_out_nxt <= BG_SIDES_STRIP_2;
-        //side stripes shadows
+        //side strips shadows
         else if ((hcount_in >= 76 && hcount_in < 80)) rgb_out_nxt <= BG_SIDES_STRIP_SH_2;
         else if ((hcount_in >= 944 && hcount_in < 948)) rgb_out_nxt <= BG_SIDES_STRIP_SH_2;
         //main shadows
         else if ((hcount_in >= 80 && hcount_in < 84)) rgb_out_nxt <= BG_MAIN_SH_2;
         else if ((hcount_in >= 940 && hcount_in < 944)) rgb_out_nxt <= BG_MAIN_SH_2;
+        //main
+        else rgb_out_nxt = BG_MAIN;
+      end
+    end
+    else if(level == 3) begin
+      // During blanking, make it it black.
+      if (vblnk_in || hblnk_in) rgb_out_nxt = 12'h0_0_0; 
+      else begin
+        //side strips
+        if ((hcount_in >= 0 && hcount_in < 76)) rgb_out_nxt <= BG_SIDES_STRIP_3;
+        else if ((hcount_in >= 948 && hcount_in < 1024)) rgb_out_nxt <= BG_SIDES_STRIP_3;
+        //side strips shadows
+        else if ((hcount_in >= 76 && hcount_in < 80)) rgb_out_nxt <= BG_SIDES_STRIP_SH_3;
+        else if ((hcount_in >= 944 && hcount_in < 948)) rgb_out_nxt <= BG_SIDES_STRIP_SH_3;
+        //main shadows
+        else if ((hcount_in >= 80 && hcount_in < 84)) rgb_out_nxt <= BG_MAIN_SH_3;
+        else if ((hcount_in >= 940 && hcount_in < 944)) rgb_out_nxt <= BG_MAIN_SH_3;
         //main
         else rgb_out_nxt = BG_MAIN;
       end
