@@ -50,6 +50,7 @@
     //inputs
     .pclk(pclk),
     .rst(rst),
+    .dead_s(is_ship_dead),
     .left(left),
     .right(right),
     //outputs
@@ -102,7 +103,6 @@
     // input x, y position of the rect from position_rect_ctl module
     .xpos(xpos_ctl),
     // .ypos(680),
-    .dead_ship(ship_dead_locked),
 
     //input
     .vcount_in(vcount_in),
@@ -188,7 +188,7 @@
   signal_counter my_dead_counter(
 		.pclk(pclk),
 		.rst(rst),
-		.signal(ship_dead_locked),
+		.signal(is_ship_dead),
 
 		.signal_counter(dead_count)
   );

@@ -14,22 +14,26 @@ module position_rect_ctl (
     input wire pclk,
     input wire rst,
 
+    input wire dead_s,
     input wire left,
     input wire right,
 
     output reg [10:0] xpos_out
 );
-  localparam IDLE = 2'b00;
-  localparam LEFT = 2'b01;
-  localparam RIGHT = 2'b10;
+  localparam IDLE = 3'b000;
+  localparam LEFT = 3'b001;
+  localparam RIGHT = 3'b010;
+  localparam DEAD = 3'b011;
+  localparam START_POSITION = 3'b100;
 
   localparam WIDTH_RECT   = 48;                    
   localparam HEIGHT_RECT  = 64;
   localparam COUNTER_LIMIT = 30000;
   localparam DISPLAY_WIDTH_MIN = 80;
   localparam DISPLAY_WIDTH_MAX = 944 - WIDTH_RECT;
+  localparam START_X = 512;
 
-  reg [1:0] state, next_state;
+  reg [2:0] state, next_state;
   reg [10:0] xpos_nxt;
   reg [20:0] refresh_counter, refresh_counter_nxt;
 
@@ -39,7 +43,7 @@ module position_rect_ctl (
   always @(posedge pclk) begin
     if(rst) begin
       state <= IDLE;
-      xpos_out <= 512;
+      xpos_out <= START_X;
       refresh_counter <= 21'b0;
     end
     else begin
@@ -54,7 +58,9 @@ module position_rect_ctl (
   always @(state or left or right) begin
     case(state)
       IDLE: begin
-        if(left)
+        if(dead_s)
+          next_state = DEAD;
+        else if(left)
           next_state = LEFT;
         else if(right)
           next_state = RIGHT;
@@ -62,7 +68,9 @@ module position_rect_ctl (
           next_state = IDLE;
       end
       LEFT: next_state = left ? LEFT : IDLE;
-      RIGHT: next_state = right ? RIGHT : IDLE; 
+      RIGHT: next_state = right ? RIGHT : IDLE;
+      DEAD: next_state = START_POSITION;
+      START_POSITION: next_state = IDLE; 
       default:
         next_state = IDLE;
     endcase
@@ -93,7 +101,7 @@ module position_rect_ctl (
         end
       end
       
-        RIGHT: begin
+      RIGHT: begin
         if(refresh_counter == COUNTER_LIMIT) begin
           refresh_counter_nxt = 0;
           if(xpos_out < DISPLAY_WIDTH_MAX) begin
@@ -108,6 +116,16 @@ module position_rect_ctl (
           xpos_nxt = xpos_out;
         end
       end
+
+    DEAD: begin
+      xpos_nxt = 1050;
+      refresh_counter_nxt = refresh_counter;
+    end
+
+    START_POSITION: begin
+      xpos_nxt = START_X;
+      refresh_counter_nxt = refresh_counter;
+    end
 
       default: begin
         xpos_nxt = xpos_out;
