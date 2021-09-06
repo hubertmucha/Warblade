@@ -1,5 +1,6 @@
-// File: draw_rect_ctl.v
-// This module draw a rectangle on the backround.
+// File: ctl_ship.v
+// Author: HEHE
+// This module is genereating xpos_out by calculating inputs form keyboard
 
 // The `timescale directive specifies what the
 // simulation time units are (1 ns here) and what

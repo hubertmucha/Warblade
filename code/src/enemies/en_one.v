@@ -1,5 +1,6 @@
-// File: draw_react.v
-// This is the vga timing design for EE178 Lab #4.
+// File: en_one.v
+// Author: Hubert Mucha
+// This module is grouping all modules to draw and control enemy and his missile
 
 // The `timescale directive specifies what the
 // simulation time units are (1 ns here) and what

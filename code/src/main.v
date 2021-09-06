@@ -90,6 +90,9 @@ module main (
   wire vblnk_r, hblnk_r;
   wire [11:0] rgb_r;
 
+  wire [3:0] level_fb;
+  wire [3:0] level_fb_draw_background;
+
   draw_background my_draw_background(
     .pclk(pclk),
     .rst(rst_out),
@@ -101,6 +104,8 @@ module main (
     .hcount_in(hcount),
     .hsync_in(hsync),
     .hblnk_in(hblnk),
+
+    .level(level_fb_draw_background),
 
     //output
     .vcount_out(vcount_b),
@@ -171,7 +176,7 @@ module main (
   wire [11:0] rgb_s;
 
   wire [3:0] level_nxt;
-  wire [3:0] level_fb;
+
 
   wire level_change_nxt;
   wire level_change_fb;
@@ -207,18 +212,25 @@ module main (
     .en2_y_missile(en2_y_missile),
     .en3_x_missile(en3_x_missile),
     .en3_y_missile(en3_y_missile),
-    .level_out(level_nxt),
-    .level_change_out(level_change_nxt)
+    .level_out(level_nxt),              // output form level.v
+    .level_change_out(level_change_nxt) // output form level.v
   );
 
-  delay #(.WIDTH(4), .CLK_DEL(7)) delay_fb_loop_level( //clk_del = number of enemies + 2
+  delay #(.WIDTH(4), .CLK_DEL(7)) delay_fb_loop_level(
     .clk(pclk),
     .rst(rst_out),
     .din({level_nxt}),
     .dout({level_fb})
   );
 
-  delay #(.WIDTH(1), .CLK_DEL(14)) delay_fb_loop_level_change( //clk_del = (2 * number of enemies) + 3
+  delay #(.WIDTH(4), .CLK_DEL(5)) delay_fb_loop_level_bg( 
+    .clk(pclk),
+    .rst(rst_out),
+    .din({level_nxt}),
+    .dout({level_fb_draw_background})
+  );
+
+  delay #(.WIDTH(1), .CLK_DEL(14)) delay_fb_loop_level_change(
     .clk(pclk),
     .rst(rst_out),
     .din({level_change_nxt}),

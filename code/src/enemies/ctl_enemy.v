@@ -1,5 +1,6 @@
-// File: draw_rect_ctl.v
-// This module draw a rectangle shot the ckround.
+// File: ctl_enemy.v
+// Author: Hubert Mucha
+// This module generate x and y for one enemy.
 
 // The `timescale directive specifies what the
 // simulation time units are (1 ns here) and what

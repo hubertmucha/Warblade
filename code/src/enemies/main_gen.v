@@ -1,16 +1,12 @@
-// File: draw_rect_ctl.v
-// This module draw a rectangle shot the ckround.
+// File: main_gen.v
+// Author: Hubert Mucha
+// This module is genereating x and y for all enemies based on current level
 
 // The `timescale directive specifies what the
 // simulation time units are (1 ns here) and what
 // the simulator time step should be (1 ps here).
 
 `timescale 1 ns / 1 ps
-
-// Declare the module and its ports. This is
-// using Verilog-2001 syntax.
-
-// TODO ADD sycn-reset
 
 module main_gen (
     input wire pclk,

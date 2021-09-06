@@ -1,5 +1,6 @@
-// File: missle_ctl.v
-// This module draw a rectangle on the backround.
+// File: ctl_missile_en.v
+// Author: HEHE
+// This module generate x, y and on for missile for one enemy
 
 // The `timescale directive specifies what the
 // simulation time units are (1 ns here) and what

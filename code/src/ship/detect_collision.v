@@ -1,15 +1,8 @@
-// File: vga_background.v
+// File: detect_collision.v
 // Author: Natalia Pluta
-// This is the vga timing design for EE178 Lab #4.
-
-// The `timescale directive specifies what the
-// simulation time units are (1 ns here) and what
-// the simulator time step should be (1 ps here).
+// This module is detecting collison ship with enemy missile and turn him off
 
 `timescale 1 ns / 1 ps
-
-// Declare the module and its ports. This is
-// using Verilog-2001 syntax.
 
  module detect_collision (
     input wire pclk,                                  // Peripheral Clock

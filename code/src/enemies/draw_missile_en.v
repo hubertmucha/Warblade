@@ -1,5 +1,6 @@
-// File: draw_react.v
-// This is the vga timing design for EE178 Lab #4.
+// File: draw_missile_en.v
+// Author: HEHE
+// This module is drawing enemy missile
 
 // The `timescale directive specifies what the
 // simulation time units are (1 ns here) and what

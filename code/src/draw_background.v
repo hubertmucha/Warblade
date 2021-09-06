@@ -21,6 +21,8 @@
     input wire hsync_in,                              // input horizontal sync
     input wire hblnk_in,                              // input horizontal blink
 
+    input wire [3:0] level,
+
     output reg [10:0] vcount_out,                     // output vertical count
     output reg vsync_out,                             // output vertical sync
     output reg vblnk_out,                             // output vertical blink
@@ -32,11 +34,25 @@
 
   reg [11:0] rgb_out_nxt;
 
+
   // http://neildowning.com/HEX_to_RGB_color_converter.php to pick colors
+
+  // INFO :main color also shold be chenged in draw_rect_char.v in BG
+
   localparam BG_MAIN = 12'h1_1_5;
-  localparam BG_MAIN_SH = 12'h1_1_8;
-  localparam BG_SIDES_STRIP = 12'h0_9_6;
-  localparam BG_SIDES_STRIP_SH = 12'h0_6_4;
+
+  // color panel for 1 LV
+  localparam BG_MAIN_SH_1 = 12'h1_1_8;
+  localparam BG_SIDES_STRIP_1 = 12'h0_9_6;
+  localparam BG_SIDES_STRIP_SH_1 = 12'h0_6_4;
+
+  // color panel for 2 LV
+
+  localparam BG_MAIN_SH_2 = 12'h0_4_6;
+  localparam BG_SIDES_STRIP_2 = 12'ha_7_0;
+  localparam BG_SIDES_STRIP_SH_2 = 12'ha_9_0;
+
+  localparam LEVEL = 2;
 
   // This is a simple test pattern generator.
   always @(posedge pclk) begin
@@ -68,24 +84,39 @@
   end
 
   always@* begin
-    // During blanking, make it it black.
-    if (vblnk_in || hblnk_in) rgb_out_nxt = 12'h0_0_0; 
-    else begin
-      //side stripes
-      if ((hcount_in >= 0 && hcount_in < 76)) rgb_out_nxt <= BG_SIDES_STRIP;
-      else if ((hcount_in >= 948 && hcount_in < 1024)) rgb_out_nxt <= BG_SIDES_STRIP;
-
-      //side stripes shadows
-      else if ((hcount_in >= 76 && hcount_in < 80)) rgb_out_nxt <= BG_SIDES_STRIP_SH;
-      else if ((hcount_in >= 944 && hcount_in < 948)) rgb_out_nxt <= BG_SIDES_STRIP_SH;
-
-      //main shadows
-      else if ((hcount_in >= 80 && hcount_in < 84)) rgb_out_nxt <= BG_MAIN_SH;
-      else if ((hcount_in >= 940 && hcount_in < 944)) rgb_out_nxt <= BG_MAIN_SH;
-
-      //main
-      else rgb_out_nxt = BG_MAIN;
-      
+    if(level == 1) begin
+      // During blanking, make it it black.
+      if (vblnk_in || hblnk_in) rgb_out_nxt = 12'h0_0_0; 
+      else begin
+        //side stripes
+        if ((hcount_in >= 0 && hcount_in < 76)) rgb_out_nxt <= BG_SIDES_STRIP_1;
+        else if ((hcount_in >= 948 && hcount_in < 1024)) rgb_out_nxt <= BG_SIDES_STRIP_1;
+        //side stripes shadows
+        else if ((hcount_in >= 76 && hcount_in < 80)) rgb_out_nxt <= BG_SIDES_STRIP_SH_1;
+        else if ((hcount_in >= 944 && hcount_in < 948)) rgb_out_nxt <= BG_SIDES_STRIP_SH_1;
+        //main shadows
+        else if ((hcount_in >= 80 && hcount_in < 84)) rgb_out_nxt <= BG_MAIN_SH_1;
+        else if ((hcount_in >= 940 && hcount_in < 944)) rgb_out_nxt <= BG_MAIN_SH_1;
+        //main
+        else rgb_out_nxt = BG_MAIN;
+      end
+    end
+    else if(level == 2) begin
+      // During blanking, make it it black.
+      if (vblnk_in || hblnk_in) rgb_out_nxt = 12'h0_0_0; 
+      else begin
+        //side stripes
+        if ((hcount_in >= 0 && hcount_in < 76)) rgb_out_nxt <= BG_SIDES_STRIP_2;
+        else if ((hcount_in >= 948 && hcount_in < 1024)) rgb_out_nxt <= BG_SIDES_STRIP_2;
+        //side stripes shadows
+        else if ((hcount_in >= 76 && hcount_in < 80)) rgb_out_nxt <= BG_SIDES_STRIP_SH_2;
+        else if ((hcount_in >= 944 && hcount_in < 948)) rgb_out_nxt <= BG_SIDES_STRIP_SH_2;
+        //main shadows
+        else if ((hcount_in >= 80 && hcount_in < 84)) rgb_out_nxt <= BG_MAIN_SH_2;
+        else if ((hcount_in >= 940 && hcount_in < 944)) rgb_out_nxt <= BG_MAIN_SH_2;
+        //main
+        else rgb_out_nxt = BG_MAIN;
+      end
     end
   end
 

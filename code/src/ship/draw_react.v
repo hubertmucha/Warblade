@@ -1,9 +1,6 @@
 // File: draw_react.v
-// This is the vga timing design for EE178 Lab #4.
-
-// The `timescale directive specifies what the
-// simulation time units are (1 ns here) and what
-// the simulator time step should be (1 ps here).
+// Author: HEHE
+// This module is drawing react (ship)
 
 `timescale 1 ns / 1 ps
 

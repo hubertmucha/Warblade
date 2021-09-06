@@ -1,3 +1,7 @@
+// File: enemies.v
+// Author: Hubert Mucha
+// This module is grouping all en_one modules and level control 
+ 
  module enemies(
     input wire pclk,                                  // Peripheral Clock
     input wire rst,                                   // Synchrous reset

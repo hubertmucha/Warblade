@@ -1,5 +1,6 @@
-// File: draw_rect_ctl.v
-// This module draw a rectangle shot the ckround.
+// File: addres_gen.v
+// Author: Hubert Mucha
+// This module generate proper addres for reading RAM.
 
 // The `timescale directive specifies what the
 // simulation time units are (1 ns here) and what

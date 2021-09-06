@@ -1,3 +1,8 @@
+// File: detec_col.v
+// Author: HEHE
+// This module is detecting colision enemy with ship missile and turns off enemy
+// drawing when he die
+
 module detec_col
     #( parameter
         N = 1 // number of enemy
