@@ -20,19 +20,64 @@ module signal_counter(
   output reg [3:0] signal_counter
 );
 
-reg [3:0] signal_counter_nxt; 
+localparam IDLE = 2'b00;
+localparam INCREMENT = 2'b01;
+localparam SIGNAL_ON = 2'b10;
+
+reg [3:0] signal_counter_nxt;
+reg [1:0] state, next_state; 
 
 always @(posedge pclk) begin
   if(rst) begin
     signal_counter <= 4'b0;
+    state <= IDLE;
   end
   else begin
     signal_counter <= signal_counter_nxt;
+    state <= next_state;
   end
 end
 
-always @(posedge signal) begin
-  signal_counter_nxt = signal_counter + 1;
+// ---------------------------------------
+// next state logic
+always @(state or signal) begin
+  case(state)
+    IDLE: begin
+      if(signal) begin
+        next_state <= INCREMENT;
+      end
+      else begin
+        next_state <= IDLE;
+      end
+    end
+    INCREMENT: begin
+      next_state <= SIGNAL_ON;
+    end
+    SIGNAL_ON: begin
+      if(signal) begin
+        next_state <= SIGNAL_ON;
+      end
+      else begin
+        next_state <= IDLE;
+      end
+    end
+  endcase
 end
+
+  // ---------------------------------------
+  // output logic direct output definitions
+  always @* begin
+    case(state)
+      IDLE: begin
+        signal_counter_nxt = signal_counter;
+      end
+      INCREMENT: begin
+        signal_counter_nxt = signal_counter + 1;
+      end
+      SIGNAL_ON: begin
+        signal_counter_nxt = signal_counter;
+      end
+    endcase
+  end
 
 endmodule
