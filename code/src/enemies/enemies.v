@@ -31,10 +31,19 @@
 
     output wire [10:0] en1_x_missile,
     output wire [10:0] en1_y_missile,
+
     output wire [10:0] en2_x_missile,
     output wire [10:0] en2_y_missile,
+
     output wire [10:0] en3_x_missile,
     output wire [10:0] en3_y_missile,
+
+    output wire [10:0] en4_x_missile,
+    output wire [10:0] en4_y_missile,
+
+    output wire [10:0] en5_x_missile,
+    output wire [10:0] en5_y_missile,
+
     output wire [3:0] level_out,
     output wire level_change_out
   );
@@ -315,9 +324,17 @@
 
   assign en1_x_missile = x_missile_1;
   assign en1_y_missile = y_missile_1;
+
   assign en2_x_missile = x_missile_2;
   assign en2_y_missile = y_missile_2;
+
   assign en3_x_missile = x_missile_3;
   assign en3_y_missile = y_missile_3;
+
+  assign en4_x_missile = x_missile_4;
+  assign en4_y_missile = y_missile_4;
+
+  assign en5_x_missile = x_missile_5;
+  assign en5_y_missile = y_missile_5;
 
   endmodule

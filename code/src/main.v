@@ -129,6 +129,8 @@ module main (
   wire [10:0] en1_x_missile, en1_y_missile;
   wire [10:0] en2_x_missile, en2_y_missile;
   wire [10:0] en3_x_missile, en3_y_missile;  
+  wire [10:0] en4_x_missile, en4_y_missile;  
+  wire [10:0] en5_x_missile, en5_y_missile;  
   
   wire [10:0] xpos_missile, ypos_missile;
   wire on_missile;
@@ -148,11 +150,19 @@ module main (
     .rgb_in(rgb_b),
 
     .en_x_missile1(en1_x_missile),
-    .en_y_missile1(en1_y_missile),                           
+    .en_y_missile1(en1_y_missile),
+
     .en_x_missile2(en2_x_missile),
-    .en_y_missile2(en2_y_missile),                           
+    .en_y_missile2(en2_y_missile),
+
     .en_x_missile3(en3_x_missile),
-    .en_y_missile3(en3_y_missile),                           
+    .en_y_missile3(en3_y_missile),
+
+    .en_x_missile4(en4_x_missile),
+    .en_y_missile4(en4_y_missile),  
+
+    .en_x_missile5(en5_x_missile),
+    .en_y_missile5(en5_y_missile),                           
 
     .vcount_out(vcount_r),                     
     .vsync_out(vsync_r),                          
@@ -212,11 +222,20 @@ module main (
     .en2_y_missile(en2_y_missile),
     .en3_x_missile(en3_x_missile),
     .en3_y_missile(en3_y_missile),
+
+    .en4_x_missile(en4_x_missile),
+    .en4_y_missile(en4_y_missile),
+
+    .en5_x_missile(en5_x_missile),
+    .en5_y_missile(en5_y_missile),
+
     .level_out(level_nxt),              // output form level.v
     .level_change_out(level_change_nxt) // output form level.v
   );
 
-  delay #(.WIDTH(4), .CLK_DEL(7)) delay_fb_loop_level(
+  // 7 9 14
+
+  delay #(.WIDTH(4), .CLK_DEL(8)) delay_fb_loop_level(
     .clk(pclk),
     .rst(rst_out),
     .din({level_nxt}),

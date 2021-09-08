@@ -28,7 +28,7 @@ module ctl_enemy
 );
 
     always @(posedge pclk) begin
-        x_out <= x_in + (N*70);
-        y_out <= x_in + 100; // cahnge to y from main generator
+        x_out <= x_in + (N*100);
+        y_out <= y_in; 
     end
 endmodule

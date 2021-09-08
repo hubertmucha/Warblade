@@ -24,11 +24,19 @@
 
     // enemies missiles
     input wire [10:0] en_x_missile1,
-    input wire [10:0] en_y_missile1,                           
+    input wire [10:0] en_y_missile1, 
+
     input wire [10:0] en_x_missile2,
-    input wire [10:0] en_y_missile2,                           
+    input wire [10:0] en_y_missile2,
+
     input wire [10:0] en_x_missile3,
-    input wire [10:0] en_y_missile3,                           
+    input wire [10:0] en_y_missile3,
+
+    input wire [10:0] en_x_missile4,
+    input wire [10:0] en_y_missile4,
+
+    input wire [10:0] en_x_missile5,
+    input wire [10:0] en_y_missile5,                           
 
     output wire [10:0] vcount_out,                     
     output wire vsync_out,                          
@@ -41,7 +49,9 @@
     // output wire [10:0] xpos_ship,
     output wire [10:0] xpos_missile,
     output wire [10:0] ypos_missile,
-    output wire on_missle
+    output wire on_missle,
+
+    output wire ship_down
   );
 
 
@@ -64,10 +74,18 @@
     .ship_X(xpos_ctl),
     .enBullet_X_1(en_x_missile1),
     .enBullet_Y_1(en_y_missile1),
+
     .enBullet_X_2(en_x_missile2),
     .enBullet_Y_2(en_y_missile2),
+
     .enBullet_X_3(en_x_missile3),
     .enBullet_Y_3(en_y_missile3),
+
+    .enBullet_X_4(en_x_missile4),
+    .enBullet_Y_4(en_y_missile4),
+
+    .enBullet_X_5(en_x_missile5),
+    .enBullet_Y_5(en_y_missile5),
     //output
     .is_ship_dead(is_ship_dead)
   );
@@ -190,5 +208,6 @@
   assign xpos_missile = xpos_ctl_missle;
   assign ypos_missile = ypos_ctl_missle;
   assign on_missle   = on_ctl_missle;
+  assign ship_down   = is_ship_dead;
 
   endmodule

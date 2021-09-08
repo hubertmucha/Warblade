@@ -5,22 +5,29 @@
 `timescale 1 ns / 1 ps
 
  module detect_collision (
-    input wire pclk,                                  // Peripheral Clock
-    input wire rst,                                   // Synchrous reset
+  input wire pclk,                                  // Peripheral Clock
+  input wire rst,                                   // Synchrous reset
 
 	input wire [10:0] ship_X,
-	// input wire [10:0] ship_Y,
   input wire [10:0] enBullet_X_1,
 	input wire [10:0] enBullet_Y_1,
+
   input wire [10:0] enBullet_X_2,
 	input wire [10:0] enBullet_Y_2,
+
   input wire [10:0] enBullet_X_3,
 	input wire [10:0] enBullet_Y_3,
+	
+  input wire [10:0] enBullet_X_4,
+	input wire [10:0] enBullet_Y_4,
+	
+  input wire [10:0] enBullet_X_5,
+	input wire [10:0] enBullet_Y_5,
 	
 	output reg is_ship_dead
   );
 
-  localparam Y_SHIP = 680;                              // TODO: change to input parameter
+  localparam Y_SHIP = 680;
   localparam HALF_SHIP_WIDTH = 24;
 
   reg is_ship_dead_nxt;
@@ -45,6 +52,10 @@
 	else if(enBullet_X_2 >= (ship_X - HALF_SHIP_WIDTH) && enBullet_X_2 <= (ship_X + HALF_SHIP_WIDTH) && enBullet_Y_2 == Y_SHIP)
 		is_ship_dead_nxt = SHIP_SHOOT_DOWN;
 	else if(enBullet_X_3 >= (ship_X - HALF_SHIP_WIDTH) && enBullet_X_3 <= (ship_X + HALF_SHIP_WIDTH) && enBullet_Y_3 == Y_SHIP)
+		is_ship_dead_nxt = SHIP_SHOOT_DOWN;
+	else if(enBullet_X_4 >= (ship_X - HALF_SHIP_WIDTH) && enBullet_X_4 <= (ship_X + HALF_SHIP_WIDTH) && enBullet_Y_4 == Y_SHIP)
+		is_ship_dead_nxt = SHIP_SHOOT_DOWN;
+	else if(enBullet_X_5 >= (ship_X - HALF_SHIP_WIDTH) && enBullet_X_5 <= (ship_X + HALF_SHIP_WIDTH) && enBullet_Y_5 == Y_SHIP)
 		is_ship_dead_nxt = SHIP_SHOOT_DOWN;
 	else
 		is_ship_dead_nxt = is_ship_dead;

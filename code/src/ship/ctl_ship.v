@@ -30,6 +30,8 @@ module position_rect_ctl (
   localparam DISPLAY_WIDTH_MIN = 80;
   localparam DISPLAY_WIDTH_MAX = 944 - WIDTH_RECT;
 
+  localparam RESET_X_POS = 85;
+
   reg [1:0] state, next_state;
   reg [10:0] xpos_nxt;
   reg [20:0] refresh_counter, refresh_counter_nxt;
@@ -40,7 +42,7 @@ module position_rect_ctl (
   always @(posedge pclk) begin
     if(rst) begin
       state <= IDLE;
-      xpos_out <= 512;
+      xpos_out <= RESET_X_POS;
       refresh_counter <= 21'b0;
     end
     else begin
