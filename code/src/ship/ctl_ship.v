@@ -31,7 +31,7 @@ module position_rect_ctl (
   localparam COUNTER_LIMIT = 30000;
   localparam DISPLAY_WIDTH_MIN = 80;
   localparam DISPLAY_WIDTH_MAX = 944 - WIDTH_RECT;
-  localparam START_X = 512;
+  localparam START_X = 0;
 
   reg [2:0] state, next_state;
   reg [10:0] xpos_nxt;
