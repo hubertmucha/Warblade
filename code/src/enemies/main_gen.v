@@ -27,8 +27,8 @@ module main_gen (
     reg [11:0] address, address_nxt = 0;
     reg [20:0] refresh_counter, refresh_counter_nxt = 0;
 
-    reg [11:0] rom_x [0:301];
-    reg [11:0] rom_y [0:301];
+    reg [11:0] rom_x [0:460];
+    reg [11:0] rom_y [0:460];
 
     initial begin  
         $readmemb("E:/warblade/v3/Warblade/code/src/enemies/data/x.txt", rom_x);

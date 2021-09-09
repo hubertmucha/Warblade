@@ -235,7 +235,7 @@ module main (
 
   // 7 9 14
 
-  delay #(.WIDTH(4), .CLK_DEL(8)) delay_fb_loop_level(
+  delay #(.WIDTH(4), .CLK_DEL(9)) delay_fb_loop_level(
     .clk(pclk),
     .rst(rst_out),
     .din({level_nxt}),
