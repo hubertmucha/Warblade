@@ -145,11 +145,21 @@
     end
     else begin
       if(dead_ship == 0) begin
-        if (hcount_out_2 >= xpos && hcount_out_2 <= xpos + WIDTH_RECT && vcount_out_2 >= YPOS && vcount_out_2 <= YPOS + HEIGHT_RECT && rgb_pixel != TRANSPARENT_COLOR) 
-          rgb_out_nxt = rgb_pixel; 
+        if (hcount_out_2 >= xpos && hcount_out_2 <= xpos + WIDTH_RECT && vcount_out_2 >= YPOS && vcount_out_2 <= YPOS + HEIGHT_RECT) begin
+          if (rgb_pixel != TRANSPARENT_COLOR) begin
+            rgb_out_nxt = rgb_pixel;
+          end
+          else begin
+            rgb_out_nxt =  rgb_out_2; 
+          end
+        end
+        else begin
+          rgb_out_nxt =  rgb_out_2; 
+        end
       end
-      else 
-        rgb_out_nxt = rgb_out_2;  
+      else begin
+        rgb_out_nxt =  rgb_out_2;  
+      end
     end
       y_addr_nxt = vcount_out_2[6:0] - YPOS[6:0];
       x_addr_nxt = hcount_out_2[6:0] - xpos[6:0];

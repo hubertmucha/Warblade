@@ -24,7 +24,7 @@ module position_rect_ctl (
   localparam LEFT = 2'b01;
   localparam RIGHT = 2'b10;
 
-  localparam WIDTH_RECT   = 48;                    
+  localparam WIDTH_RECT   = 83;         // TODO: change to param            
   localparam HEIGHT_RECT  = 64;
   localparam COUNTER_LIMIT = 30000;
   localparam DISPLAY_WIDTH_MIN = 80;
