@@ -26,8 +26,7 @@ module locked_signal (
   reg [1:0] state, next_state;
 
   localparam IDLE = 2'b00;
-  localparam LOCKED_STATE = 2'b01;
-  localparam UNLOCKED_STATE = 2'b10;
+  localparam LOCKED_STATE = 2'b01;					
 
   always @(posedge pclk) begin
     if(rst) begin
@@ -45,13 +44,10 @@ module locked_signal (
   always @(state or locked or unlocked) begin
     case(state)
       IDLE: begin
-        next_state = locked ? LOCKED_STATE : IDLE;
+          next_state = locked ? LOCKED_STATE : IDLE;
       end
       LOCKED_STATE: begin
-        next_state = unlocked ? UNLOCKED_STATE : LOCKED_STATE;
-      end
-      UNLOCKED_STATE: begin
-        next_state = locked ? LOCKED_STATE : IDLE;
+        next_state = unlocked ? IDLE : LOCKED_STATE;
       end
     endcase
   end
@@ -65,10 +61,7 @@ module locked_signal (
       end
       LOCKED_STATE: begin
         locked_out_nxt <= 1'b1;
-      end
-      UNLOCKED_STATE: begin
-        locked_out_nxt <= 1'b0;
-      end
+      end				    
     endcase
   end
 
