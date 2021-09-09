@@ -148,14 +148,10 @@
     end
     else begin
       if(dead_ship == 0) begin
-        if (hcount_out_2 >= xpos && hcount_out_2 <= xpos + WIDTH_RECT && vcount_out_2 >= YPOS && vcount_out_2 <= YPOS + HEIGHT_RECT) 
+        if (hcount_out_2 >= xpos && hcount_out_2 <= xpos + WIDTH_RECT && vcount_out_2 >= YPOS && vcount_out_2 <= YPOS + HEIGHT_RECT && rgb_pixel != TRANSPARENT_COLOR) 
           rgb_out_nxt = rgb_pixel; 
-        else if (rgb_pixel == TRANSPARENT_COLOR)        // TODO: why is it no working? 
-          rgb_out_nxt = rgb_out_2; 
-        else 
-          rgb_out_nxt = rgb_out_2;
       end
-      else
+      else 
         rgb_out_nxt = rgb_out_2;  
     end
       y_addr_nxt = vcount_out_2[6:0] - YPOS[6:0];
