@@ -43,7 +43,8 @@
     output reg hsync_out,                             // output horizontal sync
     output reg hblnk_out,                             // output horizontal blink
     output reg [11:0] rgb_out,
-    output reg [11:0] pixel_addr
+    output reg [11:0] pixel_addr,
+    output reg [3:0] dead_count_out
   );
 
   reg [11:0] rgb_out_nxt = 12'b0;
@@ -120,6 +121,8 @@
 
       rgb_out    <= 12'h0_0_0;
       pixel_addr <= 12'b0;
+
+      dead_count_out <= 4'b0;
     end
     else begin
       // Just pass these through.
@@ -137,6 +140,8 @@
       
       x_addr <= x_addr_nxt;
       y_addr <= y_addr_nxt;
+
+      dead_count_out <= dead_count;
     end
   end
   
