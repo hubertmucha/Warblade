@@ -31,20 +31,23 @@
     output reg hsync_out,                             // output horizontal sync
     output reg hblnk_out,                             // output horizontal blink
     output reg [11:0] rgb_out,
-    output reg [11:0] pixel_addr
+    output reg [13:0] pixel_addr
   );
 
   reg [11:0] rgb_out_nxt = 12'b0;
-  reg [11:0] pixel_addr_nxt = 12'b0;
-  reg [5:0] x_addr, y_addr, x_addr_nxt, y_addr_nxt;
+  reg [13:0] pixel_addr_nxt = 14'b0;
+  reg [6:0] x_addr, y_addr, x_addr_nxt, y_addr_nxt;
 
   localparam YPOS = 680;            // TODO: change to module param
+  localparam [11:0] TRANSPARENT_COLOR = 12'hf_f_f;
 
   // Parameters
   // localparam X_RECT       = 100;
   // localparam Y_RECT       = 100;
-  localparam WIDTH_RECT   = 47;                     // rectangle - 48 x 64 
-  localparam HEIGHT_RECT  = 63;
+  // localparam WIDTH_RECT   = 47;                     // rectangle - 48 x 64 
+  // localparam HEIGHT_RECT  = 63;
+  localparam WIDTH_RECT   = 83;                     // rectangle - 84 x 70
+  localparam HEIGHT_RECT  = 69;
   // localparam [11:0] RGB_RECT    = 12'h8_f_8;
 
   // This module delays signals by one clk
@@ -115,7 +118,7 @@
       vcount_out <= 11'b0;
 
       rgb_out    <= 12'h0_0_0;
-      pixel_addr <= 12'b0;
+      pixel_addr <= 14'b0;
     end
     else begin
       // Just pass these through.
@@ -142,16 +145,14 @@
     end
     else begin
       if(dead_ship == 0) begin
-        if (hcount_out_2 >= xpos && hcount_out_2 <= xpos + WIDTH_RECT && vcount_out_2 >= YPOS && vcount_out_2 <= YPOS + HEIGHT_RECT) 
+        if (hcount_out_2 >= xpos && hcount_out_2 <= xpos + WIDTH_RECT && vcount_out_2 >= YPOS && vcount_out_2 <= YPOS + HEIGHT_RECT && rgb_pixel != TRANSPARENT_COLOR) 
           rgb_out_nxt = rgb_pixel; 
-        else 
-          rgb_out_nxt = rgb_out_2;
       end
-      else
+      else 
         rgb_out_nxt = rgb_out_2;  
     end
-      y_addr_nxt = vcount_out_2[5:0] - YPOS[5:0];
-      x_addr_nxt = hcount_out_2[5:0] - xpos[5:0];
-      pixel_addr_nxt = {y_addr[5:0], x_addr[5:0]};
+      y_addr_nxt = vcount_out_2[6:0] - YPOS[6:0];
+      x_addr_nxt = hcount_out_2[6:0] - xpos[6:0];
+      pixel_addr_nxt = {y_addr[6:0], x_addr[6:0]};
   end
 endmodule

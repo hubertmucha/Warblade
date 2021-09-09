@@ -6,12 +6,12 @@
 // red, green and blue color values (4-bit each)
 module image_rom (
     input wire clk ,
-    input wire [11:0] address,  // address = {addry[5:0], addrx[5:0]}
+    input wire [13:0] address,  // address = {addry[6:0], addrx[6:0]}
     output reg [11:0] rgb
 );
 
 
-reg [11:0] rom [0:4095];
+reg [15:0] rom [0:16383];
 
 initial $readmemh("image_rom.data", rom); 
 
