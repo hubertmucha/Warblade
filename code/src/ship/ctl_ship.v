@@ -118,7 +118,7 @@ module position_rect_ctl (
       end
 
     DEAD: begin
-      xpos_nxt = 1050;
+      xpos_nxt = 0;
       refresh_counter_nxt = refresh_counter;
     end
 
