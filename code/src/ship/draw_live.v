@@ -16,9 +16,8 @@
  #( parameter N = 1, 
     parameter XPOS = 20,
     parameter YPOS = 50,
-    parameter WIDTH_RECT = 29,
-    parameter HEIGHT_RECT = 31,
-    parameter [11:0] RGB_RECT = 12'hf_0_0
+    parameter WIDTH_RECT = 30,
+    parameter HEIGHT_RECT = 31
  )
  (
     input wire pclk,                                  // Peripheral Clock
