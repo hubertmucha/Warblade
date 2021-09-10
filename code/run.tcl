@@ -68,6 +68,9 @@ read_verilog {
     src/ship/draw_react.v
     src/ship/detect_collision.v
     src/ship/locked_signal.v
+    src/ship/signal_counter.v
+    src/ship/draw_live.v
+    src/ship/unlocked.v
 
     src/enemies/enemies.v
     src/enemies/draw_enemy.v

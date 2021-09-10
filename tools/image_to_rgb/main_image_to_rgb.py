@@ -9,8 +9,11 @@ import numpy as np
 # input_image_path = "images/websiteplanet-dummy-48X64.png"
 # output_data_path = "text_rgb/dummy-data-48x64.data"
 
-input_image_path = "images/space_ship.png"
-output_data_path = "text_rgb/space_ship.data"
+# input_image_path = "images/space_ship.png"
+# output_data_path = "text_rgb/space_ship.data"
+
+input_image_path = "images/new_ship.png"
+output_data_path = "text_rgb/new_ship.data"
 
 
 # opening a  image

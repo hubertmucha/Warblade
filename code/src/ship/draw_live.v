@@ -1,18 +1,30 @@
-// File: draw_react.v
-// Author: HEHE
-// This module is drawing react (ship)
+// File: draw_lives.v
+// Author: Natalia Pluta
+// Date: 3.09.2021r.
+// This is the vga timing design for EE178 Lab #4.
+
+// The `timescale directive specifies what the
+// simulation time units are (1 ns here) and what
+// the simulator time step should be (1 ps here).
 
 `timescale 1 ns / 1 ps
 
 // Declare the module and its ports. This is
 // using Verilog-2001 syntax.
 
- module draw_react(
+ module draw_live
+ #( parameter N = 1, 
+    parameter XPOS = 20,
+    parameter YPOS = 50,
+    parameter WIDTH_RECT = 32,
+    parameter HEIGHT_RECT = 32,
+    parameter [11:0] RGB_RECT = 12'hf_0_0
+ )
+ (
     input wire pclk,                                  // Peripheral Clock
     input wire rst,                                   // Synchrous reset
 
-    input wire [10:0] xpos,
-    input wire dead_ship,
+    input wire [3:0] dead_count,
 
     input wire [10:0] vcount_in,                      // input vertical count
     input wire vsync_in,                              // input vertical sync
@@ -31,24 +43,14 @@
     output reg hsync_out,                             // output horizontal sync
     output reg hblnk_out,                             // output horizontal blink
     output reg [11:0] rgb_out,
-    output reg [13:0] pixel_addr
+    output reg [11:0] pixel_addr,
+    output reg [3:0] dead_count_out
   );
 
   reg [11:0] rgb_out_nxt = 12'b0;
-  reg [13:0] pixel_addr_nxt = 14'b0;
-  reg [6:0] x_addr, y_addr, x_addr_nxt, y_addr_nxt;
+  reg [11:0] pixel_addr_nxt = 12'b0;
+  reg [5:0] x_addr, y_addr, x_addr_nxt, y_addr_nxt;
 
-  localparam YPOS = 680;            // TODO: change to module param
-  localparam [11:0] TRANSPARENT_COLOR = 12'hf_f_f;
-
-  // Parameters
-  // localparam X_RECT       = 100;
-  // localparam Y_RECT       = 100;
-  // localparam WIDTH_RECT   = 47;                     // rectangle - 48 x 64 
-  // localparam HEIGHT_RECT  = 63;
-  localparam WIDTH_RECT   = 83;                     // rectangle - 84 x 70
-  localparam HEIGHT_RECT  = 69;
-  // localparam [11:0] RGB_RECT    = 12'h8_f_8;
 
   // This module delays signals by one clk
   wire [10:0] vcount_out_1, hcount_out_1; 
@@ -118,7 +120,9 @@
       vcount_out <= 11'b0;
 
       rgb_out    <= 12'h0_0_0;
-      pixel_addr <= 14'b0;
+      pixel_addr <= 12'b0;
+
+      dead_count_out <= 4'b0;
     end
     else begin
       // Just pass these through.
@@ -136,33 +140,29 @@
       
       x_addr <= x_addr_nxt;
       y_addr <= y_addr_nxt;
+
+      dead_count_out <= dead_count;
     end
   end
+  
   // rectangle generator
   always @* begin
     if (vblnk_out_2 || hblnk_out_2) begin
           rgb_out_nxt = 12'h0_0_0;
     end
     else begin
-      if(dead_ship == 0) begin
-        if (hcount_out_2 >= xpos && hcount_out_2 <= xpos + WIDTH_RECT && vcount_out_2 >= YPOS && vcount_out_2 <= YPOS + HEIGHT_RECT) begin
-          if (rgb_pixel != TRANSPARENT_COLOR) begin
-            rgb_out_nxt = rgb_pixel;
-          end
-          else begin
-            rgb_out_nxt =  rgb_out_2; 
-          end
-        end
-        else begin
-          rgb_out_nxt =  rgb_out_2; 
-        end
+      if(dead_count < N) begin
+        if (hcount_out_2 >= XPOS && hcount_out_2 <= XPOS + WIDTH_RECT 
+        && (vcount_out_2 >= YPOS && vcount_out_2 <= YPOS + HEIGHT_RECT)) 
+          rgb_out_nxt = RGB_RECT; 
+        else 
+          rgb_out_nxt = rgb_out_2;
       end
-      else begin
-        rgb_out_nxt =  rgb_out_2;  
-      end
+      else
+        rgb_out_nxt = rgb_out_2;  
     end
-      y_addr_nxt = vcount_out_2[6:0] - YPOS[6:0];
-      x_addr_nxt = hcount_out_2[6:0] - xpos[6:0];
-      pixel_addr_nxt = {y_addr[6:0], x_addr[6:0]};
+      y_addr_nxt = vcount_out_2[5:0] - YPOS[5:0];
+      x_addr_nxt = hcount_out_2[5:0] - XPOS[5:0];
+      pixel_addr_nxt = {y_addr[5:0], x_addr[5:0]};
   end
 endmodule
