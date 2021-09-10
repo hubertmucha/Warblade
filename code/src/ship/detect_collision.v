@@ -58,7 +58,7 @@
 	else if(enBullet_X_5 >= (ship_X - HALF_SHIP_WIDTH) && enBullet_X_5 <= (ship_X + HALF_SHIP_WIDTH) && enBullet_Y_5 == Y_SHIP)
 		is_ship_dead_nxt = SHIP_SHOOT_DOWN;
 	else
-		is_ship_dead_nxt = is_ship_dead;
+		is_ship_dead_nxt = SHIP_ALIVE;
   end
 
 endmodule
