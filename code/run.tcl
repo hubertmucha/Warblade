@@ -71,6 +71,7 @@ read_verilog {
     src/ship/signal_counter.v
     src/ship/draw_live.v
     src/ship/unlocked.v
+    src/ship/heart_rom.v
 
     src/enemies/enemies.v
     src/enemies/draw_enemy.v

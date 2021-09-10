@@ -3,8 +3,8 @@ from PIL import Image
 import numpy as np
 
 array = []
-height = 128
-width = 128
+height = 32
+width = 32
 
 # input_data_path = "text_rgb/dummy-data-48x64.data"
 # output_image_path = "images/dummy-48x64_test.png"
@@ -12,8 +12,11 @@ width = 128
 # input_data_path = "text_rgb/space_ship.data"
 # output_image_path = "images/space_ship_test.png"
 
-input_data_path = "text_rgb/ship_128x128.data"
-output_image_path = "images/ship_128x128_test.png"
+# input_data_path = "text_rgb/ship_128x128.data"
+# output_image_path = "images/ship_128x128_test.png"
+
+input_data_path = "text_rgb/heart.data"
+output_image_path = "images/heart_test.png"
 
 
 file_in = open(input_data_path, "rt")

@@ -12,8 +12,11 @@ import numpy as np
 # input_image_path = "images/space_ship.png"
 # output_data_path = "text_rgb/space_ship.data"
 
-input_image_path = "images/new_ship.png"
-output_data_path = "text_rgb/new_ship.data"
+# input_image_path = "images/new_ship.png"
+# output_data_path = "text_rgb/new_ship.data"
+
+input_image_path = "images/heart_29x31.png"
+output_data_path = "text_rgb/heart.data"
 
 
 # opening a  image

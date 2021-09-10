@@ -56,6 +56,7 @@
 
 
   wire [10:0] xpos_ctl;
+  wire is_ship_dead;
   position_rect_ctl my_position_rect_ctl(
     //inputs
     .pclk(pclk),
@@ -67,7 +68,7 @@
     .xpos_out(xpos_ctl)
   );
 
-  wire is_ship_dead;
+
   detect_collision my_detect_collision(
     // inputs 
     .pclk(pclk),
@@ -229,8 +230,8 @@
     .N(1),
     .XPOS(30),
     .YPOS(50),
-    .WIDTH_RECT(32),
-    .HEIGHT_RECT(32),
+    .WIDTH_RECT(30),
+    .HEIGHT_RECT(31),
     .RGB_RECT(12'hf_0_0)
   ) my_draw_live_1(
     .pclk(pclk),
@@ -244,7 +245,7 @@
     .hsync_in(hsync_o),
     .hblnk_in(hblnk_o),
     .rgb_in(rgb_o),
-    .rgb_pixel(),
+    .rgb_pixel(rgb_pixel_heart),
 
     .dead_count_out(dead_count_dl_1),
     .vcount_out(vcount_dl_1),
@@ -254,7 +255,15 @@
     .hsync_out(hsync_dl_1),
     .hblnk_out(hblnk_dl_1),
     .rgb_out(rgb_dl_1),
-    .pixel_addr()
+    .pixel_addr(pixel_addr_heart)
+  );
+
+  wire [11:0] pixel_addr_heart;
+  wire [11:0] rgb_pixel_heart;
+  heart_rom my_heart_rom(
+    .clk(pclk),
+    .address(pixel_addr_heart),
+    .rgb(rgb_pixel_heart)
   );
 
   
