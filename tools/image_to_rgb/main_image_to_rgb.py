@@ -15,8 +15,8 @@ import numpy as np
 # input_image_path = "images/new_ship.png"
 # output_data_path = "text_rgb/new_ship.data"
 
-input_image_path = "images/heart_29x31.png"
-output_data_path = "text_rgb/heart.data"
+input_image_path = "images/ship_2.png"
+output_data_path = "text_rgb/ship_2.data"
 
 
 # opening a  image

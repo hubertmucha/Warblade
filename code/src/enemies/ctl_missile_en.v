@@ -28,7 +28,7 @@ module ctl_missile_en (
   localparam MISSLE_FLY = 2'b10;
 
 
-  localparam START_OFFSET = 50;
+  localparam START_OFFSET = 10;
   localparam WIDTH_RECT   = 48;                    
   localparam HEIGHT_RECT  = 64;
   localparam COUNTER_LIMIT = 90000;         

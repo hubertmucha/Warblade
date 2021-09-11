@@ -3,7 +3,12 @@
 // Declare the module and its ports. This is
 // using Verilog-2001 syntax.
 
- module draw_ship(
+ module draw_ship
+    #( parameter
+        XPOS_LIVES = 20,
+        N = 1,
+        RESET_X_POS = 0
+    )(
     input wire pclk,
     input wire rst,                                 
 
@@ -51,7 +56,7 @@
     output wire [10:0] ypos_missile,
     output wire on_missle,
 
-    output wire ship_down
+    output wire ship_down // TODO: change to dead counter
   );
 
 
@@ -59,7 +64,7 @@
 
   wire [10:0] xpos_ctl;
   wire is_ship_dead;
-  position_rect_ctl my_position_rect_ctl(
+  position_rect_ctl #(.RESET_X_POS(RESET_X_POS)) my_position_rect_ctl(
     //inputs
     .pclk(pclk),
     .rst(rst),
@@ -148,7 +153,7 @@
     .pixel_addr(pixel_addr)
   );
 
-  image_rom my_image_rom(
+  image_rom #(.N(N))  my_image_rom(
     .clk(pclk),
     .address(pixel_addr),
     .rgb(rgb_pixel)
@@ -233,7 +238,7 @@
 
   draw_live #(
     .N(1),
-    .XPOS(20),
+    .XPOS(XPOS_LIVES),
     .YPOS(50),
     .WIDTH_RECT(31),
     .HEIGHT_RECT(31)
@@ -281,7 +286,7 @@
 
   draw_live #(
     .N(2),
-    .XPOS(20),
+    .XPOS(XPOS_LIVES),
     .YPOS(85),
     .WIDTH_RECT(31),
     .HEIGHT_RECT(31)
@@ -328,7 +333,7 @@
 
   draw_live #(
     .N(3),
-    .XPOS(20),
+    .XPOS(XPOS_LIVES),
     .YPOS(120),
     .WIDTH_RECT(31),
     .HEIGHT_RECT(31)

@@ -4,7 +4,10 @@
 // 6-bit y and 6-bit x pixel coordinates.
 // The output 'rgb' is 12-bit number with concatenated
 // red, green and blue color values (4-bit each)
-module image_rom (
+module image_rom
+    #( parameter
+        N = 1
+    )(
     input wire clk ,
     input wire [13:0] address,  // address = {addry[6:0], addrx[6:0]}
     output reg [11:0] rgb
@@ -13,7 +16,14 @@ module image_rom (
 
 reg [11:0] rom [0:16383];
 
-initial $readmemh("/data/image_rom.data", rom); 
+initial begin
+    if (N==1) begin
+        $readmemh("/data/ship_1_rom.data", rom);
+    end
+    else begin
+        $readmemh("/data/ship_2_rom.data", rom);
+    end
+end
 
 always @(posedge clk)
     rgb <= rom[address];

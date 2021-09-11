@@ -30,6 +30,7 @@ module missle_ctl (
   localparam COUNTER_LIMIT = 90000;         
   localparam MISSLE_HEIGHT_MIN = 80;                   // TODO: change height of minimum (up limit) ypos of missle 
   localparam MISSLE_HEIGHT_MAX = 768 - HEIGHT_RECT;
+  localparam MISSLE_X_OFFSET = 19;
 
   reg on_out_nxt;
   reg [1:0] state, next_state;
@@ -107,7 +108,7 @@ module missle_ctl (
           on_out_nxt = 1;
           ypos_nxt = MISSLE_HEIGHT_MAX;
           refresh_counter_nxt = refresh_counter;
-          xpos_nxt = xpos_in;  
+          xpos_nxt = xpos_in + MISSLE_X_OFFSET;  
         end
 
       IDLE:

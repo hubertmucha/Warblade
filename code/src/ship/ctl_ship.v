@@ -11,7 +11,10 @@
 // Declare the module and its ports. This is
 // using Verilog-2001 syntax.
 
-module position_rect_ctl (
+module position_rect_ctl
+    #( parameter
+        RESET_X_POS = 0
+    )(
     input wire pclk,
     input wire rst,
 
@@ -32,8 +35,6 @@ module position_rect_ctl (
   localparam COUNTER_LIMIT = 30000;
   localparam DISPLAY_WIDTH_MIN = 80;
   localparam DISPLAY_WIDTH_MAX = 944 - WIDTH_RECT;
-
-  localparam RESET_X_POS = 0;
 
   reg [2:0] state, next_state;
   reg [10:0] xpos_nxt;

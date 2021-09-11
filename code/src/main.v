@@ -132,10 +132,15 @@ module main (
   wire [10:0] en4_x_missile, en4_y_missile;  
   wire [10:0] en5_x_missile, en5_y_missile;  
   
-  wire [10:0] xpos_missile, ypos_missile;
-  wire on_missile;
+  wire [10:0] xpos_missile_1, ypos_missile_1;
+  wire on_missile_1;
 
-  draw_ship my_draw_ship_1(
+  wire [10:0] vcount_1_to_2, hcount_1_to_2;
+  wire vsync_1_to_2, hsync_1_to_2;
+  wire vblnk_1_to_2, hblnk_1_to_2;
+  wire [11:0] rgb_1_to_2;
+
+  draw_ship #(.XPOS_LIVES(20), .N(1), .RESET_X_POS(20)) my_draw_ship_1(
     .pclk(pclk),                                  
     .rst(rst_out),                                   
     .left(left_d),
@@ -164,6 +169,49 @@ module main (
     .en_x_missile5(en5_x_missile),
     .en_y_missile5(en5_y_missile),                           
 
+    .vcount_out(vcount_1_to_2),                     
+    .vsync_out(vsync_1_to_2),                          
+    .vblnk_out(vblnk_1_to_2),                             
+    .hcount_out(hcount_1_to_2),                     
+    .hsync_out(hsync_1_to_2),                            
+    .hblnk_out(hblnk_1_to_2),                             
+    .rgb_out(rgb_1_to_2),
+    
+    .xpos_missile(xpos_missile_1),
+    .ypos_missile(ypos_missile_1),
+    .on_missle(on_missile_1)
+  );
+
+
+    draw_ship  #(.XPOS_LIVES(970), .N(2), .RESET_X_POS(940)) my_draw_ship_2(
+    .pclk(pclk),                                  
+    .rst(rst_out),                                   
+    .left(0),
+    .right(0),
+    .missile_button(missle_button),
+    .hblnk_in(hblnk_1_to_2),
+    .hcount_in(hcount_1_to_2),
+    .hsync_in(hsync_1_to_2),
+    .vcount_in(vcount_1_to_2),            
+    .vsync_in(vsync_1_to_2),                            
+    .vblnk_in(vblnk_1_to_2),
+    .rgb_in(rgb_1_to_2),
+
+    .en_x_missile1(en1_x_missile),
+    .en_y_missile1(en1_y_missile),
+
+    .en_x_missile2(en2_x_missile),
+    .en_y_missile2(en2_y_missile),
+
+    .en_x_missile3(en3_x_missile),
+    .en_y_missile3(en3_y_missile),
+
+    .en_x_missile4(en4_x_missile),
+    .en_y_missile4(en4_y_missile),  
+
+    .en_x_missile5(en5_x_missile),
+    .en_y_missile5(en5_y_missile),                           
+
     .vcount_out(vcount_r),                     
     .vsync_out(vsync_r),                          
     .vblnk_out(vblnk_r),                             
@@ -172,9 +220,9 @@ module main (
     .hblnk_out(hblnk_r),                             
     .rgb_out(rgb_r),
     
-    .xpos_missile(xpos_missile),
-    .ypos_missile(ypos_missile),
-    .on_missle(on_missile)
+    .xpos_missile(xpos_missile_2),
+    .ypos_missile(ypos_missile_2),
+    .on_missle(on_missile_2)
   );
 
   wire vsync_o, hsync_o;
@@ -204,9 +252,9 @@ module main (
 
     .level_in(level_fb),
     .level_change(level_change_fb),
-    .xpos_missile(xpos_missile),
-    .ypos_missile(ypos_missile),
-    .on_missle(on_missile),                          
+    .xpos_missile(xpos_missile_1),
+    .ypos_missile(ypos_missile_1),
+    .on_missle(on_missile_1),                          
 
     .vcount_out(vcount_s),                     
     .vsync_out(vsync_s),                          
