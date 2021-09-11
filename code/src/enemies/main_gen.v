@@ -31,8 +31,8 @@ module main_gen (
     reg [11:0] rom_y [0:460];
 
     initial begin  
-        $readmemb("E:/warblade/v3/Warblade/code/src/enemies/data/x.txt", rom_x);
-        $readmemb("E:/warblade/v3/Warblade/code/src/enemies/data/y.txt", rom_y);
+        $readmemb("/data/x.txt", rom_x);
+        $readmemb("/data/y.txt", rom_y);
     end
 
 
