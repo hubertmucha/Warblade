@@ -54,7 +54,6 @@
     // output wire [10:0] xpos_ship,
     output wire [10:0] xpos_missile,
     output wire [10:0] ypos_missile,
-    output wire on_missle,
 
     output wire ship_down // TODO: change to dead counter
   );

@@ -27,9 +27,11 @@
     input wire hblnk_in,                              // input horizontal blink
     input wire [11:0] rgb_in,
 
-    input wire [10:0] xpos_missile,
-    input wire [10:0] ypos_missile,
-    input wire on_missle,
+    input wire [10:0] xpos_missile_1,
+    input wire [10:0] ypos_missile_1,
+    
+    input wire [10:0] xpos_missile_2,
+    input wire [10:0] ypos_missile_2,
 
     input wire level_change,
 
@@ -75,9 +77,12 @@
     .pclk(pclk),
     .rst(rst),
 
-    .xpos_missile(xpos_missile),
-    .ypos_missile(ypos_missile),
-    .on_missile(on_missle),
+    .xpos_missile_1(xpos_missile_1),
+    .ypos_missile_1(ypos_missile_1),
+
+    .xpos_missile_2(xpos_missile_2),
+    .ypos_missile_2(ypos_missile_2),
+
     .level_change(level_change),
 
     .xpos_enemy(xpos),

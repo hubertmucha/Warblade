@@ -28,7 +28,7 @@
   );
 
   localparam Y_SHIP = 680;
-  localparam HALF_SHIP_WIDTH = 24;
+  localparam HALF_SHIP_WIDTH = 42;
 
   reg is_ship_dead_nxt;
   localparam SHIP_ALIVE = 1'b0;

@@ -133,18 +133,18 @@ module main (
   wire [10:0] en5_x_missile, en5_y_missile;  
   
   wire [10:0] xpos_missile_1, ypos_missile_1;
-  wire on_missile_1;
+  wire [10:0] xpos_missile_2, ypos_missile_2;
 
   wire [10:0] vcount_1_to_2, hcount_1_to_2;
   wire vsync_1_to_2, hsync_1_to_2;
   wire vblnk_1_to_2, hblnk_1_to_2;
   wire [11:0] rgb_1_to_2;
 
-  draw_ship #(.XPOS_LIVES(20), .N(1), .RESET_X_POS(20)) my_draw_ship_1(
+  draw_ship #(.XPOS_LIVES(20), .N(1), .RESET_X_POS(2)) my_draw_ship_1(
     .pclk(pclk),                                  
     .rst(rst_out),                                   
-    .left(left_d),
-    .right(right_d),
+    .left(0),
+    .right(0),
     .missile_button(missle_button),
     .hblnk_in(hblnk_b),
     .hcount_in(hcount_b),
@@ -178,16 +178,15 @@ module main (
     .rgb_out(rgb_1_to_2),
     
     .xpos_missile(xpos_missile_1),
-    .ypos_missile(ypos_missile_1),
-    .on_missle(on_missile_1)
+    .ypos_missile(ypos_missile_1)
   );
 
 
     draw_ship  #(.XPOS_LIVES(970), .N(2), .RESET_X_POS(940)) my_draw_ship_2(
     .pclk(pclk),                                  
     .rst(rst_out),                                   
-    .left(0),
-    .right(0),
+    .left(left_d),
+    .right(right_d),
     .missile_button(missle_button),
     .hblnk_in(hblnk_1_to_2),
     .hcount_in(hcount_1_to_2),
@@ -221,8 +220,7 @@ module main (
     .rgb_out(rgb_r),
     
     .xpos_missile(xpos_missile_2),
-    .ypos_missile(ypos_missile_2),
-    .on_missle(on_missile_2)
+    .ypos_missile(ypos_missile_2)
   );
 
   wire vsync_o, hsync_o;
@@ -252,9 +250,12 @@ module main (
 
     .level_in(level_fb),
     .level_change(level_change_fb),
-    .xpos_missile(xpos_missile_1),
-    .ypos_missile(ypos_missile_1),
-    .on_missle(on_missile_1),                          
+
+    .xpos_missile_1(xpos_missile_1),
+    .ypos_missile_1(ypos_missile_1),
+
+    .xpos_missile_2(xpos_missile_2),
+    .ypos_missile_2(ypos_missile_2),                      
 
     .vcount_out(vcount_s),                     
     .vsync_out(vsync_s),                          

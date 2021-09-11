@@ -10,10 +10,12 @@ module detec_col
     input wire pclk,
     input wire rst,
 
-    input wire [10:0] xpos_missile,
-    input wire [10:0] ypos_missile,
-    input wire on_missile,                  // TODO: obgadac z hubertem czy to w ogole jest potrzebne?
-
+    input wire [10:0] xpos_missile_1,
+    input wire [10:0] ypos_missile_1,
+ 
+    input wire [10:0] xpos_missile_2,
+    input wire [10:0] ypos_missile_2,
+            
     input wire level_change,
 
     input wire [10:0] xpos_enemy,
@@ -52,7 +54,9 @@ module detec_col
             end
             else begin
                 // && xpos_missile >= xpos_enemy + WIDTH_ENEMY
-                if( xpos_enemy - HALF_WIDTH_ENEMY <= xpos_missile && xpos_missile <= xpos_enemy + HALF_WIDTH_ENEMY && ypos_missile <= ypos_enemy + HEIGHT_ENEMY && ypos_missile >= ypos_enemy) begin
+                if( (xpos_enemy - HALF_WIDTH_ENEMY <= xpos_missile_1 && xpos_missile_1 <= xpos_enemy + HALF_WIDTH_ENEMY && ypos_missile_1 <= ypos_enemy + HEIGHT_ENEMY && ypos_missile_1 >= ypos_enemy)
+                || (xpos_enemy - HALF_WIDTH_ENEMY <= xpos_missile_2 && xpos_missile_2 <= xpos_enemy + HALF_WIDTH_ENEMY && ypos_missile_2 <= ypos_enemy + HEIGHT_ENEMY && ypos_missile_2 >= ypos_enemy)
+                ) begin
                     state_nxt = OFF;
                 end
                 else begin

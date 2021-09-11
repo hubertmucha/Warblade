@@ -6,9 +6,11 @@
     input wire pclk,                                  // Peripheral Clock
     input wire rst,                                   // Synchrous reset
 
-    input wire [10:0] xpos_missile,
-    input wire [10:0] ypos_missile,
-    input wire on_missle,
+    input wire [10:0] xpos_missile_1,
+    input wire [10:0] ypos_missile_1,
+
+    input wire [10:0] xpos_missile_2,
+    input wire [10:0] ypos_missile_2,
 
     input wire [10:0] vcount_in,                      // input vertical count
     input wire vsync_in,                              // input vertical sync
@@ -130,9 +132,11 @@
     .rgb_out(rgb_1),
 
     // inputs: to detecion colision with missile
-    .xpos_missile(xpos_missile),
-    .ypos_missile(ypos_missile),
-    .on_missle(on_missle),
+    .xpos_missile_1(xpos_missile_1),
+    .ypos_missile_1(ypos_missile_1),
+    
+    .xpos_missile_2(xpos_missile_2),
+    .ypos_missile_2(ypos_missile_2),
 
     // outputs: to detect_collision
     .en_x_missile(x_missile_1),
@@ -168,9 +172,12 @@
     .rgb_out(rgb_2),
 
     // to detecion colision with missile
-    .xpos_missile(xpos_missile),
-    .ypos_missile(ypos_missile),
-    .on_missle(on_missle),
+    .xpos_missile_1(xpos_missile_1),
+    .ypos_missile_1(ypos_missile_1),
+    
+    .xpos_missile_2(xpos_missile_2),
+    .ypos_missile_2(ypos_missile_2),
+    
 
     // outputs: to detect_collision
     .en_x_missile(x_missile_2),
@@ -206,9 +213,12 @@
     .rgb_out(rgb_3),
 
     // to detecion colision with missile
-    .xpos_missile(xpos_missile),
-    .ypos_missile(ypos_missile),
-    .on_missle(on_missle),
+    .xpos_missile_1(xpos_missile_1),
+    .ypos_missile_1(ypos_missile_1),
+    
+    .xpos_missile_2(xpos_missile_2),
+    .ypos_missile_2(ypos_missile_2),
+    
 
     // outputs: to detect_collision
     .en_x_missile(x_missile_3),
@@ -244,9 +254,11 @@
     .rgb_out(rgb_4),
 
     // to detecion colision with missile
-    .xpos_missile(xpos_missile),
-    .ypos_missile(ypos_missile),
-    .on_missle(on_missle),
+    .xpos_missile_1(xpos_missile_1),
+    .ypos_missile_1(ypos_missile_1),
+    
+    .xpos_missile_2(xpos_missile_2),
+    .ypos_missile_2(ypos_missile_2),
 
     // outputs: to detect_collision
     .en_x_missile(x_missile_4),
@@ -282,9 +294,12 @@
     .rgb_out(rgb_o),
 
     // to detecion colision with missile
-    .xpos_missile(xpos_missile),
-    .ypos_missile(ypos_missile),
-    .on_missle(on_missle),
+    .xpos_missile_1(xpos_missile_1),
+    .ypos_missile_1(ypos_missile_1),
+    
+    .xpos_missile_2(xpos_missile_2),
+    .ypos_missile_2(ypos_missile_2),
+    
 
     // outputs: to detect_collision
     .en_x_missile(x_missile_5),
