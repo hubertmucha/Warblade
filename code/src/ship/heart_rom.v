@@ -11,9 +11,9 @@ module heart_rom (
 );
 
 
-reg [10:0] rom [0:1023];
+reg [11:0] rom [0:1023];
 
-initial $readmemh("heart_rom.data", rom); 
+initial $readmemh("/data/heart_rom.data", rom); 
 
 always @(posedge clk)
     rgb <= rom[address];

@@ -152,8 +152,7 @@
     end
     else begin
       if(dead_count < N) begin
-        if (hcount_out_2 >= XPOS && hcount_out_2 <= XPOS + WIDTH_RECT 
-        && (vcount_out_2 >= YPOS && vcount_out_2 <= YPOS + HEIGHT_RECT)) begin
+        if (hcount_out_2 >= XPOS && hcount_out_2 <= XPOS + WIDTH_RECT && (vcount_out_2 >= YPOS && vcount_out_2 <= YPOS + HEIGHT_RECT)) begin
           if(rgb_pixel != TRANSPARENT_COLOR) begin
             rgb_out_nxt = rgb_pixel;
           end 

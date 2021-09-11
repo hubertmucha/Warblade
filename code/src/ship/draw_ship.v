@@ -55,6 +55,8 @@
   );
 
 
+  wire unlocked_dead;
+
   wire [10:0] xpos_ctl;
   wire is_ship_dead;
   position_rect_ctl my_position_rect_ctl(
@@ -201,6 +203,7 @@
   );
 
 	wire [3:0] dead_count;
+  
 
   signal_counter my_dead_counter(
 		.pclk(pclk),
@@ -210,7 +213,6 @@
 		.signal_counter(dead_count)
   );
 
-	wire unlocked_dead;
 
 	unlocked my_dead_unlocked(
 		.pclk(pclk),
@@ -225,6 +227,9 @@
   wire vblnk_dl_1, hblnk_dl_1;
   wire [11:0] rgb_dl_1;
   wire [3:0] dead_count_dl_1;
+
+  wire [11:0] pixel_addr_heart_1;
+  wire [11:0] rgb_pixel_heart_1;
 
   draw_live #(
     .N(1),
@@ -257,8 +262,7 @@
     .pixel_addr(pixel_addr_heart_1)
   );
 
-  wire [11:0] pixel_addr_heart_1;
-  wire [11:0] rgb_pixel_heart_1;
+
   heart_rom my_heart_rom_1(
     .clk(pclk),
     .address(pixel_addr_heart_1),
@@ -271,6 +275,9 @@
   wire vblnk_dl_2, hblnk_dl_2;
   wire [11:0] rgb_dl_2;
   wire [3:0] dead_count_dl_2;
+
+  wire [11:0] pixel_addr_heart_2;
+  wire [11:0] rgb_pixel_heart_2;
 
   draw_live #(
     .N(2),
@@ -303,8 +310,7 @@
     .pixel_addr(pixel_addr_heart_2)
   );
 
-  wire [11:0] pixel_addr_heart_2;
-  wire [11:0] rgb_pixel_heart_2;
+
   heart_rom my_heart_rom_2(
     .clk(pclk),
     .address(pixel_addr_heart_2),
@@ -316,6 +322,9 @@
   wire vblnk_dl_3, hblnk_dl_3;
   wire [11:0] rgb_dl_3;
   wire [3:0] dead_count_dl_3;
+
+  wire [11:0] pixel_addr_heart_3;
+  wire [11:0] rgb_pixel_heart_3;
 
   draw_live #(
     .N(3),
@@ -348,8 +357,7 @@
     .pixel_addr(pixel_addr_heart_3)
   );
 
-  wire [11:0] pixel_addr_heart_3;
-  wire [11:0] rgb_pixel_heart_3;
+
   heart_rom my_heart_rom_3(
     .clk(pclk),
     .address(pixel_addr_heart_3),
