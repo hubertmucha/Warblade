@@ -52,10 +52,6 @@
     .char_line(char_line)
   );
 
-  
-  // Instantiate the char_rom_16x16 module, which is
-  // the module you are using for this lab.
-
   wire [6:0] char_code; 
 
   char_rom_16x16 my_char_rom_16x16(
@@ -63,9 +59,6 @@
     .char_xy(char_xy),
     .char_code(char_code)
   );
-
-  // Instantiate the font_rom module, which is
-  // the module you are using for this lab.
 
   font_rom my_font_rom(
     .clk(pclk),

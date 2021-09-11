@@ -29,7 +29,7 @@
 
     input wire [10:0] xpos_missile_1,
     input wire [10:0] ypos_missile_1,
-    
+
     input wire [10:0] xpos_missile_2,
     input wire [10:0] ypos_missile_2,
 
@@ -96,6 +96,16 @@
     wire vblnk_1, hblnk_1;
     wire [11:0] rgb_1;
 
+
+    wire [11:0] rgb_pixel;
+    wire [13:0] pixel_addr;
+
+    enemy_rom my_enemy_rom(
+      .clk(pclk),
+      .address(pixel_addr),
+      .rgb(rgb_pixel)
+    );
+
     draw_enemy draw_en(
     .pclk(pclk),
     .rst(rst),
@@ -112,6 +122,7 @@
     .hsync_in(hsync_in),
     .hblnk_in(hblnk_in),
     .rgb_in(rgb_in),
+    .rgb_pixel(rgb_pixel),
 
     //output
     .vcount_out(vcount_1),
@@ -120,7 +131,8 @@
     .hcount_out(hcount_1),
     .hsync_out(hsync_1),
     .hblnk_out(hblnk_1),
-    .rgb_out(rgb_1)
+    .rgb_out(rgb_1),
+    .pixel_addr(pixel_addr)
   );
 
   wire [10:0] ypos_ctl_missle, xpos_ctl_missle;

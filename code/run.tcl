@@ -84,6 +84,7 @@ read_verilog {
     src/enemies/main_gen.v
 
     src/enemies/addres_gen.v
+    src/enemies/enemy_rom.v
 }
 
 add_files -fileset sim_1 {
