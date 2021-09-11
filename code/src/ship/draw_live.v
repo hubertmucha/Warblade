@@ -16,9 +16,8 @@
  #( parameter N = 1, 
     parameter XPOS = 20,
     parameter YPOS = 50,
-    parameter WIDTH_RECT = 32,
-    parameter HEIGHT_RECT = 32,
-    parameter [11:0] RGB_RECT = 12'hf_0_0
+    parameter WIDTH_RECT = 30,
+    parameter HEIGHT_RECT = 31
  )
  (
     input wire pclk,                                  // Peripheral Clock
@@ -43,13 +42,14 @@
     output reg hsync_out,                             // output horizontal sync
     output reg hblnk_out,                             // output horizontal blink
     output reg [11:0] rgb_out,
-    output reg [11:0] pixel_addr,
+    output reg [9:0] pixel_addr,
     output reg [3:0] dead_count_out
   );
 
   reg [11:0] rgb_out_nxt = 12'b0;
-  reg [11:0] pixel_addr_nxt = 12'b0;
-  reg [5:0] x_addr, y_addr, x_addr_nxt, y_addr_nxt;
+  reg [9:0] pixel_addr_nxt = 10'b0;
+  reg [4:0] x_addr, y_addr, x_addr_nxt, y_addr_nxt;
+  localparam TRANSPARENT_COLOR = 12'hf_f_f;
 
 
   // This module delays signals by one clk
@@ -153,16 +153,24 @@
     else begin
       if(dead_count < N) begin
         if (hcount_out_2 >= XPOS && hcount_out_2 <= XPOS + WIDTH_RECT 
-        && (vcount_out_2 >= YPOS && vcount_out_2 <= YPOS + HEIGHT_RECT)) 
-          rgb_out_nxt = RGB_RECT; 
-        else 
+        && (vcount_out_2 >= YPOS && vcount_out_2 <= YPOS + HEIGHT_RECT)) begin
+          if(rgb_pixel != TRANSPARENT_COLOR) begin
+            rgb_out_nxt = rgb_pixel;
+          end 
+          else begin 
+            rgb_out_nxt = rgb_out_2;
+          end
+        end
+        else begin
           rgb_out_nxt = rgb_out_2;
+        end
       end
-      else
+      else begin
         rgb_out_nxt = rgb_out_2;  
+      end
     end
-      y_addr_nxt = vcount_out_2[5:0] - YPOS[5:0];
-      x_addr_nxt = hcount_out_2[5:0] - XPOS[5:0];
-      pixel_addr_nxt = {y_addr[5:0], x_addr[5:0]};
+      y_addr_nxt = vcount_out_2[4:0] - YPOS[4:0];
+      x_addr_nxt = hcount_out_2[4:0] - XPOS[4:0];
+      pixel_addr_nxt = {y_addr[4:0], x_addr[4:0]};
   end
 endmodule
