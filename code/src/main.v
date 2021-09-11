@@ -146,14 +146,14 @@ module main (
     .dout({left_d, right_d})
   );
 
-  wire left_control, right_control;
-  key_control key_control1(
+  wire left_control, right_control, shoot_control;
+  key_control key_control_1(
     .pclk(pclk),
     .rst(rst),
     .pressed_key(key_press),
     .left(left_control),
     .right(right_control),
-    .shoot()
+    .shoot(shoot_control)
   );
 
   wire [10:0] en1_x_missile, en1_y_missile;
@@ -175,7 +175,7 @@ module main (
     .rst(rst_out),                                   
     .left(left_control),
     .right(right_control),
-    .missile_button(missle_button),
+    .missile_button(shoot_control),
     .hblnk_in(hblnk_b),
     .hcount_in(hcount_b),
     .hsync_in(hsync_b),

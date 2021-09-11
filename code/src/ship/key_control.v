@@ -15,50 +15,51 @@ module key_control(
   input wire pclk,
   input wire rst,
   input wire [7:0] pressed_key,
-  output wire left,
-  output wire right,
-  output wire shoot
+  output reg left,
+  output reg right,
+  output reg shoot
 );
 
-reg left_nxt, right_nxt, shoot_nxt;
-localparam LEFT_KEY   = 8'b00000111;
-localparam RIGHT_KEY  = 8'b00001000;
-localparam SHOOT_KEY  = 8'b00000011;
+  reg left_nxt, right_nxt, shoot_nxt;
+  localparam LEFT_KEY   = 8'b00000111;
+  localparam RIGHT_KEY  = 8'b00001000;
+  localparam SHOOT_KEY  = 8'b00000011;
 
-always @(posedge pclk) begin
-  if(rst) begin
-    left <= 1'b0;
-    right <= 1'b0;
-    shoot <= 1'b0;
+  always @(posedge pclk) begin
+    if(rst) begin
+      left <= 1'b0;
+      right <= 1'b0;
+      shoot <= 1'b0;
+    end
+    else begin
+      left <= left_nxt;
+      right <= right_nxt;
+      shoot <= shoot_nxt;
+    end
   end
-  else begin
-    left <= left_nxt;
-    right <= right_nxt;
-    shoot <= shoot_nxt;
-  end
-end
 
-always @* begin
-  case(pressed_key)
-    LEFT_KEY: begin
-      left_nxt = 1'b1;
-      right_nxt = 1'b0;
-      shoot_nxt = 1'b0;
-    end
-    RIGHT_KEY: begin
-      left_nxt = 1'b0;
-      right_nxt = 1'b1;
-      shoot_nxt = 1'b0;
-    end
-    SHOOT_KEY: begin
-      left_nxt = 1'b0;
-      right_nxt = 1'b0;
-      shoot_nxt = 1'b1;
-    end
-    default: begin
-      left_nxt = 1'b0;
-      right_nxt = 1'b0;
-      shoot_nxt = 1'b0;
-    end
-  endcase
-end
+  always @* begin
+    case(pressed_key)
+      LEFT_KEY: begin
+        left_nxt = 1'b1;
+        right_nxt = 1'b0;
+        shoot_nxt = 1'b0;
+      end
+      RIGHT_KEY: begin
+        left_nxt = 1'b0;
+        right_nxt = 1'b1;
+        shoot_nxt = 1'b0;
+      end
+      SHOOT_KEY: begin
+        left_nxt = 1'b0;
+        right_nxt = 1'b0;
+        shoot_nxt = 1'b1;
+      end
+      default: begin
+        left_nxt = 1'b0;
+        right_nxt = 1'b0;
+        shoot_nxt = 1'b0;
+      end
+    endcase
+  end
+endmodule
