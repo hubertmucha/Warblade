@@ -19,7 +19,7 @@ module unlocked(
   output reg unlocked_signal
 );
 
-localparam N = 2;
+localparam N = 3;
 reg unlocked_signal_nxt; 
 
 always @(posedge pclk) begin
@@ -34,6 +34,9 @@ end
 always @* begin
   if(signal_counter < N) begin
     unlocked_signal_nxt = 1'b1;
+  end
+  else begin
+    unlocked_signal_nxt = 1'b0;
   end
 end
 
