@@ -10,7 +10,8 @@ module keypad_main(
 
   output wire [3:0] rows,
   output wire [7:0] sseg_ca,
-  output wire [3:0] sseg_an
+  output wire [3:0] sseg_an,
+  output wire [7:0] key_press
 );
 
   wire pclk;
@@ -41,5 +42,6 @@ module keypad_main(
   assign rows = rows_o;
   assign sseg_ca = sseg_ca_o;
   assign sseg_an = sseg_an_o;
+  assign key_press = pressed_key;
 
 endmodule

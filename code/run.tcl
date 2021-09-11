@@ -89,6 +89,7 @@ read_verilog {
     src/keypad/key_sseg.v
     src/keypad/keypad_4x4_sm.v
     src/keypad/keypad_main.v
+    src/ship/key_control.v
 }
 
 read_vhdl {

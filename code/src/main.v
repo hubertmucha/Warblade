@@ -45,13 +45,15 @@ module main (
   wire [3:0] rows_k;
   wire [7:0] sseg_ca_k;
   wire [3:0] sseg_an_k;
+  wire [7:0] key_press;
 
   keypad_main my_keypad_main(
     .clk(pclk),
     .columns(columns),
     .rows(rows_k),
     .sseg_ca(sseg_ca_k),
-    .sseg_an(sseg_an_k)
+    .sseg_an(sseg_an_k),
+    .key_press(key_press)
   );
 
   // Mirrors pclk on a pin for use by the testbench;
@@ -144,6 +146,16 @@ module main (
     .dout({left_d, right_d})
   );
 
+  wire left_control, right_control;
+  key_control key_control1(
+    .pclk(pclk),
+    .rst(rst),
+    .pressed_key(key_press),
+    .left(left_control),
+    .right(right_control),
+    .shoot()
+  );
+
   wire [10:0] en1_x_missile, en1_y_missile;
   wire [10:0] en2_x_missile, en2_y_missile;
   wire [10:0] en3_x_missile, en3_y_missile;  
@@ -161,8 +173,8 @@ module main (
   draw_ship #(.XPOS_LIVES(20), .N(1), .RESET_X_POS(2)) my_draw_ship_1(
     .pclk(pclk),                                  
     .rst(rst_out),                                   
-    .left(0),
-    .right(0),
+    .left(left_control),
+    .right(right_control),
     .missile_button(missle_button),
     .hblnk_in(hblnk_b),
     .hcount_in(hcount_b),
