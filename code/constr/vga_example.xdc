@@ -40,7 +40,7 @@ set_property PACKAGE_PIN J18 [get_ports {b[3]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {b[3]}]
 
 # Constraints for PCLK_MIRROR
-set_property PACKAGE_PIN J1 [get_ports {pclk_mirror}]
+set_property PACKAGE_PIN A14 [get_ports {pclk_mirror}]
 set_property IOSTANDARD LVCMOS33 [get_ports {pclk_mirror}]
 
 # Constraints for CFGBVS
@@ -61,3 +61,58 @@ set_property PACKAGE_PIN W19 [get_ports {left}]
 set_property PACKAGE_PIN T18 [get_ports {missle_button}]
 	set_property IOSTANDARD LVCMOS33 [get_ports {missle_button}]
 
+
+## Constrains for keypad 4x4
+###Pmod Header JA
+###Sch name = JA1
+set_property PACKAGE_PIN J1 [get_ports {rows[0]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {rows[0]}]
+#Sch name = JA2
+set_property PACKAGE_PIN L2 [get_ports {rows[1]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {rows[1]}]
+#Sch name = JA3
+set_property PACKAGE_PIN J2 [get_ports {rows[2]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {rows[2]}]
+#Sch name = JA4
+set_property PACKAGE_PIN G2 [get_ports {rows[3]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {rows[3]}]
+#Sch name = JA7
+set_property PACKAGE_PIN H1 [get_ports {columns[0]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {columns[0]}]
+#Sch name = JA8
+set_property PACKAGE_PIN K2 [get_ports {columns[1]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {columns[1]}]
+#Sch name = JA9
+set_property PACKAGE_PIN H2 [get_ports {columns[2]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {columns[2]}]
+###Sch name = JA10
+##set_property PACKAGE_PIN G3 [get_ports {JA[7]}]					
+#	#set_property IOSTANDARD LVCMOS33 [get_ports {JA[7]}]
+
+
+## Constrains for 7 segment display
+set_property PACKAGE_PIN W7 [get_ports {sseg_ca[0]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {sseg_ca[0]}]
+set_property PACKAGE_PIN W6 [get_ports {sseg_ca[1]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {sseg_ca[1]}]
+set_property PACKAGE_PIN U8 [get_ports {sseg_ca[2]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {sseg_ca[2]}]
+set_property PACKAGE_PIN V8 [get_ports {sseg_ca[3]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {sseg_ca[3]}]
+set_property PACKAGE_PIN U5 [get_ports {sseg_ca[4]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {sseg_ca[4]}]
+set_property PACKAGE_PIN V5 [get_ports {sseg_ca[5]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {sseg_ca[5]}]
+set_property PACKAGE_PIN U7 [get_ports {sseg_ca[6]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {sseg_ca[6]}]
+set_property PACKAGE_PIN V7 [get_ports {sseg_ca[7]}]							
+	set_property IOSTANDARD LVCMOS33 [get_ports {sseg_ca[7]}]
+
+set_property PACKAGE_PIN U2 [get_ports {sseg_an[0]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {sseg_an[0]}]
+set_property PACKAGE_PIN U4 [get_ports {sseg_an[1]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {sseg_an[1]}]
+set_property PACKAGE_PIN V4 [get_ports {sseg_an[2]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {sseg_an[2]}]
+set_property PACKAGE_PIN W4 [get_ports {sseg_an[3]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {sseg_an[3]}]
