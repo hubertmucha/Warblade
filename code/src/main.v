@@ -16,13 +16,19 @@ module main (
   input wire right,                       // T17 button
   input wire left,                        // W19 button
   input wire missle_button,               // T18 button 
+
+  input wire [2:0] columns,
+  output wire [3:0] rows,
+  output wire [7:0] sseg_ca,
+  output wire [3:0] sseg_an,
+
+
   output wire vs,
   output wire hs,
   output wire [3:0] r,
   output wire [3:0] g,
   output wire [3:0] b,
   output wire pclk_mirror
-
   );
    
   wire pclk;
@@ -34,6 +40,18 @@ module main (
       .clk100Mhz(),
       .locked(locked),
       .reset(rst)
+  );
+
+  wire [3:0] rows_k;
+  wire [7:0] sseg_ca_k;
+  wire [3:0] sseg_an_k;
+
+  keypad_main my_keypad_main(
+    .clk(pclk),
+    .columns(columns),
+    .rows(rows_k),
+    .sseg_ca(sseg_ca_k),
+    .sseg_an(sseg_an_k)
   );
 
   // Mirrors pclk on a pin for use by the testbench;
@@ -331,5 +349,8 @@ module main (
     assign r  = rgb_o[11:8];
     assign g  = rgb_o[7:4];
     assign b  = rgb_o[3:0];
+    assign rows = rows_k;
+    assign sseg_ca = sseg_ca_k;
+    assign sseg_an = sseg_an_k;
     
 endmodule
