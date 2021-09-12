@@ -97,6 +97,8 @@ read_verilog {
     src/uart/mod_m_counter.v
     src/uart/flag_buf.v
     src/uart/fifo.v
+    src/uart/rx_done.v
+    src/uart/tx_lock.v
 }
 
 read_vhdl {

@@ -46,6 +46,7 @@ module main (
   );
 
   wire [7:0] key_uart;
+  wire [7:0] key_press;
   uart my_uart(
     // inputs
     .clk(clk100Mhz),
@@ -65,7 +66,6 @@ module main (
   wire [3:0] rows_k;
   wire [7:0] sseg_ca_k;
   wire [3:0] sseg_an_k;
-  wire [7:0] key_press;
 
   keypad_main my_keypad_main(
     .clk(pclk),
@@ -177,11 +177,7 @@ module main (
   );
 
   wire left_control_2, right_control_2, shoot_control_2;
-  key_control #(
-    .LEFT_KEY(8'b01100001),
-    .RIGHT_KEY(8'b01110011),
-    .SHOOT_KEY(8'b01101011)
-  ) key_control_2(
+  key_control key_control_2(
     .pclk(pclk),
     .rst(rst),
     .pressed_key(key_uart),

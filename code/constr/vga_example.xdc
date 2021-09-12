@@ -40,7 +40,7 @@ set_property PACKAGE_PIN J18 [get_ports {b[3]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {b[3]}]
 
 # Constraints for PCLK_MIRROR
-set_property PACKAGE_PIN A14 [get_ports {pclk_mirror}]
+set_property PACKAGE_PIN R18 [get_ports {pclk_mirror}]
 set_property IOSTANDARD LVCMOS33 [get_ports {pclk_mirror}]
 
 # Constraints for CFGBVS
@@ -118,9 +118,11 @@ set_property PACKAGE_PIN W4 [get_ports {sseg_an[3]}]
 	set_property IOSTANDARD LVCMOS33 [get_ports {sseg_an[3]}]
 
 
-# pin - B18 RX
-set_property PACKAGE_PIN B18 [get_ports {rx}]
+# pin JB1 - A14 RX
+set_property PACKAGE_PIN A14 [get_ports {rx}]
     set_property IOSTANDARD LVCMOS33 [get_ports {rx}]
-# pin - A18 RX
-set_property PACKAGE_PIN A18 [get_ports {tx}]
+# pin JB2 - A16 RX
+set_property PACKAGE_PIN A16 [get_ports {tx}]
     set_property IOSTANDARD LVCMOS33 [get_ports {tx}]
+
+
