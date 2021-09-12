@@ -14,8 +14,8 @@ module lock_reset (
     input wire locked,                                     
     output reg rst_out                                     
 );
-
-    always @(negedge locked or negedge lowest_freq_clk) begin
+    // na dluzej zarzucic reset
+    always @(negedge locked or posedge lowest_freq_clk) begin
         if(!locked) begin
             rst_out <= 1'b1;
         end

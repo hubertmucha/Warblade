@@ -15,9 +15,11 @@ module main (
   input wire rst,                         // U17 button - reset <-- look to vga_example.xdc
   input wire right,                       // T17 button
   input wire left,                        // W19 button
-  input wire missle_button,               // T18 button 
-
+  input wire missle_button,               // T18 button
+  input wire rx, 
   input wire [2:0] columns,
+
+  output tx,
   output wire [3:0] rows,
   output wire [7:0] sseg_ca,
   output wire [3:0] sseg_an,
@@ -33,19 +35,37 @@ module main (
    
   wire pclk;
   wire locked;
+  wire clk100Mhz;
   
   clk_wiz_0 my_clk_wiz_0(
       .clk(clk),
       .clk65Mhz(pclk),
-      .clk100Mhz(),
+      .clk100Mhz(clk100Mhz),
       .locked(locked),
       .reset(rst)
+  );
+
+  wire [7:0] key_uart;
+  wire [7:0] key_press;
+  uart my_uart(
+    // inputs
+    .clk(clk100Mhz),
+    .reset(rst),
+    .rd_uart(1'b0),
+    .wr_uart(1'b0),
+    .rx(rx),
+    .w_data(key_press),
+
+    // outputs
+    // .tx_full(),
+    // .rx_empty(),
+    .tx(tx),
+    .r_data(key_uart)
   );
 
   wire [3:0] rows_k;
   wire [7:0] sseg_ca_k;
   wire [3:0] sseg_an_k;
-  wire [7:0] key_press;
 
   keypad_main my_keypad_main(
     .clk(pclk),
@@ -146,14 +166,24 @@ module main (
     .dout({left_d, right_d})
   );
 
-  wire left_control, right_control, shoot_control;
+  wire left_control_1, right_control_1, shoot_control_1;
   key_control key_control_1(
     .pclk(pclk),
     .rst(rst),
     .pressed_key(key_press),
-    .left(left_control),
-    .right(right_control),
-    .shoot(shoot_control)
+    .left(left_control_1),
+    .right(right_control_1),
+    .shoot(shoot_control_1)
+  );
+
+  wire left_control_2, right_control_2, shoot_control_2;
+  key_control key_control_2(
+    .pclk(pclk),
+    .rst(rst),
+    .pressed_key(key_uart),
+    .left(left_control_2),
+    .right(right_control_2),
+    .shoot(shoot_control_2)
   );
 
   wire [10:0] en1_x_missile, en1_y_missile;
@@ -173,9 +203,9 @@ module main (
   draw_ship #(.XPOS_LIVES(20), .N(1), .RESET_X_POS(2)) my_draw_ship_1(
     .pclk(pclk),                                  
     .rst(rst_out),                                   
-    .left(left_control),
-    .right(right_control),
-    .missile_button(shoot_control),
+    .left(left_control_1),
+    .right(right_control_1),
+    .missile_button(shoot_control_1),
     .hblnk_in(hblnk_b),
     .hcount_in(hcount_b),
     .hsync_in(hsync_b),
@@ -215,9 +245,9 @@ module main (
     draw_ship  #(.XPOS_LIVES(970), .N(2), .RESET_X_POS(940)) my_draw_ship_2(
     .pclk(pclk),                                  
     .rst(rst_out),                                   
-    .left(left_d),
-    .right(right_d),
-    .missile_button(missle_button),
+    .left(left_control_2),
+    .right(right_control_2),
+    .missile_button(shoot_control_2),
     .hblnk_in(hblnk_1_to_2),
     .hcount_in(hcount_1_to_2),
     .hsync_in(hsync_1_to_2),
