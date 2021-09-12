@@ -11,7 +11,13 @@
 // Declare the module and its ports. This is
 // using Verilog-2001 syntax.
 
-module key_control(
+module key_control
+#(
+  parameter LEFT_KEY   = 8'b00000111,               // 7 key
+  parameter RIGHT_KEY  = 8'b00001000,               // 8 key
+  parameter SHOOT_KEY  = 8'b00000011                // 3 key
+)
+(
   input wire pclk,
   input wire rst,
   input wire [7:0] pressed_key,
@@ -21,9 +27,6 @@ module key_control(
 );
 
   reg left_nxt, right_nxt, shoot_nxt;
-  localparam LEFT_KEY   = 8'b00000111;
-  localparam RIGHT_KEY  = 8'b00001000;
-  localparam SHOOT_KEY  = 8'b00000011;
 
   always @(posedge pclk) begin
     if(rst) begin
