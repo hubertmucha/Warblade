@@ -116,3 +116,11 @@ set_property PACKAGE_PIN V4 [get_ports {sseg_an[2]}]
 	set_property IOSTANDARD LVCMOS33 [get_ports {sseg_an[2]}]
 set_property PACKAGE_PIN W4 [get_ports {sseg_an[3]}]					
 	set_property IOSTANDARD LVCMOS33 [get_ports {sseg_an[3]}]
+
+
+# pin - B18 RX
+set_property PACKAGE_PIN B18 [get_ports {rx}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {rx}]
+# pin - A18 RX
+set_property PACKAGE_PIN A18 [get_ports {tx}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {tx}]

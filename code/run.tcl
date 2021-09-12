@@ -90,6 +90,13 @@ read_verilog {
     src/keypad/keypad_4x4_sm.v
     src/keypad/keypad_main.v
     src/ship/key_control.v
+
+    src/uart/uart.v
+    src/uart/uart_tx.v
+    src/uart/uart_rx.v
+    src/uart/mod_m_counter.v
+    src/uart/flag_buf.v
+    src/uart/fifo.v
 }
 
 read_vhdl {
