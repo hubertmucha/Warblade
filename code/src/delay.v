@@ -1,5 +1,5 @@
 // File: delay.v
-// Author: HM & NP
+// Timing warnings deletions: HM
 
 module delay
     #( parameter
@@ -19,7 +19,7 @@ module delay
 
 //------------------------------------------------------------------------------
 // The first delay stage
-    always @(posedge clk or posedge rst)
+    always @(posedge clk)
     begin:delay_stage_0
         if(rst)
             del_mem[0] <= 0;
@@ -36,7 +36,7 @@ module delay
         for (i = 1; i < CLK_DEL ; i = i + 1 )
         begin:delay_stage
 
-            always @(posedge clk or posedge rst)
+            always @(posedge clk)
             begin
                 if(rst)
                     del_mem[i] <= 0;
