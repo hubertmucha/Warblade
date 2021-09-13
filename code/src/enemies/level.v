@@ -60,9 +60,11 @@ module level(
                 else begin
                     state_nxt = IDLE;
                 end
+                refresh_counter_nxt = 0;
             end
       LEVEL_UP: begin
-              state_nxt = HOLD;
+            refresh_counter_nxt = 0;
+            state_nxt = HOLD;
        end
       HOLD: begin
           if(refresh_counter >= COUNTER_LIMIT) begin
