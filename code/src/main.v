@@ -8,9 +8,6 @@
 module main (
   input wire clk,
   input wire rst,                         // U17 button - reset <-- look to vga_example.xdc
-  input wire right,                       // T17 button
-  input wire left,                        // W19 button
-  input wire missle_button,               // T18 button
   input wire rx, 
   input wire [2:0] columns,
 
