@@ -2,7 +2,7 @@
 // Author: NP
 
 `timescale 1 ns / 1 ps
-
+// TODO: add reset synch
 module tx_lock(
   input wire pclk,
   input wire [7:0] data_in,

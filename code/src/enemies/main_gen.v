@@ -21,8 +21,8 @@ module main_gen (
     reg [11:0] address, address_nxt = 0;
     reg [20:0] refresh_counter, refresh_counter_nxt = 0;
 
-    reg [11:0] rom_x [0:460];
-    reg [11:0] rom_y [0:460];
+    reg [10:0] rom_x [0:460];
+    reg [10:0] rom_y [0:460];
 
     initial begin  
         $readmemb("/data/x.txt", rom_x);
@@ -46,6 +46,8 @@ module main_gen (
     end
 
     always @* begin
+        address_nxt = address;
+        refresh_counter_nxt = refresh_counter;
         if(refresh_counter == COUNTER_LIMIT) begin
             if(address >= (LEVEL_SCALER*level) - 1) begin
                 address_nxt = (LEVEL_SCALER*(level-1));

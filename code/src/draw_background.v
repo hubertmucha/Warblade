@@ -81,6 +81,7 @@
   end
 
   always@* begin
+    rgb_out_nxt = rgb_out;
     if(level == 1) begin
       // During blanking, make it it black.
       if (vblnk_in || hblnk_in) rgb_out_nxt = 12'h0_0_0; 

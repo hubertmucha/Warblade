@@ -2,7 +2,7 @@
 // Author: NP
 
 `timescale 1 ns / 1 ps
-
+// TODO: add reset synch
 module rx_done(
     input wire pclk,
     input wire [7:0] r_data,

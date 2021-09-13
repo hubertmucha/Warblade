@@ -296,6 +296,7 @@ module char_rom_16x16 (
       8'hfd: char_code = 7'h20; //
       8'hfe: char_code = 7'h20; //
       8'hff: char_code = 7'h20; //
+      default: char_code = 7'h20; //
     endcase
   end
 endmodule
