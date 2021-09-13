@@ -54,7 +54,7 @@
     // output wire [10:0] xpos_ship,
     output wire [10:0] xpos_missile,
     output wire [10:0] ypos_missile,
-
+    output wire [3:0] dead_count_out,
     output wire ship_down // TODO: change to dead counter
   );
 
@@ -381,5 +381,6 @@
   assign ypos_missile = ypos_ctl_missle;
   assign on_missle   = on_ctl_missle;
   assign ship_down   = is_ship_dead;
+  assign dead_count_out = dead_count_dl_3;
 
   endmodule

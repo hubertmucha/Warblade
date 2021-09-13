@@ -58,6 +58,8 @@ read_verilog {
     src/text/font_rom.v
     src/text/draw_rect_char.v
     src/text/char_rom_16x16.v
+    src/text/draw_rect_game_over.v
+    src/text/char_rom_game_over.v
     src/text/textbox.v
 
     src/ship/ctl_ship.v

@@ -140,6 +140,9 @@ module main (
   wire vblnk_1_to_2, hblnk_1_to_2;
   wire [11:0] rgb_1_to_2;
 
+  wire [3:0] dead_count_1;
+  wire [3:0] dead_count_2;
+
   draw_ship #(.XPOS_LIVES(20), .N(1), .RESET_X_POS(2)) my_draw_ship_1(
     .pclk(pclk),                                  
     .rst(rst_out),                                   
@@ -178,7 +181,8 @@ module main (
     .rgb_out(rgb_1_to_2),
     
     .xpos_missile(xpos_missile_1),
-    .ypos_missile(ypos_missile_1)
+    .ypos_missile(ypos_missile_1),
+    .dead_count_out(dead_count_1)
   );
 
 
@@ -220,7 +224,8 @@ module main (
     .rgb_out(rgb_r),
     
     .xpos_missile(xpos_missile_2),
-    .ypos_missile(ypos_missile_2)
+    .ypos_missile(ypos_missile_2),
+    .dead_count_out(dead_count_2)
   );
 
   wire vsync_o, hsync_o;
@@ -236,6 +241,8 @@ module main (
 
   wire level_change_nxt;
   wire level_change_fb;
+
+
 
   enemies my_enemies(
     .pclk(pclk),                                  
@@ -282,23 +289,23 @@ module main (
     .level_change_out(level_change_nxt) // output form level.v
   );
 
-  // 7 9 14
+  // 11  9 14
 
-  delay #(.WIDTH(4), .CLK_DEL(11)) delay_fb_loop_level(
+  delay #(.WIDTH(4), .CLK_DEL(12)) delay_fb_loop_level(
     .clk(pclk),
     .rst(rst_out),
     .din({level_nxt}),
     .dout({level_fb})
   );
 
-  delay #(.WIDTH(4), .CLK_DEL(9)) delay_fb_loop_level_bg( 
+  delay #(.WIDTH(4), .CLK_DEL(10)) delay_fb_loop_level_bg( 
     .clk(pclk),
     .rst(rst_out),
     .din({level_nxt}),
     .dout({level_fb_draw_background})
   );
 
-  delay #(.WIDTH(1), .CLK_DEL(14)) delay_fb_loop_level_change(
+  delay #(.WIDTH(1), .CLK_DEL(15)) delay_fb_loop_level_change(
     .clk(pclk),
     .rst(rst_out),
     .din({level_change_nxt}),
@@ -317,7 +324,10 @@ module main (
     .vcount_in(vcount_s),            
     .vsync_in(vsync_s),                            
     .vblnk_in(vblnk_s),
-    .rgb_in(rgb_s),                           
+    .rgb_in(rgb_s),
+
+    .dead_count_1(3), // TODO: change to dead_count_1
+    .dead_count_2(dead_count_2),                           
                  
     .vsync_out(vsync_o),                                             
     .hsync_out(hsync_o),                                                     
