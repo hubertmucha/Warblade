@@ -47,12 +47,8 @@ read_verilog {
 
     src/clk_wiz_0_clk_wiz.v
     src/clk_wiz_0.v
-
-    src/dff.v
     src/lock_reset.v
-
-    src/dff_image.v
-    src/dff_hs_vs.v
+    
     src/delay.v
 
     src/text/font_rom.v
