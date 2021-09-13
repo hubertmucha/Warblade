@@ -182,11 +182,8 @@ module main (
     .shoot(shoot_control_2)
   );
 
-  wire [10:0] en1_x_missile, en1_y_missile;
-  wire [10:0] en2_x_missile, en2_y_missile;
-  wire [10:0] en3_x_missile, en3_y_missile;  
-  wire [10:0] en4_x_missile, en4_y_missile;  
-  wire [10:0] en5_x_missile, en5_y_missile;  
+  wire [54:0] en_x_missile_group;  
+  wire [54:0] en_y_missile_group;  
   
   wire [10:0] xpos_missile_1, ypos_missile_1;
   wire [10:0] xpos_missile_2, ypos_missile_2;
@@ -213,20 +210,20 @@ module main (
     .vblnk_in(vga_vblnk_b),
     .rgb_in(vga_rgb_b),
 
-    .en_x_missile1(en1_x_missile),
-    .en_y_missile1(en1_y_missile),
+    .en_x_missile1(en_x_missile_group[10:0]),
+    .en_y_missile1(en_y_missile_group[10:0]),
 
-    .en_x_missile2(en2_x_missile),
-    .en_y_missile2(en2_y_missile),
+    .en_x_missile2(en_x_missile_group[21:11]),
+    .en_y_missile2(en_y_missile_group[21:11]),
 
-    .en_x_missile3(en3_x_missile),
-    .en_y_missile3(en3_y_missile),
+    .en_x_missile3(en_x_missile_group[32:22]),
+    .en_y_missile3(en_y_missile_group[32:22]),
 
-    .en_x_missile4(en4_x_missile),
-    .en_y_missile4(en4_y_missile),  
+    .en_x_missile4(en_x_missile_group[43:33]),
+    .en_y_missile4(en_y_missile_group[43:33]),
 
-    .en_x_missile5(en5_x_missile),
-    .en_y_missile5(en5_y_missile),                           
+    .en_x_missile5(en_x_missile_group[54:44]),
+    .en_y_missile5(en_y_missile_group[54:44]),             
 
     .vcount_out(vga_vcount_1_to_2),                     
     .vsync_out(vga_vsync_1_to_2),                          
@@ -256,20 +253,20 @@ module main (
     .vblnk_in(vga_vblnk_1_to_2),
     .rgb_in(vga_rgb_1_to_2),
 
-    .en_x_missile1(en1_x_missile),
-    .en_y_missile1(en1_y_missile),
+    .en_x_missile1(en_x_missile_group[10:0]),
+    .en_y_missile1(en_y_missile_group[10:0]),
 
-    .en_x_missile2(en2_x_missile),
-    .en_y_missile2(en2_y_missile),
+    .en_x_missile2(en_x_missile_group[21:11]),
+    .en_y_missile2(en_y_missile_group[21:11]),
 
-    .en_x_missile3(en3_x_missile),
-    .en_y_missile3(en3_y_missile),
+    .en_x_missile3(en_x_missile_group[32:22]),
+    .en_y_missile3(en_y_missile_group[32:22]),
 
-    .en_x_missile4(en4_x_missile),
-    .en_y_missile4(en4_y_missile),  
+    .en_x_missile4(en_x_missile_group[43:33]),
+    .en_y_missile4(en_y_missile_group[43:33]),
 
-    .en_x_missile5(en5_x_missile),
-    .en_y_missile5(en5_y_missile),                           
+    .en_x_missile5(en_x_missile_group[54:44]),
+    .en_y_missile5(en_y_missile_group[54:44]),                   
 
     .vcount_out(vga_vcount_r),                     
     .vsync_out(vga_vsync_r),                          
@@ -328,16 +325,8 @@ module main (
     .hblnk_out(vga_hblnk_s),                             
     .rgb_out(vga_rgb_s),
 
-    .en1_x_missile(en1_x_missile),
-    .en1_y_missile(en1_y_missile),
-    .en2_x_missile(en2_x_missile),
-    .en2_y_missile(en2_y_missile),
-    .en3_x_missile(en3_x_missile),
-    .en3_y_missile(en3_y_missile),
-    .en4_x_missile(en4_x_missile),
-    .en4_y_missile(en4_y_missile),
-    .en5_x_missile(en5_x_missile),
-    .en5_y_missile(en5_y_missile),
+    .en_x_missile_group(en_x_missile_group),
+    .en_y_missile_group(en_y_missile_group),
 
     .level_out(level_nxt),              // output form level.v
     .level_change_out(level_change_nxt) // output form level.v

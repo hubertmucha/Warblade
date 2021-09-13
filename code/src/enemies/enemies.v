@@ -31,20 +31,8 @@
     output wire hblnk_out,                             // output horizontal blink
     output wire [11:0] rgb_out,
 
-    output wire [10:0] en1_x_missile,
-    output wire [10:0] en1_y_missile,
-
-    output wire [10:0] en2_x_missile,
-    output wire [10:0] en2_y_missile,
-
-    output wire [10:0] en3_x_missile,
-    output wire [10:0] en3_y_missile,
-
-    output wire [10:0] en4_x_missile,
-    output wire [10:0] en4_y_missile,
-
-    output wire [10:0] en5_x_missile,
-    output wire [10:0] en5_y_missile,
+    output wire [54:0] en_x_missile_group,
+    output wire [54:0] en_y_missile_group,
 
     output wire [3:0] level_out,
     output wire level_change_out
@@ -337,19 +325,7 @@
   assign level_out  = level_nxt;
   assign level_change_out  = level_change_out_nxt;
 
-  assign en1_x_missile = x_missile_1;
-  assign en1_y_missile = y_missile_1;
-
-  assign en2_x_missile = x_missile_2;
-  assign en2_y_missile = y_missile_2;
-
-  assign en3_x_missile = x_missile_3;
-  assign en3_y_missile = y_missile_3;
-
-  assign en4_x_missile = x_missile_4;
-  assign en4_y_missile = y_missile_4;
-
-  assign en5_x_missile = x_missile_5;
-  assign en5_y_missile = y_missile_5;
+  assign en_x_missile_group = {x_missile_1, x_missile_2, x_missile_3, x_missile_4, x_missile_5};
+  assign en_y_missile_group = {y_missile_1, y_missile_2, y_missile_3, y_missile_4, y_missile_5};
 
   endmodule
