@@ -63,7 +63,7 @@ module ctl_missile_en (
 
 // ---------------------------------------
 // next state logic
-  always @(state or missle_button) begin
+  always @(state or missle_button or enemy_lives or ypos_out) begin
     case(state)
       IDLE:begin
               if (missle_button && enemy_lives) begin

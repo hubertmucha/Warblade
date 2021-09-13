@@ -98,7 +98,7 @@
 
 
     wire [11:0] rgb_pixel;
-    wire [13:0] pixel_addr;
+    wire [11:0] pixel_addr;
 
     enemy_rom my_enemy_rom(
       .clk(pclk),

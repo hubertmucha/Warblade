@@ -51,11 +51,9 @@
     output wire hblnk_out,                             
     output wire [11:0] rgb_out,
 
-    // output wire [10:0] xpos_ship,
     output wire [10:0] xpos_missile,
     output wire [10:0] ypos_missile,
-    output wire [3:0] dead_count_out,
-    output wire ship_down // TODO: change to dead counter
+    output wire [3:0] dead_count_out
   );
 
 
@@ -232,7 +230,7 @@
   wire [11:0] rgb_dl_1;
   wire [3:0] dead_count_dl_1;
 
-  wire [11:0] pixel_addr_heart_1;
+  wire [9:0] pixel_addr_heart_1;
   wire [11:0] rgb_pixel_heart_1;
 
   draw_live #(
@@ -280,7 +278,7 @@
   wire [11:0] rgb_dl_2;
   wire [3:0] dead_count_dl_2;
 
-  wire [11:0] pixel_addr_heart_2;
+  wire [9:0] pixel_addr_heart_2;
   wire [11:0] rgb_pixel_heart_2;
 
   draw_live #(
@@ -327,7 +325,7 @@
   wire [11:0] rgb_dl_3;
   wire [3:0] dead_count_dl_3;
 
-  wire [11:0] pixel_addr_heart_3;
+  wire [9:0] pixel_addr_heart_3;
   wire [11:0] rgb_pixel_heart_3;
 
   draw_live #(
@@ -380,7 +378,6 @@
   assign xpos_missile = xpos_ctl_missle;
   assign ypos_missile = ypos_ctl_missle;
   assign on_missle   = on_ctl_missle;
-  assign ship_down   = is_ship_dead;
   assign dead_count_out = dead_count_dl_3;
 
   endmodule

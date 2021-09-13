@@ -13,7 +13,6 @@ module main_gen (
     input wire rst,
     input wire [3:0] level,
 
-    output reg [11:0] addr,
     output reg [10:0] x_out,
     output reg [10:0] y_out
 
@@ -38,13 +37,13 @@ module main_gen (
 
     always @(posedge pclk) begin
         if (rst) begin
-            addr <= 0;
+            address <= 0;
             refresh_counter <= 0;
             x_out <= 0;
             y_out <= 0;
         end
         else begin
-            addr <= address_nxt;
+            address <= address_nxt;
             refresh_counter <= refresh_counter_nxt;
             x_out <= rom_x[address_nxt];
             y_out <= 100;
@@ -53,11 +52,11 @@ module main_gen (
 
     always @* begin
         if(refresh_counter == COUNTER_LIMIT) begin
-            if(addr >= (LEVEL_SCALER*level) - 1)begin
+            if(address >= (LEVEL_SCALER*level) - 1)begin
                 address_nxt = (LEVEL_SCALER*(level-1));
             end
             else begin
-                address_nxt = addr + 1;
+                address_nxt = address + 1;
             end
                 refresh_counter_nxt = 0;
             end
