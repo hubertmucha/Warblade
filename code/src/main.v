@@ -205,13 +205,13 @@ module main (
     .left(left_control_1),
     .right(right_control_1),
     .missile_button(shoot_control_1),
-    .hblnk_in(hblnk_b),
-    .hcount_in(hcount_b),
-    .hsync_in(hsync_b),
-    .vcount_in(vcount_b),            
-    .vsync_in(vsync_b),                            
-    .vblnk_in(vblnk_b),
-    .rgb_in(rgb_b),
+    .hblnk_in(vga_hblnk_b),
+    .hcount_in(vga_hcount_b),
+    .hsync_in(vga_hsync_b),
+    .vcount_in(vga_vcount_b),            
+    .vsync_in(vga_vsync_b),                            
+    .vblnk_in(vga_vblnk_b),
+    .rgb_in(vga_rgb_b),
 
     .en_x_missile1(en1_x_missile),
     .en_y_missile1(en1_y_missile),
@@ -248,13 +248,13 @@ module main (
     .left(left_control_2),
     .right(right_control_2),
     .missile_button(shoot_control_2),
-    .hblnk_in(hblnk_1_to_2),
-    .hcount_in(hcount_1_to_2),
-    .hsync_in(hsync_1_to_2),
-    .vcount_in(vcount_1_to_2),            
-    .vsync_in(vsync_1_to_2),                            
-    .vblnk_in(vblnk_1_to_2),
-    .rgb_in(rgb_1_to_2),
+    .hblnk_in(vga_hblnk_1_to_2),
+    .hcount_in(vga_hcount_1_to_2),
+    .hsync_in(vga_hsync_1_to_2),
+    .vcount_in(vga_vcount_1_to_2),            
+    .vsync_in(vga_vsync_1_to_2),                            
+    .vblnk_in(vga_vblnk_1_to_2),
+    .rgb_in(vga_rgb_1_to_2),
 
     .en_x_missile1(en1_x_missile),
     .en_y_missile1(en1_y_missile),
@@ -390,11 +390,11 @@ module main (
 
 
     // Just pass these through.
-    assign hs = hsync_o;
-    assign vs = vsync_o;
-    assign r  = rgb_o[11:8];
-    assign g  = rgb_o[7:4];
-    assign b  = rgb_o[3:0];
+    assign hs = vga_hsync_o;
+    assign vs = vga_vsync_o;
+    assign r  = vga_rgb_o[11:8];
+    assign g  = vga_rgb_o[7:4];
+    assign b  = vga_rgb_o[3:0];
     assign rows = rows_k;
     assign sseg_ca = sseg_ca_k;
     assign sseg_an = sseg_an_k;
