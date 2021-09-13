@@ -61,17 +61,17 @@ module main (
   // Instantiate the vga_timing module, which is
   // the module you are designing for this lab.
 
-  wire [10:0] vcount, hcount;
-  wire vsync, hsync;
-  wire vblnk, hblnk;
+  wire [10:0] vga_vcount, vga_hcount;
+  wire vga_vsync, vga_hsync;
+  wire vga_vblnk, vga_hblnk;
 
   vga_timing my_timing (
-    .vcount(vcount),
-    .vsync(vsync),
-    .vblnk(vblnk),
-    .hcount(hcount),
-    .hsync(hsync),
-    .hblnk(hblnk),
+    .vcount(vga_vcount),
+    .vsync(vga_vsync),
+    .vblnk(vga_vblnk),
+    .hcount(vga_hcount),
+    .hsync(vga_hsync),
+    .hblnk(vga_hblnk),
 
     .pclk(pclk),
     .rst(rst_out)
@@ -80,15 +80,15 @@ module main (
   // Instantiate the draw_background module, which is
   // the module you are designing for this lab.
 
-  wire [10:0] vcount_b, hcount_b;
-  wire vsync_b, hsync_b;
-  wire vblnk_b, hblnk_b;
-  wire [11:0] rgb_b;
+  wire [10:0] vga_vcount_b, vga_hcount_b;
+  wire vga_vsync_b, vga_hsync_b;
+  wire vga_vblnk_b, vga_hblnk_b;
+  wire [11:0] vga_rgb_b;
 
-  wire [10:0] vcount_r, hcount_r;
-  wire vsync_r, hsync_r;
-  wire vblnk_r, hblnk_r;
-  wire [11:0] rgb_r;
+  wire [10:0] vga_vcount_r, vga_hcount_r;
+  wire vga_vsync_r, vga_hsync_r;
+  wire vga_vblnk_r, vga_hblnk_r;
+  wire [11:0] vga_rgb_r;
 
   wire [3:0] level_fb;
   wire [3:0] level_fb_draw_background;
@@ -98,23 +98,23 @@ module main (
     .rst(rst_out),
 
     //input
-    .vcount_in(vcount),
-    .vsync_in(vsync),
-    .vblnk_in(vblnk),
-    .hcount_in(hcount),
-    .hsync_in(hsync),
-    .hblnk_in(hblnk),
+    .vcount_in(vga_vcount),
+    .vsync_in(vga_vsync),
+    .vblnk_in(vga_vblnk),
+    .hcount_in(vga_hcount),
+    .hsync_in(vga_hsync),
+    .hblnk_in(vga_hblnk),
 
     .level(level_fb_draw_background),
 
     //output
-    .vcount_out(vcount_b),
-    .vsync_out(vsync_b),
-    .vblnk_out(vblnk_b),
-    .hcount_out(hcount_b),
-    .hsync_out(hsync_b),
-    .hblnk_out(hblnk_b),
-    .rgb_out(rgb_b)
+    .vcount_out(vga_vcount_b),
+    .vsync_out(vga_vsync_b),
+    .vblnk_out(vga_vblnk_b),
+    .hcount_out(vga_hcount_b),
+    .hsync_out(vga_hsync_b),
+    .hblnk_out(vga_hblnk_b),
+    .rgb_out(vga_rgb_b)
   );
   
   // dff delay controls signals
@@ -135,10 +135,10 @@ module main (
   wire [10:0] xpos_missile_1, ypos_missile_1;
   wire [10:0] xpos_missile_2, ypos_missile_2;
 
-  wire [10:0] vcount_1_to_2, hcount_1_to_2;
-  wire vsync_1_to_2, hsync_1_to_2;
-  wire vblnk_1_to_2, hblnk_1_to_2;
-  wire [11:0] rgb_1_to_2;
+  wire [10:0] vga_vcount_1_to_2, vga_hcount_1_to_2;
+  wire vga_vsync_1_to_2, vga_hsync_1_to_2;
+  wire vga_vblnk_1_to_2, vga_hblnk_1_to_2;
+  wire [11:0] vga_rgb_1_to_2;
 
   wire [3:0] dead_count_1;
   wire [3:0] dead_count_2;
@@ -149,13 +149,13 @@ module main (
     .left(0),
     .right(0),
     .missile_button(missle_button),
-    .hblnk_in(hblnk_b),
-    .hcount_in(hcount_b),
-    .hsync_in(hsync_b),
-    .vcount_in(vcount_b),            
-    .vsync_in(vsync_b),                            
-    .vblnk_in(vblnk_b),
-    .rgb_in(rgb_b),
+    .hblnk_in(vga_hblnk_b),
+    .hcount_in(vga_hcount_b),
+    .hsync_in(vga_hsync_b),
+    .vcount_in(vga_vcount_b),            
+    .vsync_in(vga_vsync_b),                            
+    .vblnk_in(vga_vblnk_b),
+    .rgb_in(vga_rgb_b),
 
     .en_x_missile1(en1_x_missile),
     .en_y_missile1(en1_y_missile),
@@ -172,13 +172,13 @@ module main (
     .en_x_missile5(en5_x_missile),
     .en_y_missile5(en5_y_missile),                           
 
-    .vcount_out(vcount_1_to_2),                     
-    .vsync_out(vsync_1_to_2),                          
-    .vblnk_out(vblnk_1_to_2),                             
-    .hcount_out(hcount_1_to_2),                     
-    .hsync_out(hsync_1_to_2),                            
-    .hblnk_out(hblnk_1_to_2),                             
-    .rgb_out(rgb_1_to_2),
+    .vcount_out(vga_vcount_1_to_2),                     
+    .vsync_out(vga_vsync_1_to_2),                          
+    .vblnk_out(vga_vblnk_1_to_2),                             
+    .hcount_out(vga_hcount_1_to_2),                     
+    .hsync_out(vga_hsync_1_to_2),                            
+    .hblnk_out(vga_hblnk_1_to_2),                             
+    .rgb_out(vga_rgb_1_to_2),
     
     .xpos_missile(xpos_missile_1),
     .ypos_missile(ypos_missile_1),
@@ -192,13 +192,13 @@ module main (
     .left(left_d),
     .right(right_d),
     .missile_button(missle_button),
-    .hblnk_in(hblnk_1_to_2),
-    .hcount_in(hcount_1_to_2),
-    .hsync_in(hsync_1_to_2),
-    .vcount_in(vcount_1_to_2),            
-    .vsync_in(vsync_1_to_2),                            
-    .vblnk_in(vblnk_1_to_2),
-    .rgb_in(rgb_1_to_2),
+    .hblnk_in(vga_hblnk_1_to_2),
+    .hcount_in(vga_hcount_1_to_2),
+    .hsync_in(vga_hsync_1_to_2),
+    .vcount_in(vga_vcount_1_to_2),            
+    .vsync_in(vga_vsync_1_to_2),                            
+    .vblnk_in(vga_vblnk_1_to_2),
+    .rgb_in(vga_rgb_1_to_2),
 
     .en_x_missile1(en1_x_missile),
     .en_y_missile1(en1_y_missile),
@@ -215,26 +215,26 @@ module main (
     .en_x_missile5(en5_x_missile),
     .en_y_missile5(en5_y_missile),                           
 
-    .vcount_out(vcount_r),                     
-    .vsync_out(vsync_r),                          
-    .vblnk_out(vblnk_r),                             
-    .hcount_out(hcount_r),                     
-    .hsync_out(hsync_r),                            
-    .hblnk_out(hblnk_r),                             
-    .rgb_out(rgb_r),
+    .vcount_out(vga_vcount_r),                     
+    .vsync_out(vga_vsync_r),                          
+    .vblnk_out(vga_vblnk_r),                             
+    .hcount_out(vga_hcount_r),                     
+    .hsync_out(vga_hsync_r),                            
+    .hblnk_out(vga_hblnk_r),                             
+    .rgb_out(vga_rgb_r),
     
     .xpos_missile(xpos_missile_2),
     .ypos_missile(ypos_missile_2),
     .dead_count_out(dead_count_2)
   );
 
-  wire vsync_o, hsync_o;
-  wire [11:0] rgb_o;
+  wire vga_vsync_o, vga_hsync_o;
+  wire [11:0] vga_rgb_o;
 
-  wire [10:0] vcount_s, hcount_s;
-  wire vsync_s, hsync_s;
-  wire vblnk_s, hblnk_s;
-  wire [11:0] rgb_s;
+  wire [10:0] vga_vcount_s, vga_hcount_s;
+  wire vga_vsync_s, vga_hsync_s;
+  wire vga_vblnk_s, vga_hblnk_s;
+  wire [11:0] vga_rgb_s;
 
   wire [3:0] level_nxt;
 
@@ -247,13 +247,13 @@ module main (
   enemies my_enemies(
     .pclk(pclk),                                  
     .rst(rst_out),                                   
-    .hblnk_in(hblnk_r),
-    .hcount_in(hcount_r),
-    .hsync_in(hsync_r),
-    .vcount_in(vcount_r),            
-    .vsync_in(vsync_r),                            
-    .vblnk_in(vblnk_r),
-    .rgb_in(rgb_r),
+    .hblnk_in(vga_hblnk_r),
+    .hcount_in(vga_hcount_r),
+    .hsync_in(vga_hsync_r),
+    .vcount_in(vga_vcount_r),            
+    .vsync_in(vga_vsync_r),                            
+    .vblnk_in(vga_vblnk_r),
+    .rgb_in(vga_rgb_r),
 
     .level_in(level_fb),
     .level_change(level_change_fb),
@@ -264,13 +264,13 @@ module main (
     .xpos_missile_2(xpos_missile_2),
     .ypos_missile_2(ypos_missile_2),                      
 
-    .vcount_out(vcount_s),                     
-    .vsync_out(vsync_s),                          
-    .vblnk_out(vblnk_s),                             
-    .hcount_out(hcount_s),                     
-    .hsync_out(hsync_s),                            
-    .hblnk_out(hblnk_s),                             
-    .rgb_out(rgb_s),
+    .vcount_out(vga_vcount_s),                     
+    .vsync_out(vga_vsync_s),                          
+    .vblnk_out(vga_vblnk_s),                             
+    .hcount_out(vga_hcount_s),                     
+    .hsync_out(vga_hsync_s),                            
+    .hblnk_out(vga_hblnk_s),                             
+    .rgb_out(vga_rgb_s),
 
     .en1_x_missile(en1_x_missile),
     .en1_y_missile(en1_y_missile),
@@ -318,28 +318,28 @@ module main (
     .rst(rst_out),
     .level(level_nxt),                                   
 
-    .hblnk_in(hblnk_s),
-    .hcount_in(hcount_s),
-    .hsync_in(hsync_s),
-    .vcount_in(vcount_s),            
-    .vsync_in(vsync_s),                            
-    .vblnk_in(vblnk_s),
-    .rgb_in(rgb_s),
+    .hblnk_in(vga_hblnk_s),
+    .hcount_in(vga_hcount_s),
+    .hsync_in(vga_hsync_s),
+    .vcount_in(vga_vcount_s),            
+    .vsync_in(vga_vsync_s),                            
+    .vblnk_in(vga_vblnk_s),
+    .rgb_in(vga_rgb_s),
 
     .dead_count_1(3), // TODO: change to dead_count_1
     .dead_count_2(dead_count_2),                           
                  
-    .vsync_out(vsync_o),                                             
-    .hsync_out(hsync_o),                                                     
-    .rgb_out(rgb_o)
+    .vsync_out(vga_vsync_o),                                             
+    .hsync_out(vga_hsync_o),                                                     
+    .rgb_out(vga_rgb_o)
   );
 
 
     // Just pass these through.
-    assign hs = hsync_o;
-    assign vs = vsync_o;
-    assign r  = rgb_o[11:8];
-    assign g  = rgb_o[7:4];
-    assign b  = rgb_o[3:0];
+    assign hs = vga_hsync_o;
+    assign vs = vga_vsync_o;
+    assign r  = vga_rgb_o[11:8];
+    assign g  = vga_rgb_o[7:4];
+    assign b  = vga_rgb_o[3:0];
     
 endmodule
