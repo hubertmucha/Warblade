@@ -53,59 +53,17 @@
 
 
   // This module delays signals by one clk
-  wire [10:0] vcount_out_1, hcount_out_1; 
-  wire vsync_out_1, hsync_out_1;
-  wire vblnk_out_1, hblnk_out_1;
-  wire [11:0] rgb_out_1;
+  wire [10:0] vcount_delay, hcount_delay; 
+  wire vsync_delay, hsync_delay;
+  wire vblnk_delay, hblnk_delay;
+  wire [11:0] rgb_delay;
 
-  dff_image my_dff_image_1
-  (
-    .pclk(pclk),
+
+  delay #(.WIDTH(38), .CLK_DEL(2)) my_delay_h_v(
+    .clk(pclk),
     .rst(rst),
-
-    .vcount_in(vcount_in),
-    .vsync_in(vsync_in),
-    .vblnk_in(vblnk_in),
-    .hcount_in(hcount_in),
-    .hsync_in(hsync_in),
-    .hblnk_in(hblnk_in),
-    .rgb_in(rgb_in),
-
-    .vcount_out(vcount_out_1),
-    .vsync_out(vsync_out_1),
-    .vblnk_out(vblnk_out_1),
-    .hcount_out(hcount_out_1),
-    .hsync_out(hsync_out_1),
-    .hblnk_out(hblnk_out_1),
-    .rgb_out(rgb_out_1)
-  );
-
-  // This module delays signals by one clk
-  wire [10:0] vcount_out_2, hcount_out_2; 
-  wire vsync_out_2, hsync_out_2;
-  wire vblnk_out_2, hblnk_out_2;
-  wire [11:0] rgb_out_2;
-
-  dff_image my_dff_image_2
-  (
-    .pclk(pclk),
-    .rst(rst),
-
-    .vcount_in(vcount_out_1),
-    .vsync_in(vsync_out_1),
-    .vblnk_in(vblnk_out_1),
-    .hcount_in(hcount_out_1),
-    .hsync_in(hsync_out_1),
-    .hblnk_in(hblnk_out_1),
-    .rgb_in(rgb_out_1),
-
-    .vcount_out(vcount_out_2),
-    .vsync_out(vsync_out_2),
-    .vblnk_out(vblnk_out_2),
-    .hcount_out(hcount_out_2),
-    .hsync_out(hsync_out_2),
-    .hblnk_out(hblnk_out_2),
-    .rgb_out(rgb_out_2)
+    .din({hsync_in, vsync_in, hcount_in, vcount_in, hblnk_in, vblnk_in, rgb_in}),
+    .dout({hsync_delay, vsync_delay, hcount_delay, vcount_delay, hblnk_delay, vblnk_delay, rgb_delay})
   );
 
   // This is a simple rectangle pattern generator.
@@ -126,14 +84,14 @@
     end
     else begin
       // Just pass these through.
-      hsync_out <= hsync_out_2;
-      vsync_out <= vsync_out_2;
+      hsync_out <= hsync_delay;
+      vsync_out <= vsync_delay;
 
-      hblnk_out <= hblnk_out_2;
-      vblnk_out <= vblnk_out_2;
+      hblnk_out <= hblnk_delay;
+      vblnk_out <= vblnk_delay;
 
-      hcount_out <= hcount_out_2;
-      vcount_out <= vcount_out_2;
+      hcount_out <= hcount_delay;
+      vcount_out <= vcount_delay;
 
       rgb_out    <= rgb_out_nxt;
       pixel_addr <= pixel_addr_nxt;
@@ -147,29 +105,29 @@
   
   // rectangle generator
   always @* begin
-    if (vblnk_out_2 || hblnk_out_2) begin
+    if (vblnk_delay || hblnk_delay) begin
           rgb_out_nxt = 12'h0_0_0;
     end
     else begin
       if(dead_count < N) begin
-        if (hcount_out_2 >= XPOS && hcount_out_2 <= XPOS + WIDTH_RECT && (vcount_out_2 >= YPOS && vcount_out_2 <= YPOS + HEIGHT_RECT)) begin
+        if (hcount_delay >= XPOS && hcount_delay <= XPOS + WIDTH_RECT && (vcount_delay >= YPOS && vcount_delay <= YPOS + HEIGHT_RECT)) begin
           if(rgb_pixel != TRANSPARENT_COLOR) begin
             rgb_out_nxt = rgb_pixel;
           end 
           else begin 
-            rgb_out_nxt = rgb_out_2;
+            rgb_out_nxt = rgb_delay;
           end
         end
         else begin
-          rgb_out_nxt = rgb_out_2;
+          rgb_out_nxt = rgb_delay;
         end
       end
       else begin
-        rgb_out_nxt = rgb_out_2;  
+        rgb_out_nxt = rgb_delay;  
       end
     end
-      y_addr_nxt = vcount_out_2[4:0] - YPOS[4:0];
-      x_addr_nxt = hcount_out_2[4:0] - XPOS[4:0];
+      y_addr_nxt = vcount_delay[4:0] - YPOS[4:0];
+      x_addr_nxt = hcount_delay[4:0] - XPOS[4:0];
       pixel_addr_nxt = {y_addr[4:0], x_addr[4:0]};
   end
 endmodule

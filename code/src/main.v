@@ -1,5 +1,7 @@
-// File: vga_example.v
+// File: main.v
 // This is the top level design for EE178 Lab #4.
+
+// This is a top module for Warblade project
 
 // The `timescale directive specifies what the
 // simulation time units are (1 ns here) and what
@@ -36,9 +38,6 @@ module main (
       .reset(rst)
   );
 
-  // Mirrors pclk on a pin for use by the testbench;
-  // not functionally required for this design to work.
-
   ODDR pclk_oddr (
     .Q(pclk_mirror),
     .C(pclk),
@@ -57,9 +56,6 @@ module main (
     .locked(locked),
     .rst_out(rst_out)
   );
-  
-  // Instantiate the vga_timing module, which is
-  // the module you are designing for this lab.
 
   wire [10:0] vga_vcount, vga_hcount;
   wire vga_vsync, vga_hsync;
@@ -76,9 +72,6 @@ module main (
     .pclk(pclk),
     .rst(rst_out)
   );
-
-  // Instantiate the draw_background module, which is
-  // the module you are designing for this lab.
 
   wire [10:0] vga_vcount_b, vga_hcount_b;
   wire vga_vsync_b, vga_hsync_b;
@@ -278,10 +271,8 @@ module main (
     .en2_y_missile(en2_y_missile),
     .en3_x_missile(en3_x_missile),
     .en3_y_missile(en3_y_missile),
-
     .en4_x_missile(en4_x_missile),
     .en4_y_missile(en4_y_missile),
-
     .en5_x_missile(en5_x_missile),
     .en5_y_missile(en5_y_missile),
 
@@ -334,8 +325,6 @@ module main (
     .rgb_out(vga_rgb_o)
   );
 
-
-    // Just pass these through.
     assign hs = vga_hsync_o;
     assign vs = vga_vsync_o;
     assign r  = vga_rgb_o[11:8];
