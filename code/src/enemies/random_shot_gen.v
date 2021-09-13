@@ -1,15 +1,7 @@
 // File: random_shoot_gen.v
-// Author: Hubert Mucha
-// This module generate random impult to start the enemy missile.
-
-// The `timescale directive specifies what the
-// simulation time units are (1 ns here) and what
-// the simulator time step should be (1 ps here).
+// Author: HM
 
 `timescale 1 ns / 1 ps
-
-// Declare the module and its ports. This is
-// using Verilog-2001 syntax.
 
 module random_shoot_gen
 (
@@ -29,7 +21,7 @@ module random_shoot_gen
     localparam WAIT = 2'b10;
 
     reg [1:0] state = 0;
-    reg [1:0] state_nxt = 0; // machine start form ON satte
+    reg [1:0] state_nxt = 0; // mact form ON sattehine star
     reg on_nxt = 0;
     reg [25:0] counter = 0;
     reg [25:0] counter_nxt = 0;

@@ -1,5 +1,5 @@
 // File: draw_react.v
-// Author: HEHE
+// Author: HM & NP
 // This module is drawing react (ship)
 
 `timescale 1 ns / 1 ps

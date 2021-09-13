@@ -1,5 +1,5 @@
 // File: keypad_4x4_sm.v
-// Author: Natalia Pluta
+// Author: NP
 // This module is FSM for keypad.
 
 `timescale 1 ns / 1 ps

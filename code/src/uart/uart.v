@@ -1,4 +1,6 @@
-//Listing 8.4
+// File: uart.v
+// Author: NP
+
 module uart
    #( // Default setting:
       // 38,400 baud, 8 data bits, 1 stop bit, 2^2 FIFO

@@ -1,5 +1,5 @@
 // File: unlocked.v
-// Author: Natalia Pluta
+// Author: NP
 // Date: 4.09.2021r.
 
 // The `timescale directive specifies what the

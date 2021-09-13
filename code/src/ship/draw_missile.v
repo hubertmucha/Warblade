@@ -1,11 +1,8 @@
 // File: draw_missile.v
-// Author: HEHE
+// Author: HM & NP
 // This module is drawing missile of ship
 
 `timescale 1 ns / 1 ps
-
-// Declare the module and its ports. This is
-// using Verilog-2001 syntax.
 
  module draw_missile(
     input wire pclk,                                  // Peripheral Clock

@@ -1,5 +1,5 @@
 // File: lock_signal.v 
-// Author: NPL
+// Author: NP
 // Date: 29.08.2021r.
 
 // The `timescale directive specifies what the

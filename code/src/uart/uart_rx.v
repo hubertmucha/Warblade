@@ -1,4 +1,6 @@
-//Listing 8.1
+// File: uart_rx.v
+// Author: NP
+
 module uart_rx
    #(
      parameter DBIT = 8,     // # data bits

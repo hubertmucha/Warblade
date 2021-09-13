@@ -1,4 +1,6 @@
-// Listing 4.11
+// File: mod_m_counter.v
+// Author: NP
+
 module mod_m_counter
    #(
     parameter N=4, // number of bits in counter

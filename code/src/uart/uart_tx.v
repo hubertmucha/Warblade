@@ -1,4 +1,6 @@
-//Listing 8.3
+// File: uart_tx.v
+// Author: NP
+
 module uart_tx
    #(
      parameter DBIT = 8,     // # data bits

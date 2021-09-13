@@ -80,7 +80,6 @@ read_verilog {
     src/enemies/ctl_missile_en.v
     src/enemies/level.v
     src/enemies/main_gen.v
-    src/enemies/addres_gen.v
     src/enemies/enemy_rom.v
 
     src/keypad/key_sseg.v
@@ -92,8 +91,6 @@ read_verilog {
     src/uart/uart_tx.v
     src/uart/uart_rx.v
     src/uart/mod_m_counter.v
-    src/uart/flag_buf.v
-    src/uart/fifo.v
     src/uart/rx_done.v
     src/uart/tx_lock.v
 }

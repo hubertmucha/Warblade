@@ -1,15 +1,7 @@
 // File: draw_missile_en.v
-// Author: HEHE
-// This module is drawing enemy missile
-
-// The `timescale directive specifies what the
-// simulation time units are (1 ns here) and what
-// the simulator time step should be (1 ps here).
+// Author: HM
 
 `timescale 1 ns / 1 ps
-
-// Declare the module and its ports. This is
-// using Verilog-2001 syntax.
 
  module draw_missile_en(
     input wire pclk,                                  // Peripheral Clock

@@ -1,15 +1,7 @@
 // File: draw_enemy.v
-// Author: Hubert Mucha
-// This module is drawing enemy
-
-// The `timescale directive specifies what the
-// simulation time units are (1 ns here) and what
-// the simulator time step should be (1 ps here).
+// Author: HM & NP
 
 `timescale 1 ns / 1 ps
-
-// Declare the module and its ports. This is
-// using Verilog-2001 syntax.
 
  module draw_enemy(
     input wire pclk,                                  // Peripheral Clock

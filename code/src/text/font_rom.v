@@ -1,3 +1,6 @@
+// File: font_rom.v
+// Author: HM
+
 `timescale 1ns / 1ps
 // ROM with synchonous read (inferring Block RAM)
 // character ROM
