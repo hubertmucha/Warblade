@@ -52,7 +52,7 @@ module main_gen (
 
     always @* begin
         if(refresh_counter == COUNTER_LIMIT) begin
-            if(address >= (LEVEL_SCALER*level) - 1)begin
+            if(address >= (LEVEL_SCALER*level) - 1) begin
                 address_nxt = (LEVEL_SCALER*(level-1));
             end
             else begin

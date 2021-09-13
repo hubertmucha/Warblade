@@ -28,7 +28,13 @@ module ctl_enemy
 );
 
     always @(posedge pclk) begin
-        x_out <= x_in + (N*100);
-        y_out <= y_in; 
+        if(rst) begin
+          x_out <= 11'b0;
+          y_out <= 11'b0;
+        end
+        else begin
+          x_out <= x_in + (N*100);
+          y_out <= y_in; 
+        end
     end
 endmodule

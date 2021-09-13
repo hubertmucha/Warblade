@@ -1,6 +1,4 @@
 // File: main.v
-// This is the top level design for EE178 Lab #4.
-
 // This is a top module for Warblade project
 
 // The `timescale directive specifies what the
@@ -53,14 +51,10 @@ module main (
     // inputs
     .clk(clk100Mhz),
     .reset(rst),
-    .rd_uart(1'b0),
-    .wr_uart(1'b0),
     .rx(rx),
     .w_data(key_press),
 
     // outputs
-    // .tx_full(),
-    // .rx_empty(),
     .tx(tx),
     .r_data(key_uart)
   );

@@ -13,7 +13,7 @@ module uart
    )
    (
     input wire clk, reset,
-    input wire rd_uart, wr_uart, rx,
+    input wire rx,
     input wire [7:0] w_data,
     output wire tx,
     output wire [7:0] r_data

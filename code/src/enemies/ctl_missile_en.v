@@ -93,6 +93,7 @@ module ctl_missile_en (
     case(state)
       MISSLE_FLY:
         begin
+          xpos_nxt = xpos_out;
           on_out_nxt = 1; 
           if(refresh_counter == COUNTER_LIMIT) begin
             refresh_counter_nxt = 0;
@@ -117,6 +118,7 @@ module ctl_missile_en (
           on_out_nxt = 0; 
           ypos_nxt = ypos_in;
           refresh_counter_nxt = refresh_counter;
+          xpos_nxt = xpos_out;
         end
 
       default:        
@@ -124,6 +126,7 @@ module ctl_missile_en (
           on_out_nxt = on_out; 
           ypos_nxt = ypos_out;
           refresh_counter_nxt = refresh_counter;
+          xpos_nxt = xpos_out;
         end
       endcase
   end
