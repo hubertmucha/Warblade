@@ -18,13 +18,14 @@ module level(
     localparam IDLE = 2'b00;
     localparam LEVEL_UP = 2'b01;
     localparam RESET = 2'b10;
+    localparam HOLD = 2'b11;
 
     localparam COUNTER_LIMIT = 100000000;
       
     reg [1:0] state, state_nxt;
 
     reg [3:0] level_nxt = 1;
-    reg [3:0] level_nxt_machine = 1;
+    //reg [3:0] level_nxt_machine = 1;
 
     reg level_up_out_nxt;
     reg [32:0] refresh_counter, refresh_counter_nxt = 0;
@@ -60,14 +61,17 @@ module level(
                     state_nxt = IDLE;
                 end
             end
-      LEVEL_UP: begin // delay for level up included
-            if(refresh_counter >= COUNTER_LIMIT) begin
-              refresh_counter_nxt = 0;
-              state_nxt = RESET;
-            end
-            else begin
-              refresh_counter_nxt = refresh_counter + 1;
-              state_nxt = LEVEL_UP;
+      LEVEL_UP: begin
+              state_nxt = HOLD;
+       end
+      HOLD: begin
+          if(refresh_counter >= COUNTER_LIMIT) begin
+            refresh_counter_nxt = 0;
+            state_nxt = RESET;
+          end
+          else begin
+            refresh_counter_nxt = refresh_counter + 1;
+            state_nxt = HOLD;
             end
        end
       RESET: begin
@@ -95,24 +99,23 @@ module level(
         IDLE: begin
             level_nxt = level; 
             level_up_out_nxt = 0;
-            level_nxt_machine = level + 1;
         end
         LEVEL_UP: begin
-            level_nxt = level_nxt_machine;
+            level_nxt = level + 1;
             level_up_out_nxt = 0;
-            //level_nxt_machine = level;
+        end
+        HOLD: begin
+            level_nxt = level;
+            level_up_out_nxt = 1;
         end
         RESET: begin
             level_nxt = level;
             level_up_out_nxt = 1;
-            //level_nxt_machine = level;
         end
         default: begin
             level_nxt = level; 
             level_up_out_nxt = 0;
-            level_nxt_machine = level + 1;
         end  
       endcase
   end
-
 endmodule
