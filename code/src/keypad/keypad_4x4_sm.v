@@ -62,6 +62,9 @@ module keypad_4x4_sm(
       STATE_ROW3: begin
         next_state = STATE_ROW0;
       end
+      default: begin
+        next_state = state;
+      end
     endcase
   end
 
