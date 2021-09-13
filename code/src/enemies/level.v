@@ -51,6 +51,7 @@ module level(
   always @(lives_1 or lives_2 or lives_3 or lives_4 or lives_5 or state or refresh_counter) begin
     case(state)
       IDLE: begin
+                //refresh_counter_nxt = refresh_counter;
                 if( (!lives_1) && (!lives_2) && (!lives_3) && (!lives_4) && (!lives_5)) begin
                 //if((!lives_5)) begin // for developing purpose
                     state_nxt = LEVEL_UP;
@@ -78,7 +79,11 @@ module level(
             refresh_counter_nxt = refresh_counter + 1;
             state_nxt = RESET;
           end
-       end  
+       end
+      default: begin
+        state_nxt = IDLE;
+        refresh_counter_nxt = refresh_counter;
+      end  
 
     endcase
   end
@@ -95,10 +100,17 @@ module level(
         LEVEL_UP: begin
             level_nxt = level_nxt_machine;
             level_up_out_nxt = 0;
+            //level_nxt_machine = level;
         end
         RESET: begin
             level_nxt = level;
             level_up_out_nxt = 1;
+            //level_nxt_machine = level;
+        end
+        default: begin
+            level_nxt = level; 
+            level_up_out_nxt = 0;
+            level_nxt_machine = level + 1;
         end  
       endcase
   end
