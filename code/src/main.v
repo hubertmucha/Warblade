@@ -42,7 +42,7 @@ module main (
 
   wire [7:0] key_uart;
   wire [7:0] key_press;
-  uart my_uart(
+  uart uart(
     // inputs
     .clk(clk100Mhz),
     .reset(rst),
@@ -62,7 +62,7 @@ module main (
   wire [7:0] sseg_ca_k;
   wire [3:0] sseg_an_k;
 
-  keypad_main my_keypad_main(
+  keypad_main keypad(
     .clk(pclk),
     .columns(columns),
     .rows(rows_k),
@@ -155,46 +155,46 @@ module main (
     .dout({left_d, right_d})
   );
 
-  wire left_control_1, right_control_1, shoot_control_1;
+  wire kc_left_control_1, kc_right_control_1, kc_shoot_control_1;
   key_control key_control_1(
     .pclk(pclk),
     .rst(rst),
     .pressed_key(key_press),
-    .left(left_control_1),
-    .right(right_control_1),
-    .shoot(shoot_control_1)
+    .left(kc_left_control_1),
+    .right(kc_right_control_1),
+    .shoot(kc_shoot_control_1)
   );
 
-  wire left_control_2, right_control_2, shoot_control_2;
+  wire kc_left_control_2, kc_right_control_2, kc_shoot_control_2;
   key_control key_control_2(
     .pclk(pclk),
     .rst(rst),
     .pressed_key(key_uart),
-    .left(left_control_2),
-    .right(right_control_2),
-    .shoot(shoot_control_2)
+    .left(kc_left_control_2),
+    .right(kc_right_control_2),
+    .shoot(kc_shoot_control_2)
   );
 
   wire [54:0] en_x_missile_group;  
   wire [54:0] en_y_missile_group;  
   
-  wire [10:0] xpos_missile_1, ypos_missile_1;
-  wire [10:0] xpos_missile_2, ypos_missile_2;
+  wire [10:0] d2s_xpos_missile_1, d2s_ypos_missile_1;
+  wire [10:0] d2s_xpos_missile_2, d2s_ypos_missile_2;
 
   wire [10:0] vga_vcount_1_to_2, vga_hcount_1_to_2;
   wire vga_vsync_1_to_2, vga_hsync_1_to_2;
   wire vga_vblnk_1_to_2, vga_hblnk_1_to_2;
   wire [11:0] vga_rgb_1_to_2;
 
-  wire [3:0] dead_count_1;
-  wire [3:0] dead_count_2;
+  wire [3:0] d2t_dead_count_1;
+  wire [3:0] d2t_dead_count_2;
 
   draw_ship #(.XPOS_LIVES(20), .N(1), .RESET_X_POS(2)) my_draw_ship_1(
     .pclk(pclk),                                  
     .rst(rst_out),                                   
-    .left(left_control_1),
-    .right(right_control_1),
-    .missile_button(shoot_control_1),
+    .left(kc_left_control_1),
+    .right(kc_right_control_1),
+    .missile_button(kc_shoot_control_1),
     .hblnk_in(vga_hblnk_b),
     .hcount_in(vga_hcount_b),
     .hsync_in(vga_hsync_b),
@@ -226,18 +226,18 @@ module main (
     .hblnk_out(vga_hblnk_1_to_2),                             
     .rgb_out(vga_rgb_1_to_2),
     
-    .xpos_missile(xpos_missile_1),
-    .ypos_missile(ypos_missile_1),
-    .dead_count_out(dead_count_1)
+    .xpos_missile(d2s_xpos_missile_1),
+    .ypos_missile(d2s_ypos_missile_1),
+    .dead_count_out(d2t_dead_count_1)
   );
 
 
     draw_ship  #(.XPOS_LIVES(970), .N(2), .RESET_X_POS(940)) my_draw_ship_2(
     .pclk(pclk),                                  
     .rst(rst_out),                                   
-    .left(left_control_2),
-    .right(right_control_2),
-    .missile_button(shoot_control_2),
+    .left(kc_left_control_2),
+    .right(kc_right_control_2),
+    .missile_button(kc_shoot_control_2),
     .hblnk_in(vga_hblnk_1_to_2),
     .hcount_in(vga_hcount_1_to_2),
     .hsync_in(vga_hsync_1_to_2),
@@ -269,9 +269,9 @@ module main (
     .hblnk_out(vga_hblnk_r),                             
     .rgb_out(vga_rgb_r),
     
-    .xpos_missile(xpos_missile_2),
-    .ypos_missile(ypos_missile_2),
-    .dead_count_out(dead_count_2)
+    .xpos_missile(d2s_xpos_missile_2),
+    .ypos_missile(d2s_ypos_missile_2),
+    .dead_count_out(d2t_dead_count_2)
   );
 
   wire vga_vsync_o, vga_hsync_o;
@@ -304,11 +304,11 @@ module main (
     .level_in(level_fb),
     .level_change(level_change_fb),
 
-    .xpos_missile_1(xpos_missile_1),
-    .ypos_missile_1(ypos_missile_1),
+    .xpos_missile_1(d2s_xpos_missile_1),
+    .ypos_missile_1(d2s_ypos_missile_1),
 
-    .xpos_missile_2(xpos_missile_2),
-    .ypos_missile_2(ypos_missile_2),                      
+    .xpos_missile_2(d2s_xpos_missile_2),
+    .ypos_missile_2(d2s_ypos_missile_2),                      
 
     .vcount_out(vga_vcount_s),                     
     .vsync_out(vga_vsync_s),                          
@@ -362,8 +362,8 @@ module main (
     .vblnk_in(vga_vblnk_s),
     .rgb_in(vga_rgb_s),
 
-    .dead_count_1(3), // TODO: change to dead_count_1
-    .dead_count_2(dead_count_2),                           
+    .dead_count_1(d2t_dead_count_1),
+    .dead_count_2(d2t_dead_count_2),                           
                  
     .vsync_out(vga_vsync_o),                                             
     .hsync_out(vga_hsync_o),                                                     
