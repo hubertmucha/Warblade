@@ -60,7 +60,7 @@ def hex_calc(char):
     global mydic
     return mydic[char]
 
-mystring = "Level 1" #input string to generate code
+mystring = "game over" #input string to generate code
 mytab = mystring.split(sep=' ')
 mynewstr = ""
 for w in mytab:

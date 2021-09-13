@@ -45,7 +45,7 @@ module detec_col
 
 // ---------------------------------------
 // next state logic
-  always @(state or rst or level_change) begin
+  always @(state or rst or level_change or xpos_enemy or ypos_enemy or xpos_missile_1 or ypos_missile_1 or xpos_missile_2 or ypos_missile_2 ) begin
     case(state)
       ON:
         begin

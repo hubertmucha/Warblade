@@ -58,7 +58,7 @@ module position_rect_ctl
 
 // ---------------------------------------
 // next state logic
-  always @(state or left or right) begin
+  always @(state or left or right or dead_s) begin
     case(state)
       IDLE: begin
         if(dead_s)

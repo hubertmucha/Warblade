@@ -49,7 +49,7 @@ module level(
 
 // ---------------------------------------
 // next state logic
-  always @(lives_1 or lives_2 or lives_3 or lives_4 or lives_5) begin
+  always @(lives_1 or lives_2 or lives_3 or lives_4 or lives_5 or state or refresh_counter) begin
     case(state)
       IDLE: begin
                 if( (!lives_1) && (!lives_2) && (!lives_3) && (!lives_4) && (!lives_5)) begin

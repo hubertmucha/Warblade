@@ -25,7 +25,8 @@ initial begin
     end
 end
 
-always @(posedge clk)
+always @(posedge clk) begin
     rgb <= rom[address];
+    end
 
 endmodule

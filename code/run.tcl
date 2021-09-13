@@ -47,17 +47,15 @@ read_verilog {
 
     src/clk_wiz_0_clk_wiz.v
     src/clk_wiz_0.v
-
-    src/dff.v
     src/lock_reset.v
-
-    src/dff_image.v
-    src/dff_hs_vs.v
+    
     src/delay.v
 
     src/text/font_rom.v
     src/text/draw_rect_char.v
     src/text/char_rom_16x16.v
+    src/text/draw_rect_game_over.v
+    src/text/char_rom_game_over.v
     src/text/textbox.v
 
     src/ship/ctl_ship.v
