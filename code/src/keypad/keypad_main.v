@@ -1,5 +1,5 @@
 // File: keypad_main.v
-// Author: Natalia Pluta
+// Author: NP
 // Main module for keypad matrix 4x4.
 
 `timescale 1 ns / 1 ps

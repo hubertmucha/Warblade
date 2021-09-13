@@ -1,15 +1,8 @@
 // File: ctl_missile_en.v
-// Author: HEHE
+// Author: HM
 // This module generate x, y and on for missile for one enemy
 
-// The `timescale directive specifies what the
-// simulation time units are (1 ns here) and what
-// the simulator time step should be (1 ps here).
-
 `timescale 1 ns / 1 ps
-
-// Declare the module and its ports. This is
-// using Verilog-2001 syntax.
 
 module ctl_missile_en (
     input wire pclk,

@@ -1,3 +1,6 @@
+// File: rx_done.v
+// Author: NP
+
 `timescale 1 ns / 1 ps
 
 module rx_done(

@@ -1,5 +1,5 @@
 // File: detec_col.v
-// Author: HEHE
+// Author: HM
 // This module is detecting colision enemy with ship missile and turns off enemy
 // drawing when he die
 
@@ -21,7 +21,7 @@ module detec_col
     input wire [10:0] xpos_enemy,
     input wire [10:0] ypos_enemy,
 
-    output reg on_out // is enemy visible ?
+    output reg on_out 
 );
 
     // same like enemy/draw_enemy.v remeber to change 

@@ -1,7 +1,6 @@
 // File: level.v
-// Author: Hubert Mucha
-// This module is genereating the level output by cheecking if all enemies dies
- 
+// Author: HM & NP
+
 module level(
     input wire pclk,                                  // Peripheral Clock
     input wire rst,                                   // Synchrous reset

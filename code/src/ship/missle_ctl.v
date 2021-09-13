@@ -1,4 +1,5 @@
 // File: missle_ctl.v
+// Author: NP
 // This module draw a rectangle on the backround.
 
 // The `timescale directive specifies what the

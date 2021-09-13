@@ -1,5 +1,5 @@
 // File: detect_collision.v
-// Author: Natalia Pluta
+// Author: NP
 // This module is detecting collison ship with enemy missile and turn him off
 
 `timescale 1 ns / 1 ps

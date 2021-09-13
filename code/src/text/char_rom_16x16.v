@@ -1,14 +1,7 @@
 // File: char_rom_16x16.v
-// This is the vga timing design for Lab 5.
-
-// The `timescale directive specifies what the
-// simulation time units are (1 ns here) and what
-// the simulator time step should be (1 ps here).
+// Author: HM
 
 `timescale 1 ns / 1 ps
-
-// Declare the module and its ports. This is
-// using Verilog-2001 syntax.
 
 module char_rom_16x16 (
   input wire [3:0] level,

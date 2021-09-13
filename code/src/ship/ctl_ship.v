@@ -1,5 +1,5 @@
 // File: ctl_ship.v
-// Author: NPL
+// Author: NP
 // This module is genereating xpos_out by calculating inputs form keyboard
 
 // The `timescale directive specifies what the

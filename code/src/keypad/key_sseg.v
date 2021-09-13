@@ -1,5 +1,5 @@
 // File: key_sseg.v
-// Author: Natalia Pluta
+// Author: NP
 // This module is displaying pressed key on sseg display.
 
 `timescale 1 ns / 1 ps

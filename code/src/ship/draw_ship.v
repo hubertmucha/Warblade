@@ -1,7 +1,7 @@
-`timescale 1 ns / 1 ps
+// File: draw_ship.v
+// Author: NP
 
-// Declare the module and its ports. This is
-// using Verilog-2001 syntax.
+`timescale 1 ns / 1 ps
 
  module draw_ship
     #( parameter

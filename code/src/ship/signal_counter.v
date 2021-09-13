@@ -1,5 +1,5 @@
 // File: signal_counter.v
-// Author: Natalia Pluta
+// Author: NP
 // Date: 3.09.2021r.
 // This is the vga timing design for EE178 Lab #4.
 

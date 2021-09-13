@@ -1,5 +1,5 @@
 // File: key_control.v
-// Author: NPL
+// Author: NP
 // This module is translates pressed keypads to controls inputs.
 
 // The `timescale directive specifies what the

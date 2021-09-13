@@ -1,6 +1,5 @@
-// The `timescale directive specifies what the
-// simulation time units are (1 ns here) and what
-// the simulator time step should be (1 ps here).
+// File: tx_lock.v
+// Author: NP
 
 `timescale 1 ns / 1 ps
 

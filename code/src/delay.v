@@ -1,5 +1,6 @@
-// The module delays the input data 'din' by the number of clock cycles
-// set by CLK_DEL input parameter
+// File: delay.v
+// Author: HM & NP
+
 module delay
     #( parameter
         WIDTH   = 8, // bit width of the input/output data

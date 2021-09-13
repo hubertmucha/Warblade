@@ -1,6 +1,5 @@
 // File: enemies.v
-// Author: Hubert Mucha
-// This module is grouping all en_one modules and level control 
+// Author: HM
  
  module enemies(
     input wire pclk,                                  // Peripheral Clock
