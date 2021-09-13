@@ -28,7 +28,7 @@ module uart_rx
 
    // body
    // FSMD state & data registers
-   always @(posedge clk, posedge reset)
+   always @(posedge clk)
       if (reset)
          begin
             state_reg <= idle;

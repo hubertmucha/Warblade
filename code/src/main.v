@@ -8,9 +8,6 @@
 module main (
   input wire clk,
   input wire rst,                         // U17 button - reset <-- look to vga_example.xdc
-  input wire right,                       // T17 button
-  input wire left,                        // W19 button
-  input wire missle_button,               // T18 button
   input wire rx, 
   input wire [2:0] columns,
 
@@ -31,6 +28,7 @@ module main (
   wire pclk;
   wire locked;
   wire clk100Mhz;
+  wire rst_out;
   
   clk_wiz_0 my_clk_wiz_0(
       .clk(clk),
@@ -44,8 +42,8 @@ module main (
   wire [7:0] key_press;
   uart my_uart(
     // inputs
-    .clk(clk100Mhz),
-    .reset(rst),
+    .clk(pclk),
+    .reset(rst_out),
     .rx(rx),
     .w_data(key_press),
 
@@ -80,8 +78,6 @@ module main (
     .S(1'b0)
   );
 
-  // lock_reset 
-  wire rst_out;
 
   lock_reset my_lock_reset(
     .lowest_freq_clk(pclk),
@@ -141,20 +137,11 @@ module main (
     .hblnk_out(vga_hblnk_b),
     .rgb_out(vga_rgb_b)
   );
-  
-  // dff delay controls signals
-  wire left_d, right_d;
-  delay #(.WIDTH(2), .CLK_DEL(2)) my_delay_controls(
-    .clk(pclk),
-    .rst(rst_out),
-    .din({left, right}),
-    .dout({left_d, right_d})
-  );
 
   wire left_control_1, right_control_1, shoot_control_1;
   key_control key_control_1(
     .pclk(pclk),
-    .rst(rst),
+    .rst(rst_out),
     .pressed_key(key_press),
     .left(left_control_1),
     .right(right_control_1),
@@ -164,7 +151,7 @@ module main (
   wire left_control_2, right_control_2, shoot_control_2;
   key_control key_control_2(
     .pclk(pclk),
-    .rst(rst),
+    .rst(rst_out),
     .pressed_key(key_uart),
     .left(left_control_2),
     .right(right_control_2),
@@ -323,21 +310,21 @@ module main (
 
   // 11  9 14
 
-  delay #(.WIDTH(4), .CLK_DEL(12)) delay_fb_loop_level(
+  delay #(.WIDTH(4), .CLK_DEL(13)) delay_fb_loop_level(
     .clk(pclk),
     .rst(rst_out),
     .din({level_nxt}),
     .dout({level_fb})
   );
 
-  delay #(.WIDTH(4), .CLK_DEL(10)) delay_fb_loop_level_bg( 
+  delay #(.WIDTH(4), .CLK_DEL(11)) delay_fb_loop_level_bg( 
     .clk(pclk),
     .rst(rst_out),
     .din({level_nxt}),
     .dout({level_fb_draw_background})
   );
 
-  delay #(.WIDTH(1), .CLK_DEL(15)) delay_fb_loop_level_change(
+  delay #(.WIDTH(1), .CLK_DEL(16)) delay_fb_loop_level_change(
     .clk(pclk),
     .rst(rst_out),
     .din({level_change_nxt}),

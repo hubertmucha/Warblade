@@ -61,6 +61,9 @@ always @(state or signal) begin
         next_state <= IDLE;
       end
     end
+    default: begin
+      next_state <= IDLE;
+    end
   endcase
 end
 
@@ -75,6 +78,9 @@ end
         signal_counter_nxt = signal_counter + 1;
       end
       SIGNAL_ON: begin
+        signal_counter_nxt = signal_counter;
+      end
+      default: begin
         signal_counter_nxt = signal_counter;
       end
     endcase

@@ -51,15 +51,6 @@ set_property CONFIG_VOLTAGE 3.3 [current_design]
 # U17 - reset
 set_property PACKAGE_PIN U17 [get_ports {rst}]					
 	set_property IOSTANDARD LVCMOS33 [get_ports {rst}]
-##  T17 - right
-set_property PACKAGE_PIN T17 [get_ports {right}]
-	set_property IOSTANDARD LVCMOS33 [get_ports {right}]
-##  W19 - left
-set_property PACKAGE_PIN W19 [get_ports {left}]
-	set_property IOSTANDARD LVCMOS33 [get_ports {left}]
-##  T18 - missile_button
-set_property PACKAGE_PIN T18 [get_ports {missle_button}]
-	set_property IOSTANDARD LVCMOS33 [get_ports {missle_button}]
 
 
 ## Constrains for keypad 4x4
