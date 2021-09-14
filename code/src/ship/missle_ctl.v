@@ -29,7 +29,7 @@ module missle_ctl (
   localparam WIDTH_RECT   = 48;                    
   localparam HEIGHT_RECT  = 64;
   localparam COUNTER_LIMIT = 90000;         
-  localparam MISSLE_HEIGHT_MIN = 80;                   // TODO: change height of minimum (up limit) ypos of missle 
+  localparam MISSLE_HEIGHT_MIN = 80;                   
   localparam MISSLE_HEIGHT_MAX = 768 - HEIGHT_RECT;
   localparam MISSLE_X_OFFSET = 19;
 
@@ -47,7 +47,7 @@ module missle_ctl (
       ypos_out  <= MISSLE_HEIGHT_MAX;
       refresh_counter <= 21'b0;
       on_out <= 0;
-      xpos_out <= 0;                              // TODO: change to the middle of a screen   
+      xpos_out <= 0;                              
     end
     else begin
     state <= next_state;

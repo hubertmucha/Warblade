@@ -76,6 +76,7 @@
 
   font_rom my_font_rom(
     .clk(pclk),
+    .rst(rst),
     .addr({char_code, char_line}),
     .char_line_pixels(char_pixels)
   );
@@ -116,6 +117,7 @@
 
   font_rom my_font_rom_game_over(
     .clk(pclk),
+    .rst(rst),
     .addr({char_code_2, char_line_2}),
     .char_line_pixels(char_pixels_2)
   );

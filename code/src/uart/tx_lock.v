@@ -2,9 +2,9 @@
 // Author: NP
 
 `timescale 1 ns / 1 ps
-// TODO: add reset synch
 module tx_lock(
   input wire pclk,
+  input wire rst,
   input wire [7:0] data_in,
   output reg tx_start,
   output reg [7:0] data_out
@@ -14,15 +14,22 @@ module tx_lock(
   localparam START = 2'b01;
   localparam LOCKED = 2'b10;
 
-  localparam COUNTER_LIMIT = 28700;           // 28646
+  localparam COUNTER_LIMIT = 28700;
   reg [7:0] temp_data;
   reg [1:0] state, next_state;
   reg [14:0] counter, next_counter;
 
   always @(posedge pclk) begin
-    state <= next_state;
-    counter <= next_counter;
-    data_out <= temp_data;
+    if(rst) begin
+      state <= IDLE;
+      counter <= 15'b0;
+      data_out <= 8'b0;
+    end
+    else begin
+      state <= next_state;
+      counter <= next_counter;
+      data_out <= temp_data;
+    end
   end
 
   always @(state or counter) begin
@@ -48,7 +55,7 @@ module tx_lock(
   end
 
   always @* begin
-    next_counter = counter;             // TODO: rozwiazanie infering latcha
+    next_counter = counter;             
     temp_data = data_out;
     case(state)
       IDLE: begin

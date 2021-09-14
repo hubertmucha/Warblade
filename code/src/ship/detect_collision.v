@@ -45,7 +45,6 @@
     end
   end
 
-  // TODO: y <- enBullet should can shoot down ship on his all height.
   always@* begin
 	if(enBullet_X_1 >= (ship_X - HALF_SHIP_WIDTH) && enBullet_X_1 <= (ship_X + HALF_SHIP_WIDTH) && enBullet_Y_1 == Y_SHIP)
 		is_ship_dead_nxt = SHIP_SHOOT_DOWN;

@@ -38,17 +38,12 @@
   reg [13:0] pixel_addr_nxt = 14'b0;
   reg [6:0] x_addr, y_addr, x_addr_nxt, y_addr_nxt;
 
-  localparam YPOS = 680;            // TODO: change to module param
+  localparam YPOS = 680;           
   localparam [11:0] TRANSPARENT_COLOR = 12'hf_f_f;
 
   // Parameters
-  // localparam X_RECT       = 100;
-  // localparam Y_RECT       = 100;
-  // localparam WIDTH_RECT   = 47;                     // rectangle - 48 x 64 
-  // localparam HEIGHT_RECT  = 63;
   localparam WIDTH_RECT   = 83;                     // rectangle - 84 x 70
   localparam HEIGHT_RECT  = 69;
-  // localparam [11:0] RGB_RECT    = 12'h8_f_8;
 
   // This module delays signals by one clk
   wire [10:0] vcount_delay, hcount_delay; 

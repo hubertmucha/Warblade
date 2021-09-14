@@ -16,7 +16,7 @@ module main_gen (
     //localparam COUNTER_LIMIT = 1000; // for simulation purpose
     localparam COUNTER_LIMIT = 1000000;
     localparam LEVEL_SCALER = 150;
-    localparam LEVEL = 1; // TODO: change in the future to input parameter
+    localparam LEVEL = 1; 
  
     reg [11:0] address, address_nxt = 0;
     reg [20:0] refresh_counter, refresh_counter_nxt = 0;

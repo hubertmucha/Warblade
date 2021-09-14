@@ -21,20 +21,6 @@
   reg hsync_nxt;
   reg vblnk_nxt;
   reg hblnk_nxt;
-  
-  // Parameters
-//   localparam HOR_TOTAL_TIME   = 1056;
-//   localparam HOR_BLANK_START  = 800;
-//   localparam HOR_BLANK_TIME   = 256;
-//   localparam HOR_SYNC_START   = 840;
-//   localparam HOR_SYNC_TIME    = 128;
-  
-//   localparam VER_TOTAL_TIME   = 628;
-//   localparam VER_BLANK_START  = 600;
-//   localparam VER_BLANK_TIME   = 28;
-//   localparam VER_SYNC_START   = 601;
-//   localparam VER_SYNC_TIME    = 4;
-
 
   localparam HOR_TOTAL_TIME   = 1344;
   localparam HOR_BLANK_START  = 1024;
@@ -47,18 +33,6 @@
   localparam VER_BLANK_TIME   = 38;
   localparam VER_SYNC_START   = 771;
   localparam VER_SYNC_TIME    = 6;
- 
-
- 
-  // Describe the actual circuit for the assignment.
-  // Video timing controller set for 800x600@60fps
-  // using a 40 MHz pixel clock per VESA spec.
- 
-//  uncomment for tesbench!!!  
-//   initial begin
-//     vcount = 11'b0;
-//     hcount = 11'b0;
-//   end
   
   // next counters logic
 always@(posedge pclk) begin
