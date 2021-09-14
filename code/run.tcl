@@ -98,10 +98,6 @@ read_verilog {
     src/uart/tx_lock.v
 }
 
-read_vhdl {
-    src/keypad/clk_div_fs.vhd
-}
-
 add_files -fileset sim_1 {
     sim/testbench.v
     sim/tiff_writer.v
