@@ -38,6 +38,9 @@ if {[lindex $argv 0] == "program"} {
 read_xdc {
     constr/vga_example.xdc
     constr/clk_wiz_0.xdc
+    constr/clk_wiz_0_ooc.xdc
+    constr/clk_wiz_0_late.xdc
+    constr/clk_wiz_0_board.xdc
 }
 
 read_verilog {
@@ -93,10 +96,6 @@ read_verilog {
     src/uart/mod_m_counter.v
     src/uart/rx_done.v
     src/uart/tx_lock.v
-}
-
-read_vhdl {
-    src/keypad/clk_div_fs.vhd
 }
 
 add_files -fileset sim_1 {

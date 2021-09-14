@@ -6,6 +6,7 @@
 
 module key_sseg(
   input wire pclk,
+  input wire rst,
   input wire [7:0] key,
   output reg [7:0] sseg_ca,          // segments (active LOW)
   output reg [3:0] sseg_an           // anode enable (active LOW)
@@ -28,8 +29,14 @@ reg [7:0] sseg_ca_nxt;
 reg [3:0] sseg_an_nxt;
 
 always @(posedge pclk) begin
-  sseg_ca <= sseg_ca_nxt;
-  sseg_an <= sseg_an_nxt;
+  if(rst) begin
+    sseg_ca <= 8'b1;
+    sseg_an <= 4'b1;
+  end
+  else begin
+    sseg_ca <= sseg_ca_nxt;
+    sseg_an <= sseg_an_nxt;
+  end
 end
 
 always @* begin

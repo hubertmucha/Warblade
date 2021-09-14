@@ -70,7 +70,7 @@
       vcount_out <= 11'b0;
 
       rgb_out    <= 12'h0_0_0;
-      pixel_addr <= 12'b0;
+      pixel_addr <= 10'b0;
 
       dead_count_out <= 4'b0;
     end
