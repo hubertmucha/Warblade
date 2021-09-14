@@ -37,7 +37,10 @@ if {[lindex $argv 0] == "program"} {
 
 read_xdc {
     constr/vga_example.xdc
-    constr/clk_wiz_0.xdc
+    constr/clk_wiz.xdc
+    constr/clk_wiz_ooc.xdc
+    constr/clk_wiz_late.xdc
+    constr/clk_wiz_board.xdc
 }
 
 read_verilog {
@@ -45,8 +48,8 @@ read_verilog {
     src/vga_timing.v
     src/draw_background.v
 
-    src/clk_wiz_0_clk_wiz.v
-    src/clk_wiz_0.v
+    src/clk_wiz_clk_wiz.v
+    src/clk_wiz.v
     src/lock_reset.v
     
     src/delay.v

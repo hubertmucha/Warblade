@@ -1,5 +1,5 @@
 
-# file: clk_wiz_0_late.xdc
+# file: clk_wiz_ooc.xdc
 # 
 # (c) Copyright 2008 - 2013 Xilinx, Inc. All rights reserved.
 # 
@@ -48,7 +48,11 @@
 # PART OF THIS FILE AT ALL TIMES.
 # 
 
-set_false_path -to [get_cells  -hier {*seq_reg*[0]} -filter {is_sequential}]
+#################
+#DEFAULT CLOCK CONSTRAINTS
 
-
+############################################################
+# Clock Period Constraints                                 #
+############################################################
+#create_clock -period 10.000 [get_ports clk]
 

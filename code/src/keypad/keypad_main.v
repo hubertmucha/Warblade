@@ -24,7 +24,7 @@ module keypad_main(
   wire [7:0] pressed_key;
   wire [3:0] rows_o;
   keypad_4x4_sm my_keypad(
-    .pclk(pclk),
+    .pclk(clk),
     .rst(rst),
     .columns(columns),
     .pressed_key(pressed_key),
@@ -35,7 +35,7 @@ module keypad_main(
   wire [3:0] sseg_an_o;
 
   key_sseg my_key_sseg(
-    .pclk(pclk),
+    .pclk(clk),
     .rst(rst),
     .key(pressed_key),
     .sseg_ca(sseg_ca_o),

@@ -27,13 +27,13 @@ module main (
    
   wire pclk;
   wire locked;
-  wire clk100Mhz;
   wire rst_out;
+  wire clk_13Mhz;
   
-  clk_wiz_0 my_clk_wiz_0(
+  clk_wiz my_clk_wiz(
       .clk(clk),
-      .clk65Mhz(pclk),
-      .clk100Mhz(clk100Mhz),
+      .clk_65Mhz(pclk),
+      .clk_13Mhz(clk_13Mhz),
       .locked(locked),
       .reset(rst)
   );
@@ -57,7 +57,7 @@ module main (
   wire [3:0] sseg_an_k;
 
   keypad_main keypad(
-    .clk(pclk),
+    .clk(clk_13Mhz),
     .rst(rst_out),
     .columns(columns),
     .rows(rows_k),
@@ -81,7 +81,7 @@ module main (
 
 
   lock_reset my_lock_reset(
-    .lowest_freq_clk(pclk),
+    .lowest_freq_clk(clk_13Mhz),
     .locked(locked),
     .rst_out(rst_out)
   );
