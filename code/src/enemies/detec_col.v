@@ -37,8 +37,11 @@ module detec_col
 
 // ---------------------------------------
 // state register
-
   always @(posedge pclk) begin
+    if(rst) begin
+      state <= ON;
+      on_out <= 1'b1;
+    end
     state  <= state_nxt;
     on_out <= on_nxt;
   end

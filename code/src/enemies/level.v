@@ -1,5 +1,5 @@
 // File: level.v
-// Author: HM & NP
+// Author: HM
 
 module level(
     input wire pclk,                                  // Peripheral Clock
