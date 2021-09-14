@@ -30,7 +30,7 @@ module main (
   wire rst_out;
   wire clk_13Mhz;
   
-  clk_wiz my_clk_wiz(
+  clk_wiz_0 my_clk_wiz_0(
       .clk(clk),
       .clk_65Mhz(pclk),
       .clk_13Mhz(clk_13Mhz),

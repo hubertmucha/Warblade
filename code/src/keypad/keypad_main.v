@@ -15,12 +15,6 @@ module keypad_main(
   output wire [7:0] key_press
 );
 
-  wire pclk;
-  clk_div_fs my_clk_div_fs(
-    .clk(clk),
-    .clk_out(pclk)
-  );
-
   wire [7:0] pressed_key;
   wire [3:0] rows_o;
   keypad_4x4_sm my_keypad(
