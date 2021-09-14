@@ -58,6 +58,7 @@ module main (
 
   keypad_main keypad(
     .clk(pclk),
+    .rst(rst_out),
     .columns(columns),
     .rows(rows_k),
     .sseg_ca(sseg_ca_k),

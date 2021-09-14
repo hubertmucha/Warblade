@@ -6,7 +6,7 @@
 
 module keypad_4x4_sm(
     input wire pclk,
-    // input wire rst,
+    input wire rst,
     input wire [2:0] columns,
 
     output reg [7:0] pressed_key,
@@ -30,17 +30,16 @@ module keypad_4x4_sm(
 // ---------------------------------------
 // state register
   always @(posedge pclk) begin
-    state <= next_state;
-    rows <= rows_nxt;
-    pressed_key <= pressed_key_nxt;
-    // if(rst) begin
-    //   state <= IDLE; 
-
-    // end
-    // else begin
-    //   state <= next_state;
-    //   rows <= rows_nxt;
-    // end
+    if(rst) begin
+      state <= IDLE;
+      rows <= 4'b0;
+      pressed_key <= 8'b0;
+    end
+    else begin
+      state <= next_state;
+      rows <= rows_nxt;
+      pressed_key <= pressed_key_nxt;
+    end
   end
 
 // ---------------------------------------
