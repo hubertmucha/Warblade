@@ -1,0 +1,42 @@
+Plan rozwoju apliakcji:
+
+TODO 
+	Stworzenie opisu gry (strona tytułowa git)
+DONE
+	Zrobienie planu
+TODO 
+	Inicjlizacja projektu
+TODO 
+	Inicjlizacja kodu (odbicie się od najbardziej optymalnego projektu z labolarotium)
+TODO
+	Dodanie jednego obiektu (kolorowego prostokątu) poruszającego się po osi X na ustalonej wysokosci
+TODO 
+	Dodanie drugiego obiektu jw.
+TODO 
+	Dodanie akcji strzelania
+TODO 
+	Zamiana kolorowego prostokątu na grafike statku
+TODO 
+	Dodanie liczników życia
+TODO
+	Dodanie statycznych celów do eliminacji
+TODO
+	Komunikacja pomiędzy dwoma płtykami
+TODO
+	Generacja rozmieszczenia
+TODO
+	Generacja ruchu celu
+TODO 
+	Generacja pociskow wrogich obiektów
+TODO
+	Dodanie grafiki tła
+TODO 
+	dev poziomów 
+TODO 
+	Dodanie licznika poziomu 
+TODO
+	Ekran startowy
+TODO 
+	Manual Sterowania
+TODO 
+	Uzupełnienie Dokumentacji
