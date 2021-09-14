@@ -1,13 +1,13 @@
 
 # file: clk_wiz.xdc
-# 
+#
 # (c) Copyright 2008 - 2013 Xilinx, Inc. All rights reserved.
-# 
+#
 # This file contains confidential and proprietary information
 # of Xilinx, Inc. and is protected under U.S. and
 # international copyright and other intellectual property
 # laws.
-# 
+#
 # DISCLAIMER
 # This disclaimer is not a license and does not grant any
 # rights to the materials distributed herewith. Except as
@@ -29,7 +29,7 @@
 # by a third party) even if such damage or loss was
 # reasonably foreseeable or Xilinx had been advised of the
 # possibility of the same.
-# 
+#
 # CRITICAL APPLICATIONS
 # Xilinx products are not designed or intended to be fail-
 # safe, or for use in any application requiring fail-safe
@@ -43,19 +43,21 @@
 # liability of any use of Xilinx products in Critical
 # Applications, subject only to applicable laws and
 # regulations governing limitations on product liability.
-# 
+#
 # THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
 # PART OF THIS FILE AT ALL TIMES.
-# 
+#
 
 # Input clock periods. These duplicate the values entered for the
 # input clocks. You can use these to time your system. If required
-# commented constraints can be used in the top level xdc 
+# commented constraints can be used in the top level xdc
 #----------------------------------------------------------------
 # Connect to input port when clock capable pin is selected for input
+set_false_path -to [get_cells -hier {*seq_reg*[0]} -filter is_sequential]
 create_clock -period 10.000 [get_ports clk]
-set_input_jitter [get_clocks -of_objects [get_ports clk]] 0.1
+set_input_jitter [get_clocks -of_objects [get_ports clk]] 0.100
 
 
-set_false_path -to [get_cells  -hier {*seq_reg*[0]} -filter {is_sequential}]
+set_false_path -to [get_cells -hier {*seq_reg*[0]} -filter is_sequential]
 set_property PHASESHIFT_MODE WAVEFORM [get_cells -hierarchical *adv*]
+
