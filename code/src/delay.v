@@ -1,5 +1,5 @@
 // File: delay.v
-// Timing warnings deletions: HM
+// Module from laboratory class slightly modified by HM (Timing warnings deletions due to async reset)
 
 module delay
     #( parameter
