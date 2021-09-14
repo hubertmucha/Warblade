@@ -39,6 +39,7 @@ module uart
    rx_done my_rx_done
    (
       .pclk(clk),
+      .rst(reset),
       .r_data(rx_data_out),
       .rx_done(rx_done_tick),
       .r_data_out(r_data)
@@ -49,6 +50,7 @@ module uart
    
    tx_lock my_tx_lock(
       .pclk(clk),
+      .rst(reset),
       .data_in(w_data),
       .tx_start(tx_start),
       .data_out(data_tx_out)

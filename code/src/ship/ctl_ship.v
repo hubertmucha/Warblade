@@ -2,14 +2,9 @@
 // Author: NP
 // This module is genereating xpos_out by calculating inputs form keyboard
 
-// The `timescale directive specifies what the
-// simulation time units are (1 ns here) and what
-// the simulator time step should be (1 ps here).
 
 `timescale 1 ns / 1 ps
 
-// Declare the module and its ports. This is
-// using Verilog-2001 syntax.
 
 module position_rect_ctl
     #( parameter
@@ -30,7 +25,7 @@ module position_rect_ctl
   localparam DEAD = 3'b011;
   localparam START_POSITION = 3'b100;
 
-  localparam WIDTH_RECT   = 83;         // TODO: change to param            
+  localparam WIDTH_RECT   = 83;    
   localparam HEIGHT_RECT  = 64;
   localparam COUNTER_LIMIT = 30000;
   localparam DISPLAY_WIDTH_MIN = 80;
